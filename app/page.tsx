@@ -111,15 +111,11 @@ export default function Home() {
         backgroundColor: "#0A0A0A",
         zIndex: 100,
       }}>
-        <div style={{
-          fontSize: "22px",
-          fontFamily: "Georgia, serif",
-          fontWeight: "bold",
-          color: "#C0001A",
-          letterSpacing: "5px",
-        }}>
-          VINUS
-        </div>
+        <img
+  src="/vinus_logo.png"
+  alt="VINUS"
+  style={{ height: "124px", objectFit: "contain" }}
+/>
         <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
           <a href="#" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Explore</a>
           <a href="#" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Creators</a>
