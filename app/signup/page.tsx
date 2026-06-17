@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "../components/Navbar";
 import { useState } from "react";
 
 export default function SignupPage() {
@@ -17,41 +18,14 @@ export default function SignupPage() {
       display: "flex",
       flexDirection: "column",
     }}>
-      {/* 네비게이션 */}
-      <nav style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "20px 48px",
-        borderBottom: "1px solid #1A0005",
-      }}>
-        <a href="/" style={{
-          fontSize: "22px",
-          fontFamily: "Georgia, serif",
-          fontWeight: "bold",
-          color: "#C0001A",
-          letterSpacing: "5px",
-          textDecoration: "none",
-        }}>
-          VINUS
-        </a>
-        <a href="/login" style={{
-          color: "#666",
-          textDecoration: "none",
-          fontSize: "13px",
-          letterSpacing: "1px",
-        }}>
-          Already have an account? Log in →
-        </a>
-      </nav>
+      <Navbar />
 
-      {/* 회원가입 폼 */}
       <div style={{
         flex: 1,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "48px",
+        padding: "48px 24px",
       }}>
         <div style={{ width: "100%", maxWidth: "400px" }}>
           <p style={{
@@ -71,7 +45,6 @@ export default function SignupPage() {
             Create account
           </h1>
 
-          {/* 역할 선택 */}
           <div style={{ marginBottom: "24px" }}>
             <label style={{
               display: "block",
@@ -117,7 +90,6 @@ export default function SignupPage() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
-            {/* 이름 */}
             <div>
               <label style={{
                 display: "block",
@@ -145,8 +117,6 @@ export default function SignupPage() {
                 }}
               />
             </div>
-
-            {/* 이메일 */}
             <div>
               <label style={{
                 display: "block",
@@ -174,8 +144,6 @@ export default function SignupPage() {
                 }}
               />
             </div>
-
-            {/* 비밀번호 */}
             <div>
               <label style={{
                 display: "block",
@@ -203,24 +171,19 @@ export default function SignupPage() {
                 }}
               />
             </div>
-
-            {/* 가입 버튼 */}
-            <button
-              style={{
-                width: "100%",
-                backgroundColor: "#C0001A",
-                color: "#F5F0F0",
-                border: "none",
-                padding: "16px",
-                fontSize: "13px",
-                letterSpacing: "2px",
-                cursor: "pointer",
-                marginTop: "8px",
-              }}
-            >
+            <button style={{
+              width: "100%",
+              backgroundColor: "#C0001A",
+              color: "#F5F0F0",
+              border: "none",
+              padding: "16px",
+              fontSize: "13px",
+              letterSpacing: "2px",
+              cursor: "pointer",
+              marginTop: "8px",
+            }}>
               CREATE ACCOUNT
             </button>
-
             <p style={{
               color: "#333",
               fontSize: "12px",
@@ -231,6 +194,14 @@ export default function SignupPage() {
               <a href="#" style={{ color: "#555", textDecoration: "underline" }}>Terms</a>
               {" "}and{" "}
               <a href="#" style={{ color: "#555", textDecoration: "underline" }}>Privacy Policy</a>
+            </p>
+            <p style={{
+              color: "#444",
+              fontSize: "13px",
+              textAlign: "center",
+            }}>
+              Already have an account?{" "}
+              <a href="/login" style={{ color: "#C0001A", textDecoration: "none" }}>Log in</a>
             </p>
           </div>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import Navbar from "../components/Navbar";
 import { useState } from "react";
 
 const stats = [

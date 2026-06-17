@@ -1,5 +1,5 @@
 "use client";
-
+import Navbar from "./components/Navbar";
 import { useState } from "react";
 
 const creators = [
@@ -100,36 +100,7 @@ export default function Home() {
       color: "#F5F0F0",
       fontFamily: "system-ui, sans-serif",
     }}>
-      <nav style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "20px 48px",
-        borderBottom: "1px solid #1A0005",
-        position: "sticky",
-        top: 0,
-        backgroundColor: "#0A0A0A",
-        zIndex: 100,
-      }}>
-        <img
-  src="/vinus_logo.png"
-  alt="VINUS"
-  style={{ height: "124px", objectFit: "contain" }}
-/>
-        <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
-          <a href="#" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Explore</a>
-          <a href="#" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Creators</a>
-          <a href="/login" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Log in</a>
-<a href="/signup" style={{
-  backgroundColor: "#C0001A",
-            color: "#F5F0F0",
-            padding: "8px 22px",
-            textDecoration: "none",
-            fontSize: "13px",
-            letterSpacing: "2px",
-          }}>JOIN</a>
-        </div>
-      </nav>
+      <Navbar />
       <section style={{ padding: "120px 48px 100px", maxWidth: "760px" }}>
         <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "28px" }}>
           CREATOR PLATFORM
