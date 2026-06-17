@@ -123,9 +123,9 @@ export default function Home() {
         <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
           <a href="#" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Explore</a>
           <a href="#" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Creators</a>
-          <a href="#" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Log in</a>
-          <a href="#" style={{
-            backgroundColor: "#C0001A",
+          <a href="/login" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Log in</a>
+<a href="/signup" style={{
+  backgroundColor: "#C0001A",
             color: "#F5F0F0",
             padding: "8px 22px",
             textDecoration: "none",
