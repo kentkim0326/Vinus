@@ -1,7 +1,7 @@
 "use client";
 
-import Navbar from "../components/Navbar";
 import { useState } from "react";
+import Navbar from "../components/Navbar";
 
 const posts = [
   {
@@ -88,7 +88,6 @@ function PostCard({ post }: { post: typeof posts[0] }) {
       border: "1px solid #1A0008",
       marginBottom: "2px",
     }}>
-      {/* 크리에이터 헤더 */}
       <div style={{
         display: "flex",
         alignItems: "center",
@@ -128,7 +127,6 @@ function PostCard({ post }: { post: typeof posts[0] }) {
         </div>
       </div>
 
-      {/* 콘텐츠 */}
       <div style={{ padding: "24px" }}>
         <h3 style={{
           fontFamily: "Georgia, serif",
@@ -141,39 +139,28 @@ function PostCard({ post }: { post: typeof posts[0] }) {
         </h3>
 
         {isLocked ? (
-          /* 잠긴 콘텐츠 */
           <div style={{
             backgroundColor: "#0A0003",
             border: "1px solid #1A0008",
             padding: "40px",
             textAlign: "center",
-            position: "relative",
-            overflow: "hidden",
           }}>
-            <div style={{
-              position: "absolute",
-              top: 0, left: 0, right: 0, bottom: 0,
-              background: "linear-gradient(to bottom, transparent, #0A0003)",
-            }} />
-            <div style={{ position: "relative", zIndex: 1 }}>
-              <p style={{ color: "#333", fontSize: "14px", marginBottom: "20px" }}>
-                This content is for subscribers only
-              </p>
-              <button style={{
-                backgroundColor: "#C0001A",
-                color: "#F5F0F0",
-                border: "none",
-                padding: "12px 28px",
-                fontSize: "12px",
-                letterSpacing: "2px",
-                cursor: "pointer",
-              }}>
-                SUBSCRIBE TO UNLOCK
-              </button>
-            </div>
+            <p style={{ color: "#333", fontSize: "14px", marginBottom: "20px" }}>
+              This content is for subscribers only
+            </p>
+            <button style={{
+              backgroundColor: "#C0001A",
+              color: "#F5F0F0",
+              border: "none",
+              padding: "12px 28px",
+              fontSize: "12px",
+              letterSpacing: "2px",
+              cursor: "pointer",
+            }}>
+              SUBSCRIBE TO UNLOCK
+            </button>
           </div>
         ) : (
-          /* 공개 콘텐츠 */
           <div>
             {post.hasImage && (
               <div style={{
@@ -190,18 +177,13 @@ function PostCard({ post }: { post: typeof posts[0] }) {
                 {post.preview}
               </div>
             )}
-            <p style={{
-              color: "#777",
-              fontSize: "15px",
-              lineHeight: 1.8,
-            }}>
+            <p style={{ color: "#777", fontSize: "15px", lineHeight: 1.8 }}>
               {post.content}
             </p>
           </div>
         )}
       </div>
 
-      {/* 하단 액션 */}
       <div style={{
         padding: "16px 24px",
         borderTop: "1px solid #1A0008",
@@ -246,6 +228,14 @@ function PostCard({ post }: { post: typeof posts[0] }) {
 }
 
 export default function FeedPage() {
+  const [activeFilter, setActiveFilter] = useState<"All" | "Free" | "Paid">("All");
+
+  const filteredPosts = posts.filter((post) => {
+    if (activeFilter === "Free") return post.type === "FREE";
+    if (activeFilter === "Paid") return post.type === "PAID";
+    return true;
+  });
+
   return (
     <main style={{
       backgroundColor: "#0A0A0A",
@@ -253,7 +243,6 @@ export default function FeedPage() {
       color: "#F5F0F0",
       fontFamily: "system-ui, sans-serif",
     }}>
-      {/* 네비게이션 */}
       <Navbar />
 
       <div style={{
@@ -275,19 +264,16 @@ export default function FeedPage() {
         </div>
 
         {/* 필터 */}
-        <div style={{
-          display: "flex",
-          gap: "8px",
-          marginBottom: "32px",
-        }}>
-          {["All", "Free", "Paid"].map((filter) => (
+        <div style={{ display: "flex", gap: "8px", marginBottom: "32px" }}>
+          {(["All", "Free", "Paid"] as const).map((filter) => (
             <button
               key={filter}
+              onClick={() => setActiveFilter(filter)}
               style={{
                 padding: "8px 18px",
-                backgroundColor: filter === "All" ? "#C0001A" : "transparent",
-                border: `1px solid ${filter === "All" ? "#C0001A" : "#1A0008"}`,
-                color: filter === "All" ? "#F5F0F0" : "#555",
+                backgroundColor: activeFilter === filter ? "#C0001A" : "transparent",
+                border: `1px solid ${activeFilter === filter ? "#C0001A" : "#1A0008"}`,
+                color: activeFilter === filter ? "#F5F0F0" : "#555",
                 fontSize: "12px",
                 letterSpacing: "1px",
                 cursor: "pointer",
@@ -298,9 +284,14 @@ export default function FeedPage() {
           ))}
         </div>
 
+        {/* 결과 수 */}
+        <p style={{ color: "#444", fontSize: "13px", marginBottom: "24px" }}>
+          {filteredPosts.length} posts
+        </p>
+
         {/* 포스트 목록 */}
         <div>
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <PostCard key={post.id} post={post} />
           ))}
         </div>
