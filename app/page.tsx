@@ -94,13 +94,21 @@ export default function Home() {
     }}>
       <Navbar />
     <section style={{ 
-  padding: "100px 48px 100px",
+  padding: "80px 24px 80px",
   display: "flex",
-  gap: "80px",
+  gap: "48px",
   alignItems: "center",
   justifyContent: "center",
+  overflow: "hidden",
+  boxSizing: "border-box",
+  width: "100%",
 }}>
-  <div style={{ flex: "0 0 auto", maxWidth: "520px" }}>
+ <div style={{ 
+  flex: "1 1 auto", 
+  maxWidth: "520px",
+  minWidth: 0,
+  width: "100%",
+}}>
     <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "28px" }}>
       CREATOR PLATFORM
     </p>
