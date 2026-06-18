@@ -239,7 +239,51 @@ export default function CreatorPage() {
           </div>
         )}
       </section>
-
+{/* 게시물 목록 */}
+      <section style={{ padding: "0 48px 80px" }}>
+        <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
+          LATEST POSTS
+        </p>
+        <h2 style={{ fontFamily: "Georgia, serif", fontSize: "28px", fontWeight: "normal", marginBottom: "32px" }}>
+          From {creator.name}
+        </h2>
+        <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          {[
+            { title: "Behind the scenes — new collection", date: "Jun 15, 2026", type: "FREE" },
+            { title: "Exclusive content drop vol.3", date: "Jun 10, 2026", type: "PAID" },
+            { title: "Monthly update — June", date: "Jun 1, 2026", type: "FREE" },
+            { title: "Process breakdown — latest work", date: "May 28, 2026", type: "PAID" },
+          ].map((post, i) => (
+            <div key={i} style={{
+              backgroundColor: "#0D0005",
+              border: "1px solid #1A0008",
+              padding: "20px 24px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}>
+              <div>
+                <p style={{ fontSize: "15px", marginBottom: "4px" }}>{post.title}</p>
+                <p style={{ color: "#555", fontSize: "12px" }}>{post.date}</p>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+                <span style={{
+                  fontSize: "11px",
+                  letterSpacing: "1px",
+                  padding: "4px 10px",
+                  border: `1px solid ${post.type === "FREE" ? "#333" : "#C0001A"}`,
+                  color: post.type === "FREE" ? "#555" : "#C0001A",
+                }}>
+                  {post.type}
+                </span>
+                {post.type === "PAID" && (
+                  <span style={{ color: "#333", fontSize: "13px" }}>🔒</span>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
       {/* 푸터 */}
       <footer style={{
         padding: "40px 48px",
