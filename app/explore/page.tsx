@@ -2,21 +2,10 @@
 
 import Navbar from "../components/Navbar";
 import { useState } from "react";
-
+import { creators } from "../lib/data";
 
 const categories = ["All", "Art & Illustration", "Music & Audio", "Photography", "Digital Art", "Writing", "Video & Film"];
 
-const creators = [
-  { id: 1, name: "Aria Nova", category: "Art & Illustration", subscribers: 2840, preview: "✦", tier: "from $5/mo", bio: "Digital artist exploring light and shadow." },
-  { id: 2, name: "Echo Veil", category: "Music & Audio", subscribers: 1520, preview: "♪", tier: "from $3/mo", bio: "Ambient soundscapes and electronic compositions." },
-  { id: 3, name: "Luna Craft", category: "Photography", subscribers: 4210, preview: "◈", tier: "from $8/mo", bio: "Fine art photography from remote landscapes." },
-  { id: 4, name: "Nyx Studio", category: "Digital Art", subscribers: 3100, preview: "⬡", tier: "from $5/mo", bio: "Concept art and world-building for games and films." },
-  { id: 5, name: "Vex Origins", category: "Writing", subscribers: 980, preview: "✒", tier: "from $2/mo", bio: "Dark fiction and world-building essays." },
-  { id: 6, name: "Sol Cipher", category: "Video & Film", subscribers: 2250, preview: "▶", tier: "from $10/mo", bio: "Independent filmmaker and visual storyteller." },
-  { id: 7, name: "Dusk Atelier", category: "Art & Illustration", subscribers: 1890, preview: "◐", tier: "from $6/mo", bio: "Surrealist illustrations and limited edition prints." },
-  { id: 8, name: "Vera Sine", category: "Music & Audio", subscribers: 3400, preview: "♫", tier: "from $4/mo", bio: "Classical piano meets modern electronic production." },
-  { id: 9, name: "Frost Frame", category: "Photography", subscribers: 2100, preview: "❄", tier: "from $7/mo", bio: "Arctic and wilderness photography." },
-];
 
 export default function ExplorePage() {
   const [activeCategory, setActiveCategory] = useState("All");

@@ -54,7 +54,7 @@ export default function DashboardPage() {
         </a>
         <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
           <a href="/feed" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Feed</a>
-          <span style={{ color: "#F5F0F0", fontSize: "13px" }}>Aria Nova</span>
+         <a href="/profile/edit" style={{ color: "#F5F0F0", fontSize: "13px", textDecoration: "none" }}>Aria Nova ✎</a>
         </div>
       </nav>
 

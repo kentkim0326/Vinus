@@ -3,15 +3,7 @@
 import Navbar from "../../components/Navbar";
 import { useState } from "react";
 import { useParams } from "next/navigation";
-
-const creators = [
-  { id: 1, name: "Aria Nova", category: "Art & Illustration", subscribers: 2840, preview: "✦", bio: "Digital artist exploring the boundaries between light and shadow. Exclusive prints, process videos, and early access to new collections.", tiers: [{ name: "Supporter", price: 5, perks: ["Monthly wallpaper pack", "Early access to new art"] }, { name: "Collector", price: 15, perks: ["Everything in Supporter", "Monthly print (digital)", "Behind the scenes content"] }, { name: "Patron", price: 30, perks: ["Everything in Collector", "1:1 monthly feedback session", "Name in credits"] }] },
-  { id: 2, name: "Echo Veil", category: "Music & Audio", subscribers: 1520, preview: "♪", bio: "Ambient soundscapes and electronic compositions. New tracks every week, stems for download, and live listening sessions.", tiers: [{ name: "Listener", price: 3, perks: ["Monthly exclusive track", "Early releases"] }, { name: "Fan", price: 10, perks: ["Everything in Listener", "Stems & samples pack", "Monthly Q&A"] }, { name: "Producer", price: 25, perks: ["Everything in Fan", "Full project files", "Collaboration opportunity"] }] },
-  { id: 3, name: "Luna Craft", category: "Photography", subscribers: 4210, preview: "◈", bio: "Fine art photography from remote landscapes. Limited edition prints, location guides, and photography workshops.", tiers: [{ name: "Explorer", price: 8, perks: ["Monthly photo essay", "Location notes"] }, { name: "Adventurer", price: 20, perks: ["Everything in Explorer", "Full resolution downloads", "Editing presets"] }, { name: "Expedition", price: 50, perks: ["Everything in Adventurer", "Monthly 1:1 mentorship", "Private workshop access"] }] },
-  { id: 4, name: "Nyx Studio", category: "Digital Art", subscribers: 3100, preview: "⬡", bio: "Concept art and world-building for games and films. Process breakdowns, asset packs, and design critiques.", tiers: [{ name: "Viewer", price: 5, perks: ["Monthly asset pack", "Process videos"] }, { name: "Student", price: 15, perks: ["Everything in Viewer", "Tutorial library access", "Brush packs"] }, { name: "Artist", price: 35, perks: ["Everything in Student", "Monthly critique session", "Commission priority"] }] },
-  { id: 5, name: "Vex Origins", category: "Writing", subscribers: 980, preview: "✒", bio: "Dark fiction and world-building essays. Serialized stories, writing guides, and early manuscript access.", tiers: [{ name: "Reader", price: 2, perks: ["Monthly short story", "Newsletter"] }, { name: "Subscriber", price: 8, perks: ["Everything in Reader", "Full serialized novel access", "Writing notes"] }, { name: "Collaborator", price: 20, perks: ["Everything in Subscriber", "Manuscript feedback", "Character naming rights"] }] },
-  { id: 6, name: "Sol Cipher", category: "Video & Film", subscribers: 2250, preview: "▶", bio: "Independent filmmaker and visual storyteller. Short films, director commentary, and filmmaking masterclasses.", tiers: [{ name: "Watcher", price: 10, perks: ["Monthly short film", "Director commentary"] }, { name: "Cinephile", price: 25, perks: ["Everything in Watcher", "Extended cuts", "Script access"] }, { name: "Producer", price: 60, perks: ["Everything in Cinephile", "Set visit (virtual)", "Executive producer credit"] }] },
-];
+import { creators } from "../../lib/data";
 
 export default function CreatorPage() {
   const params = useParams();
@@ -231,17 +223,19 @@ export default function CreatorPage() {
                 {creator.tiers[selectedTier].name} — ${creator.tiers[selectedTier].price}/mo
               </p>
             </div>
-            <button style={{
-              backgroundColor: "#C0001A",
-              color: "#F5F0F0",
-              padding: "14px 40px",
-              border: "none",
-              fontSize: "13px",
-              letterSpacing: "2px",
-              cursor: "pointer",
-            }}>
-              SUBSCRIBE WITH CRYPTO →
-            </button>
+            <a href="/subscribe/success" style={{
+  backgroundColor: "#C0001A",
+  color: "#F5F0F0",
+  padding: "14px 40px",
+  border: "none",
+  fontSize: "13px",
+  letterSpacing: "2px",
+  cursor: "pointer",
+  textDecoration: "none",
+  display: "inline-block",
+}}>
+  SUBSCRIBE WITH CRYPTO →
+</a>
           </div>
         )}
       </section>
