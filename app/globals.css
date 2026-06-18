@@ -33,3 +33,17 @@ body {
     display: block !important;
   }
 }
+@media (max-width: 768px) {
+  .hero-cards {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .hero-cards {
+    display: none !important;
+  }
+  main section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}

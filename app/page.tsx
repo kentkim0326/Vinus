@@ -1,15 +1,7 @@
 "use client";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
-
-const creators = [
-  { id: 1, name: "Aria Nova", category: "Art & Illustration", subscribers: 2840, preview: "✦", tier: "from $5/mo" },
-  { id: 2, name: "Echo Veil", category: "Music & Audio", subscribers: 1520, preview: "♪", tier: "from $3/mo" },
-  { id: 3, name: "Luna Craft", category: "Photography", subscribers: 4210, preview: "◈", tier: "from $8/mo" },
-  { id: 4, name: "Nyx Studio", category: "Digital Art", subscribers: 3100, preview: "⬡", tier: "from $5/mo" },
-  { id: 5, name: "Vex Origins", category: "Writing", subscribers: 980, preview: "✒", tier: "from $2/mo" },
-  { id: 6, name: "Sol Cipher", category: "Video & Film", subscribers: 2250, preview: "▶", tier: "from $10/mo" },
-];
+import { creators } from "./lib/data";
 
 type Creator = typeof creators[0];
 
@@ -101,49 +93,131 @@ export default function Home() {
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
-      <section style={{ padding: "120px 48px 100px", maxWidth: "760px" }}>
-        <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "28px" }}>
-          CREATOR PLATFORM
-        </p>
-        <h1 style={{
-          fontFamily: "Georgia, serif",
-          fontSize: "clamp(48px, 7vw, 88px)",
-          lineHeight: 1.05,
-          marginBottom: "32px",
-          fontWeight: "normal",
-        }}>
-          Support the<br />
-          <span style={{ color: "#C0001A" }}>creators</span><br />
-          you love.
-        </h1>
-        <p style={{
-          color: "#666",
-          fontSize: "17px",
-          lineHeight: 1.8,
-          marginBottom: "48px",
-          maxWidth: "440px",
-        }}>
-          Subscribe to independent creators. Get exclusive content. Pay with crypto.
-        </p>
-        <div style={{ display: "flex", gap: "16px" }}>
-          <a href="#explore" style={{
-            backgroundColor: "#C0001A",
-            color: "#F5F0F0",
-            padding: "14px 32px",
-            textDecoration: "none",
-            fontSize: "13px",
-            letterSpacing: "2px",
-          }}>EXPLORE CREATORS</a>
-          <a href="#" style={{
-            border: "1px solid #2A2A2A",
-            color: "#666",
-            padding: "14px 32px",
-            textDecoration: "none",
-            fontSize: "13px",
-            letterSpacing: "2px",
-          }}>BECOME A CREATOR</a>
+    <section style={{ 
+  padding: "100px 48px 100px",
+  display: "flex",
+  gap: "80px",
+  alignItems: "center",
+  justifyContent: "center",
+}}>
+  <div style={{ flex: "0 0 auto", maxWidth: "520px" }}>
+    <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "28px" }}>
+      CREATOR PLATFORM
+    </p>
+    <h1 style={{
+      fontFamily: "Georgia, serif",
+      fontSize: "clamp(48px, 6vw, 80px)",
+      lineHeight: 1.05,
+      marginBottom: "32px",
+      fontWeight: "normal",
+    }}>
+      Support the<br />
+      <span style={{ color: "#C0001A" }}>creators</span><br />
+      you love.
+    </h1>
+    <p style={{
+      color: "#666",
+      fontSize: "17px",
+      lineHeight: 1.8,
+      marginBottom: "48px",
+      maxWidth: "400px",
+    }}>
+      Subscribe to independent creators. Get exclusive content. Pay with crypto.
+    </p>
+    <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+      <a href="#explore" style={{
+        backgroundColor: "#C0001A",
+        color: "#F5F0F0",
+        padding: "14px 32px",
+        textDecoration: "none",
+        fontSize: "13px",
+        letterSpacing: "2px",
+      }}>EXPLORE CREATORS</a>
+      <a href="/signup" style={{
+        border: "1px solid #2A2A2A",
+        color: "#666",
+        padding: "14px 32px",
+        textDecoration: "none",
+        fontSize: "13px",
+        letterSpacing: "2px",
+      }}>BECOME A CREATOR</a>
+    </div>
+    <div style={{
+      display: "flex",
+      gap: "40px",
+      marginTop: "64px",
+      paddingTop: "40px",
+      borderTop: "1px solid #1A0008",
+    }}>
+      {[
+        { value: "9+", label: "Creators" },
+        { value: "18K+", label: "Subscribers" },
+        { value: "100%", label: "Crypto Payments" },
+      ].map((stat) => (
+        <div key={stat.label}>
+          <p style={{ fontFamily: "Georgia, serif", fontSize: "28px", color: "#F5F0F0", marginBottom: "4px" }}>
+            {stat.value}
+          </p>
+          <p style={{ color: "#444", fontSize: "12px", letterSpacing: "1px" }}>{stat.label}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+
+  <div style={{
+    flex: "0 0 auto",
+    width: "320px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+  }}
+    className="hero-cards"
+  >
+    {[
+      { name: "Aria Nova", category: "Art & Illustration", preview: "✦", subscribers: 2840, tier: "$5/mo" },
+      { name: "Luna Craft", category: "Photography", preview: "◈", subscribers: 4210, tier: "$8/mo" },
+      { name: "Echo Veil", category: "Music & Audio", preview: "♪", subscribers: 1520, tier: "$3/mo" },
+    ].map((creator, i) => (
+      <div
+        key={creator.name}
+        style={{
+          backgroundColor: "#0D0005",
+          border: "1px solid #1A0008",
+          padding: "20px",
+          display: "flex",
+          alignItems: "center",
+          gap: "16px",
+          marginRight: "0",
+          transform: `translateX(${i * 16}px)`,
+          opacity: 1 - i * 0.15,
+        }}
+      >
+        <div style={{
+          width: "44px",
+          height: "44px",
+          borderRadius: "50%",
+          backgroundColor: "#1A0008",
+          border: "1px solid #C0001A",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "18px",
+          flexShrink: 0,
+        }}>
+          {creator.preview}
+        </div>
+        <div style={{ flex: 1 }}>
+          <p style={{ fontSize: "14px", color: "#F5F0F0", marginBottom: "2px" }}>{creator.name}</p>
+          <p style={{ fontSize: "11px", color: "#555", letterSpacing: "1px" }}>{creator.category.toUpperCase()}</p>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <p style={{ color: "#C0001A", fontSize: "12px" }}>{creator.tier}</p>
+          <p style={{ color: "#444", fontSize: "11px" }}>{creator.subscribers.toLocaleString()}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
       <section id="explore" style={{ padding: "80px 48px", borderTop: "1px solid #150005" }}>
         <div style={{
           display: "flex",
