@@ -8,9 +8,9 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
@@ -24,7 +24,7 @@ export default function NotFound() {
         <p style={{
           fontFamily: "Georgia, serif",
           fontSize: "clamp(80px, 15vw, 140px)",
-          color: "#1A0008",
+          color: "var(--border)",
           lineHeight: 1,
           marginBottom: "8px",
           letterSpacing: "-4px",
@@ -33,7 +33,7 @@ export default function NotFound() {
         </p>
 
         <p style={{
-          color: "#C0001A",
+          color: "var(--accent)",
           fontSize: "11px",
           letterSpacing: "5px",
           marginBottom: "20px",
@@ -46,13 +46,13 @@ export default function NotFound() {
           fontSize: "clamp(24px, 4vw, 36px)",
           fontWeight: "normal",
           marginBottom: "16px",
-          color: "#F5F0F0",
+          color: "var(--text-primary)",
         }}>
           This page doesn't exist.
         </h1>
 
         <p style={{
-          color: "#555",
+          color: "var(--text-dim)",
           fontSize: "15px",
           lineHeight: 1.8,
           marginBottom: "56px",
@@ -63,8 +63,8 @@ export default function NotFound() {
 
         <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
           <a href="/" style={{
-            backgroundColor: "#C0001A",
-            color: "#F5F0F0",
+            backgroundColor: "var(--accent)",
+            color: "var(--text-primary)",
             padding: "14px 32px",
             textDecoration: "none",
             fontSize: "13px",
