@@ -1,10 +1,7 @@
-import Navbar from "../components/Navbar";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "About Vinus",
-  description: "The world's first AI-powered Web3 creator platform. Anonymous. Transparent. Global.",
-};
+import Navbar from "../components/Navbar";
+import { useState } from "react";
 
 const SECTIONS = ["About", "How It Works", "Terms", "Q&A"] as const;
 
