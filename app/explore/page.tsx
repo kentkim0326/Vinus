@@ -1,16 +1,20 @@
 "use client";
 
+import { useLang } from "../components/LangProvider";
+import { t } from "../lib/i18n";
+
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { creators } from "../lib/data";
 
-const categories = ["All", "Art & Illustration", "Music & Audio", "Photography", "Digital Art", "Writing", "Video & Film"];
+const categories = ["all", "Art & Illustration", "Music & Audio", "Photography", "Digital Art", "Writing", "Video & Film"];
 
 
 export default function ExplorePage() {
+  const { lang } = useLang();
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState<"popular" | "newest">("popular");
+  const [sort, setSort] = useState<{t(lang, "explore.popular")} | {t(lang, "explore.newest")}>({t(lang, "explore.popular")});
 
   const filtered = creators
     .filter((c) => activeCategory === "All" || c.category === activeCategory)
@@ -18,7 +22,7 @@ export default function ExplorePage() {
       c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.category.toLowerCase().includes(search.toLowerCase())
     )
-    .sort((a, b) => sort === "popular" ? b.subscribers - a.subscribers : b.id - a.id);
+    .sort((a, b) => sort === {t(lang, "explore.popular")} ? b.subscribers - a.subscribers : b.id - a.id);
 
   return (
     <main style={{
@@ -43,7 +47,7 @@ export default function ExplorePage() {
             Explore Creators
           </h1>
           <p style={{ color: "var(--text-dim)", fontSize: "15px" }}>
-            {creators.length} creators · Find your next favorite
+            {creators.length} {t(lang, "explore.sub")}
           </p>
         </div>
 
@@ -52,7 +56,7 @@ export default function ExplorePage() {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search creators..."
+            placeholder={t(lang, "explore.search")}
             style={{
               flex: 1,
               minWidth: "200px",
@@ -65,7 +69,7 @@ export default function ExplorePage() {
             }}
           />
           <div style={{ display: "flex", gap: "8px" }}>
-            {(["popular", "newest"] as const).map((s) => (
+            {([{t(lang, "explore.popular")}, {t(lang, "explore.newest")}] as const).map((s) => (
               <button
                 key={s}
                 onClick={() => setSort(s)}
@@ -108,7 +112,7 @@ export default function ExplorePage() {
         </div>
 
         <p style={{ color: "var(--text-faint)", fontSize: "13px", marginBottom: "24px" }}>
-          {filtered.length} creators found
+          {filtered.length} {t(lang, "explore.found")}
         </p>
 
         {filtered.length > 0 ? (
@@ -198,8 +202,8 @@ export default function ExplorePage() {
         ) : (
           <div style={{ textAlign: "center", padding: "80px 0" }}>
             <p style={{ fontSize: "48px", marginBottom: "16px" }}>✦</p>
-            <p style={{ fontSize: "16px", marginBottom: "8px", color: "var(--text-faint)" }}>No creators found</p>
-            <p style={{ fontSize: "13px", color: "var(--text-ghost)" }}>Try a different search or category</p>
+            <p style={{ fontSize: "16px", marginBottom: "8px", color: "var(--text-faint)" }}>No {t(lang, "explore.found")}</p>
+            <p style={{ fontSize: "13px", color: "var(--text-ghost)" }}>{t(lang, "explore.empty.sub")}</p>
           </div>
         )}
       </div>
