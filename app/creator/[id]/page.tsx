@@ -26,7 +26,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
             Creator not found
           </h1>
           <a href="/explore" style={{ color: "#C0001A", fontSize: "13px", letterSpacing: "2px", textDecoration: "none" }}>
-            <- BACK TO EXPLORE
+            ← BACK TO EXPLORE
           </a>
         </div>
       </main>
@@ -79,7 +79,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
             gap: "8px",
             marginBottom: "40px",
           }}>
-            <- EXPLORE
+            ← EXPLORE
           </a>
 
           <div style={{ display: "flex", gap: "32px", alignItems: "flex-start", flexWrap: "wrap", marginBottom: "48px" }}>
