@@ -5,10 +5,11 @@ import { t } from "../lib/i18n";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 
-const SECTIONS = lang === "ko" ? ["소개", "이용 방법", "이용약관", "자주 묻는 질문"] : ["About", "How It Works", "Terms", "Q&A"] as const;
+const sections = lang === "ko" ? ["소개", "이용 방법", "이용약관", "자주 묻는 질문"] : ["About", "How It Works", "Terms", "Q&A"] as const;
 
 export default function AboutPage() {
   const { lang } = useLang();
+  const sections = lang === "ko" ? ["소개", "이용 방법", "이용약관", "자주 묻는 질문"] : ["About", "How It Works", "Terms", "Q&A"];
   return (
     <main style={{ backgroundColor: "var(--bg-base)", minHeight: "100vh", color: "var(--text-primary)", fontFamily: "system-ui, sans-serif" }}>
       <Navbar />
