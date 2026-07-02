@@ -5,6 +5,7 @@ import { useTheme } from "./ThemeProvider";
 import { useLang } from "./LangProvider";
 import { t } from "../lib/i18n";
 import LangToggle from "./LangToggle";
+import WalletButton from "./WalletButton";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -74,16 +75,7 @@ export default function Navbar() {
           {isDark ? "☀" : "☽"}
         </button>
 
-        <a href="/signup" style={{
-          backgroundColor: "var(--accent)",
-          color: "var(--accent-fg)",
-          padding: "8px 22px",
-          textDecoration: "none",
-          fontSize: "13px",
-          letterSpacing: "2px",
-        }}>
-          {t(lang, "nav.join")}
-        </a>
+        <WalletButton compact />
       </div>
 
       {/* Mobile right side */}
@@ -150,17 +142,7 @@ export default function Navbar() {
           <a href="/login" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
             {t(lang, "nav.login")}
           </a>
-          <a href="/signup" onClick={() => setMenuOpen(false)} style={{
-            backgroundColor: "var(--accent)",
-            color: "var(--accent-fg)",
-            padding: "14px",
-            textDecoration: "none",
-            fontSize: "14px",
-            letterSpacing: "2px",
-            textAlign: "center",
-          }}>
-            {t(lang, "nav.join")}
-          </a>
+          <WalletButton />
         </div>
       )}
     </nav>
