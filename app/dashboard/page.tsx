@@ -30,33 +30,7 @@ export default function DashboardPage() {
       color: "#F5F0F0",
       fontFamily: "system-ui, sans-serif",
     }}>
-      {/* 네비게이션 */}
-      <nav style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "20px 48px",
-        borderBottom: "1px solid #1A0005",
-        position: "sticky",
-        top: 0,
-        backgroundColor: "#0A0A0A",
-        zIndex: 100,
-      }}>
-        <a href="/" style={{
-          fontSize: "22px",
-          fontFamily: "Georgia, serif",
-          fontWeight: "bold",
-          color: "#C0001A",
-          letterSpacing: "5px",
-          textDecoration: "none",
-        }}>
-          VINUS
-        </a>
-        <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-          <a href="/feed" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Feed</a>
-         <a href="/profile/edit" style={{ color: "#F5F0F0", fontSize: "13px", textDecoration: "none" }}>Aria Nova ✎</a>
-        </div>
-      </nav>
+      <Navbar />
 
       <div style={{ padding: "48px", maxWidth: "1000px" }}>
         {/* 헤더 */}
