@@ -214,7 +214,7 @@ export default function AboutPage() {
             },
             {
               title: "4. Referral Program",
-              body: "The 3-level referral system is governed by smart contract. Level 1 referrer earns 5%, Level 2 earns 3%, Level 3 earns 2% of the creator's revenue. Referral relationships are recorded on-chain at the time of creator registration and cannot be changed afterward.",
+              body: "The 3-level referral system is governed by smart contract. Vinus takes a 20% platform fee. 10% of that fee is distributed to referrers: Level 1 receives 1% of the total transaction, Level 2 receives 0.6%, Level 3 receives 0.4%. The creator always receives 80% of the total transaction. Referral relationships are recorded on-chain at the time of creator registration and cannot be changed afterward.",
             },
             {
               title: "5. Content Policy",
@@ -252,11 +252,11 @@ export default function AboutPage() {
               { q: "How many languages does Vinus support?", a: "20 languages for the platform UI: English, Korean, Japanese, Chinese (Simplified & Traditional), Spanish, French, German, Portuguese, Italian, Russian, Arabic, Thai, Vietnamese, Indonesian, Hindi, Turkish, Dutch, Polish, Swedish, and Ukrainian. AI translation for content supports 50+ languages via Claude API." },
               { q: "Is Vinus available worldwide?", a: "Yes. Vinus is fully decentralized and accessible from any country with internet access. No regional restrictions. No local banking required." },
               { q: "Can I remain completely anonymous?", a: "Yes. You only need a MetaMask wallet. No email, no phone number, no government ID. Your on-chain wallet address is the only identifier — and it's pseudonymous." },
-              { q: "How does the referral system work technically?", a: "When a new creator registers with your referral link, your wallet address is stored in the smart contract as their Level 1 referrer. When that creator earns revenue, the smart contract automatically calculates and sends 5% to your wallet — every single time, forever, with no manual action required." },
+              { q: "How does the referral system work technically?", a: "Vinus charges a 20% platform fee. 10% of that fee is allocated to referrers via smart contract — equaling 2% of every total transaction distributed across 3 levels. Level 1 (you) receives 1% of the total transaction. Level 2 receives 0.6%. Level 3 receives 0.4%. The creator always keeps 80%. Everything is automatic, on-chain, and permanent." },
               { q: "What is the AI Manager?", a: "The AI Manager is an AI layer built into every creator account. It automatically translates all content, handles fan comments and DMs in real time across languages, responds to fans when you're offline, and provides analytics on your content performance. It runs in the background — you don't need to configure anything." },
               { q: "When will AI dubbing be available?", a: "AI voice dubbing (uploading a video in Korean and having it dubbed in English, Japanese, etc.) is on our roadmap for Phase 4. Current focus is on text translation, comment translation, and DM translation — which deliver the most value at the lowest cost." },
               { q: "How do I withdraw my earnings?", a: "There's nothing to withdraw. Earnings go directly to your MetaMask wallet via smart contract the moment a fan pays. No balance to manage. No withdrawal request. No delay." },
-              { q: "What is Vinus's fee?", a: "20% of each transaction. This covers platform maintenance, AI translation costs, and smart contract operations. Up to 10% of that 20% is distributed to referrers automatically, so Vinus's effective take is as low as 10% when referrals are active." },
+              { q: "What is Vinus's fee?", a: "20% of each transaction. This covers platform maintenance, AI translation costs, and smart contract operations. 10% of that 20% fee (= 2% of total transaction) is distributed to referrers automatically via smart contract when active, leaving Vinus an effective 18%. Creator always keeps 80%." },
             ].map((faq, i) => (
               <div key={i} style={{
                 borderBottom: "1px solid var(--border)",
