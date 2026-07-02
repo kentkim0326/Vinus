@@ -1,61 +1,51 @@
 "use client";
 
 import { useState } from "react";
-import {
-  useAccount,
-  useSendTransaction,
-  useWaitForTransactionReceipt,
-} from "wagmi";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { parseEther } from "viem";
-import type { CreatorPost } from "../lib/data";
+import { ContentItem } from "../lib/content";
 
-// Vinus treasury address on Base (replace with real address before mainnet)
-const VINUS_TREASURY = "0x000000000000000000000000000000000000dEaD" as const;
+type Step = "select" | "pay" | "done";
 
-type TxStatus = "idle" | "pending" | "success" | "error";
+const COINS = [
+  { symbol: "ETH", name: "Ethereum", rate: 0.00028 },
+  { symbol: "USDT", name: "Tether", rate: 1.0 },
+  { symbol: "USDC", name: "USD Coin", rate: 1.0 },
+];
 
-export function PurchaseModal({
-  post,
-  creatorName,
+export default function PurchaseModal({
+  item,
   onClose,
 }: {
-  post: CreatorPost;
-  creatorName: string;
+  item: ContentItem;
   onClose: () => void;
 }) {
-  const { isConnected } = useAccount();
-  const [txStatus, setTxStatus] = useState<TxStatus>("idle");
-  const [txHash, setTxHash] = useState<`0x${string}` | undefined>();
+  const [step, setStep] = useState<Step>("select");
+  const [selectedCoin, setSelectedCoin] = useState(COINS[1]);
+  const [txHash, setTxHash] = useState("");
 
-  const { sendTransactionAsync } = useSendTransaction();
-  const { isLoading: isConfirming } = useWaitForTransactionReceipt({ hash: txHash });
+  const price = item.price ?? 0;
+  const cryptoAmount = (price * selectedCoin.rate).toFixed(
+    selectedCoin.symbol === "ETH" ? 6 : 2
+  );
 
-  const handlePay = async () => {
-    if (!post.price) return;
-    setTxStatus("pending");
-    try {
-      const hash = await sendTransactionAsync({
-        to: VINUS_TREASURY,
-        value: parseEther(post.price),
-      });
-      setTxHash(hash);
-      setTxStatus("success");
-    } catch {
-      setTxStatus("error");
-    }
+  const handlePay = () => {
+    setStep("pay");
+    setTimeout(() => {
+      setTxHash("0x" + Math.random().toString(16).slice(2, 18) + "...");
+      setStep("done");
+    }, 2000);
   };
 
   return (
     <div
       onClick={onClose}
       style={{
-        position: "fixed", inset: 0,
-        backgroundColor: "rgba(0,0,0,0.88)",
-        zIndex: 1000,
+        position: "fixed",
+        inset: 0,
+        backgroundColor: "rgba(0,0,0,0.85)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        zIndex: 1000,
         padding: "24px",
       }}
     >
@@ -63,20 +53,164 @@ export function PurchaseModal({
         onClick={(e) => e.stopPropagation()}
         style={{
           backgroundColor: "#0D0005",
-          border: "1px solid #C0001A",
-          padding: "40px",
-          maxWidth: "460px",
+          border: "1px solid #1A0008",
           width: "100%",
+          maxWidth: "460px",
+          padding: "36px",
+          position: "relative",
         }}
       >
-        {txStatus === "success" ? (
-          /* ── Success state ── */
+        <button
+          onClick={onClose}
+          style={{
+            position: "absolute",
+            top: "16px",
+            right: "16px",
+            backgroundColor: "transparent",
+            border: "none",
+            color: "#555",
+            fontSize: "20px",
+            cursor: "pointer",
+            lineHeight: 1,
+          }}
+        >
+          X
+        </button>
+
+        {step === "select" && (
+          <>
+            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "20px" }}>
+              PURCHASE CONTENT
+            </p>
+
+            <div style={{
+              display: "flex",
+              gap: "14px",
+              alignItems: "flex-start",
+              padding: "18px",
+              backgroundColor: "#0A0003",
+              border: "1px solid #1A0008",
+              marginBottom: "28px",
+            }}>
+              <span style={{ fontSize: "32px" }}>{item.thumbnail}</span>
+              <div>
+                <p style={{ fontSize: "15px", color: "#F5F0F0", marginBottom: "4px" }}>{item.title}</p>
+                <p style={{ fontSize: "12px", color: "#555", lineHeight: 1.5 }}>{item.description}</p>
+                <p style={{ fontSize: "13px", color: "#C0001A", marginTop: "8px", fontFamily: "Georgia, serif" }}>
+                  ${item.price}
+                </p>
+              </div>
+            </div>
+
+            <p style={{ color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "12px" }}>
+              PAY WITH
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "28px" }}>
+              {COINS.map((coin) => (
+                <div
+                  key={coin.symbol}
+                  onClick={() => setSelectedCoin(coin)}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    padding: "14px 16px",
+                    backgroundColor: selectedCoin.symbol === coin.symbol ? "#110008" : "transparent",
+                    border: `1px solid ${selectedCoin.symbol === coin.symbol ? "#C0001A" : "#1A0008"}`,
+                    cursor: "pointer",
+                    transition: "all 0.15s",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <span style={{
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      backgroundColor: selectedCoin.symbol === coin.symbol ? "#C0001A" : "#333",
+                      flexShrink: 0,
+                    }} />
+                    <span style={{ fontSize: "14px", color: "#F5F0F0" }}>{coin.symbol}</span>
+                    <span style={{ fontSize: "12px", color: "#444" }}>{coin.name}</span>
+                  </div>
+                  <span style={{ fontSize: "13px", color: "#C0001A", fontFamily: "Georgia, serif" }}>
+                    {(price * coin.rate).toFixed(coin.symbol === "ETH" ? 6 : 2)} {coin.symbol}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ borderTop: "1px solid #1A0008", paddingTop: "20px", marginBottom: "20px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
+                <span style={{ color: "#555", fontSize: "13px" }}>Price</span>
+                <span style={{ color: "#F5F0F0", fontSize: "13px" }}>${price}</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
+                <span style={{ color: "#555", fontSize: "13px" }}>Network</span>
+                <span style={{ color: "#F5F0F0", fontSize: "13px" }}>Base</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <span style={{ color: "#555", fontSize: "13px" }}>You pay</span>
+                <span style={{ color: "#C0001A", fontSize: "16px", fontFamily: "Georgia, serif" }}>
+                  {cryptoAmount} {selectedCoin.symbol}
+                </span>
+              </div>
+            </div>
+
+            <button
+              onClick={handlePay}
+              style={{
+                width: "100%",
+                backgroundColor: "#C0001A",
+                color: "#F5F0F0",
+                border: "none",
+                padding: "16px",
+                fontSize: "13px",
+                letterSpacing: "2px",
+                cursor: "pointer",
+              }}
+            >
+              CONNECT WALLET + PAY
+            </button>
+            <p style={{ color: "#333", fontSize: "11px", textAlign: "center", marginTop: "12px" }}>
+              Powered by Base Network - Non-custodial
+            </p>
+          </>
+        )}
+
+        {step === "pay" && (
+          <div style={{ textAlign: "center", padding: "40px 0" }}>
+            <div style={{
+              width: "60px",
+              height: "60px",
+              border: "2px solid #C0001A",
+              borderTopColor: "transparent",
+              borderRadius: "50%",
+              margin: "0 auto 24px",
+              animation: "spin 1s linear infinite",
+            }} />
+            <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
+              PROCESSING
+            </p>
+            <p style={{ color: "#555", fontSize: "14px" }}>
+              Confirm the transaction in your wallet
+            </p>
+          </div>
+        )}
+
+        {step === "done" && (
           <div style={{ textAlign: "center" }}>
             <div style={{
-              width: "64px", height: "64px", borderRadius: "50%",
-              backgroundColor: "#1A0008", border: "2px solid #C0001A",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: "28px", margin: "0 auto 24px",
+              width: "72px",
+              height: "72px",
+              borderRadius: "50%",
+              backgroundColor: "#1A0008",
+              border: "2px solid #C0001A",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "28px",
+              margin: "0 auto 24px",
               boxShadow: "0 0 24px rgba(192,0,26,0.3)",
             }}>
               ✦
@@ -84,137 +218,29 @@ export function PurchaseModal({
             <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
               PAYMENT CONFIRMED
             </p>
-            <h2 style={{ fontFamily: "Georgia, serif", fontSize: "24px", fontWeight: "normal", marginBottom: "16px" }}>
+            <h2 style={{ fontFamily: "Georgia, serif", fontSize: "28px", fontWeight: "normal", marginBottom: "12px" }}>
               Content unlocked.
             </h2>
-            <p style={{ color: "#666", fontSize: "13px", lineHeight: 1.8, marginBottom: "8px" }}>
-              {post.title}
+            <p style={{ color: "#555", fontSize: "13px", marginBottom: "8px" }}>{item.title}</p>
+            <p style={{ color: "#333", fontSize: "11px", letterSpacing: "1px", marginBottom: "32px" }}>
+              TX: {txHash}
             </p>
-            {txHash && (
-              <a
-                href={`https://sepolia.basescan.org/tx/${txHash}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "1px", textDecoration: "none" }}
-              >
-                VIEW ON BASESCAN ↗
-              </a>
-            )}
             <button
               onClick={onClose}
               style={{
-                display: "block", width: "100%", marginTop: "28px",
-                backgroundColor: "#C0001A", color: "#F5F0F0", border: "none",
-                padding: "14px", fontSize: "13px", letterSpacing: "2px", cursor: "pointer",
+                width: "100%",
+                backgroundColor: "#C0001A",
+                color: "#F5F0F0",
+                border: "none",
+                padding: "14px",
+                fontSize: "13px",
+                letterSpacing: "2px",
+                cursor: "pointer",
               }}
             >
-              CLOSE
+              VIEW CONTENT
             </button>
           </div>
-        ) : (
-          /* ── Purchase state ── */
-          <>
-            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "20px" }}>
-              PURCHASE CONTENT
-            </p>
-            <h2 style={{
-              fontFamily: "Georgia, serif", fontSize: "20px",
-              fontWeight: "normal", marginBottom: "8px", lineHeight: 1.4,
-            }}>
-              {post.title}
-            </h2>
-            <p style={{ color: "#555", fontSize: "12px", marginBottom: "4px" }}>by {creatorName}</p>
-            <p style={{ color: "#666", fontSize: "13px", lineHeight: 1.7, marginBottom: "28px" }}>
-              {post.description}
-            </p>
-
-            {/* Price box */}
-            <div style={{
-              backgroundColor: "#0A0003", border: "1px solid #1A0008",
-              padding: "20px", marginBottom: "24px",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-                <span style={{ color: "#555", fontSize: "11px", letterSpacing: "1px" }}>USD VALUE</span>
-                <span style={{ color: "#F5F0F0", fontSize: "16px" }}>${post.priceUSD}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ color: "#555", fontSize: "11px", letterSpacing: "1px" }}>PAY WITH ETH</span>
-                <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "#C0001A" }}>
-                  {post.price} ETH
-                </span>
-              </div>
-              <p style={{ color: "#333", fontSize: "11px", marginTop: "10px", paddingTop: "10px", borderTop: "1px solid #1A0008" }}>
-                Base Network (Sepolia testnet) · Gas fees apply
-              </p>
-            </div>
-
-            {!isConnected ? (
-              /* Not connected — show ConnectButton */
-              <div>
-                <p style={{ color: "#555", fontSize: "12px", marginBottom: "16px", textAlign: "center" }}>
-                  Connect your wallet to continue
-                </p>
-                <div style={{ display: "flex", justifyContent: "center" }}>
-                  <ConnectButton label="CONNECT WALLET" showBalance={false} chainStatus="name" />
-                </div>
-              </div>
-            ) : txStatus === "pending" || isConfirming ? (
-              /* Pending */
-              <div style={{
-                backgroundColor: "#0A0003", border: "1px solid #1A0008",
-                padding: "20px", textAlign: "center",
-              }}>
-                <p style={{ color: "#C0001A", fontSize: "12px", letterSpacing: "2px", marginBottom: "8px" }}>
-                  ⏳ PROCESSING...
-                </p>
-                <p style={{ color: "#555", fontSize: "12px", lineHeight: 1.6 }}>
-                  {txHash ? "Waiting for confirmation on Base..." : "Confirm in your wallet"}
-                </p>
-              </div>
-            ) : txStatus === "error" ? (
-              /* Error */
-              <div>
-                <p style={{ color: "#C0001A", fontSize: "13px", textAlign: "center", marginBottom: "16px" }}>
-                  Transaction failed or rejected.
-                </p>
-                <button
-                  onClick={() => setTxStatus("idle")}
-                  style={{
-                    width: "100%", backgroundColor: "#C0001A", color: "#F5F0F0",
-                    border: "none", padding: "14px", fontSize: "13px",
-                    letterSpacing: "2px", cursor: "pointer",
-                  }}
-                >
-                  TRY AGAIN
-                </button>
-              </div>
-            ) : (
-              /* Ready to pay */
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-                <button
-                  onClick={handlePay}
-                  style={{
-                    backgroundColor: "#C0001A", color: "#F5F0F0", border: "none",
-                    padding: "16px", fontSize: "13px", letterSpacing: "2px",
-                    cursor: "pointer", width: "100%",
-                  }}
-                >
-                  PAY {post.price} ETH · UNLOCK CONTENT
-                </button>
-                <button
-                  onClick={onClose}
-                  style={{
-                    backgroundColor: "transparent", color: "#555",
-                    border: "1px solid #1A0008", padding: "14px",
-                    fontSize: "12px", letterSpacing: "1px",
-                    cursor: "pointer", width: "100%",
-                  }}
-                >
-                  CANCEL
-                </button>
-              </div>
-            )}
-          </>
         )}
       </div>
     </div>
