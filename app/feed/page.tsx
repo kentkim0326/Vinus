@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "../components/LangProvider";
+import { t } from "../lib/i18n";
+
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import PurchaseModal from "../components/PurchaseModal";
@@ -335,6 +338,7 @@ function PostCard({
 }
 
 export default function FeedPage() {
+  const { lang } = useLang();
   const [activeFilter, setActiveFilter] = useState<"All" | "Free" | "Paid">("All");
   const [purchaseItem, setPurchaseItem] = useState<ContentItem | null>(null);
 
@@ -388,7 +392,7 @@ export default function FeedPage() {
         </div>
 
         <p style={{ color: "var(--text-faint)", fontSize: "13px", marginBottom: "24px" }}>
-          {filteredPosts.length} posts
+          {filteredPosts.length} {t(lang, "feed.posts")}
         </p>
 
         <div>
