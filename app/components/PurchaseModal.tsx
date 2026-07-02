@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "./LangProvider";
+import { t } from "../lib/i18n";
+
 import { useState } from "react";
 import { ContentItem } from "../lib/content";
 
@@ -18,6 +21,7 @@ export default function PurchaseModal({
   item: ContentItem;
   onClose: () => void;
 }) {
+  const { lang } = useLang();
   const [step, setStep] = useState<Step>("select");
   const [selectedCoin, setSelectedCoin] = useState(COINS[1]);
   const [txHash, setTxHash] = useState("");
@@ -141,15 +145,15 @@ export default function PurchaseModal({
 
             <div style={{ borderTop: "1px solid #1A0008", paddingTop: "20px", marginBottom: "20px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>Price</span>
+                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>{t(lang, "buy.price")}</span>
                 <span style={{ color: "var(--text-primary)", fontSize: "13px" }}>${price}</span>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>Network</span>
+                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>{t(lang, "buy.network")}</span>
                 <span style={{ color: "var(--text-primary)", fontSize: "13px" }}>Base</span>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>You pay</span>
+                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>{t(lang, "buy.youpay")}</span>
                 <span style={{ color: "var(--accent)", fontSize: "16px", fontFamily: "Georgia, serif" }}>
                   {cryptoAmount} {selectedCoin.symbol}
                 </span>
@@ -172,7 +176,7 @@ export default function PurchaseModal({
               CONNECT WALLET + PAY
             </button>
             <p style={{ color: "var(--text-ghost)", fontSize: "11px", textAlign: "center", marginTop: "12px" }}>
-              Powered by Base Network - Non-custodial
+              {t(lang, "buy.powered")}
             </p>
           </>
         )}
@@ -193,7 +197,7 @@ export default function PurchaseModal({
               PROCESSING
             </p>
             <p style={{ color: "var(--text-dim)", fontSize: "14px" }}>
-              Confirm the transaction in your wallet
+              {t(lang, "buy.confirm")}
             </p>
           </div>
         )}
