@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import WalletButton from "./WalletButton";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,7 +11,7 @@ export default function Navbar() {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: "20px 48px",
+      padding: "16px 48px",
       borderBottom: "1px solid #1A0005",
       position: "sticky",
       top: 0,
@@ -31,17 +31,17 @@ export default function Navbar() {
       </a>
 
       {/* 데스크탑 메뉴 */}
-      <div style={{
-        display: "flex",
-        gap: "24px",
-        alignItems: "center",
-      }}
-        className="desktop-nav"
-      >
+      <div style={{ display: "flex", gap: "20px", alignItems: "center" }} className="desktop-nav">
         <a href="/explore" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Explore</a>
-        <a href="/feed" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Feed</a>
-        <a href="/login" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Log in</a>
-        <WalletButton compact />
+        <a href="/feed"    style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Feed</a>
+        <a href="/my"      style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>My</a>
+        <a href="/login"   style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Log in</a>
+        <ConnectButton
+          label="CONNECT WALLET"
+          showBalance={false}
+          chainStatus="icon"
+          accountStatus="avatar"
+        />
         <a href="/signup" style={{
           backgroundColor: "#C0001A",
           color: "#F5F0F0",
@@ -52,7 +52,7 @@ export default function Navbar() {
         }}>JOIN</a>
       </div>
 
-      {/* 햄버거 버튼 (모바일) */}
+      {/* 햄버거 버튼 */}
       <button
         onClick={() => setMenuOpen(!menuOpen)}
         className="mobile-menu-btn"
@@ -69,7 +69,7 @@ export default function Navbar() {
         {menuOpen ? "✕" : "☰"}
       </button>
 
-      {/* 모바일 드롭다운 메뉴 */}
+      {/* 모바일 드롭다운 */}
       {menuOpen && (
         <div style={{
           position: "absolute",
@@ -83,12 +83,14 @@ export default function Navbar() {
           flexDirection: "column",
           gap: "20px",
           zIndex: 99,
-        }}
-          className="mobile-menu"
-        >
+        }} className="mobile-menu">
           <a href="/explore" onClick={() => setMenuOpen(false)} style={{ color: "#888", textDecoration: "none", fontSize: "16px" }}>Explore</a>
-          <a href="/feed" onClick={() => setMenuOpen(false)} style={{ color: "#888", textDecoration: "none", fontSize: "16px" }}>Feed</a>
-          <a href="/login" onClick={() => setMenuOpen(false)} style={{ color: "#888", textDecoration: "none", fontSize: "16px" }}>Log in</a>
+          <a href="/feed"    onClick={() => setMenuOpen(false)} style={{ color: "#888", textDecoration: "none", fontSize: "16px" }}>Feed</a>
+          <a href="/my"      onClick={() => setMenuOpen(false)} style={{ color: "#888", textDecoration: "none", fontSize: "16px" }}>My</a>
+          <a href="/login"   onClick={() => setMenuOpen(false)} style={{ color: "#888", textDecoration: "none", fontSize: "16px" }}>Log in</a>
+          <div style={{ paddingTop: "4px" }}>
+            <ConnectButton label="CONNECT WALLET" showBalance={false} chainStatus="icon" accountStatus="avatar" />
+          </div>
           <a href="/signup" onClick={() => setMenuOpen(false)} style={{
             backgroundColor: "#C0001A",
             color: "#F5F0F0",
