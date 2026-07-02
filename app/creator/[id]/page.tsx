@@ -2,6 +2,7 @@
 
 import { use, useState } from "react";
 import Navbar from "../../components/Navbar";
+import { PurchaseModal } from "../../components/PurchaseModal";
 import { creators, creatorPosts } from "../../lib/data";
 import type { CreatorPost } from "../../lib/data";
 
@@ -264,97 +265,11 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
 
       {/* Purchase Modal */}
       {purchaseModal && (
-        <div
-          onClick={() => setPurchaseModal(null)}
-          style={{
-            position: "fixed", inset: 0,
-            backgroundColor: "rgba(0,0,0,0.85)",
-            zIndex: 1000,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "24px",
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              backgroundColor: "#0D0005",
-              border: "1px solid #C0001A",
-              padding: "40px",
-              maxWidth: "440px",
-              width: "100%",
-            }}
-          >
-            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "20px" }}>
-              PURCHASE CONTENT
-            </p>
-            <h2 style={{ fontFamily: "Georgia, serif", fontSize: "22px", fontWeight: "normal", marginBottom: "12px", lineHeight: 1.4 }}>
-              {purchaseModal.title}
-            </h2>
-            <p style={{ color: "#666", fontSize: "13px", lineHeight: 1.7, marginBottom: "28px" }}>
-              {purchaseModal.description}
-            </p>
-
-            <div style={{
-              backgroundColor: "#0A0003",
-              border: "1px solid #1A0008",
-              padding: "20px",
-              marginBottom: "24px",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
-                <span style={{ color: "#555", fontSize: "12px", letterSpacing: "1px" }}>PRICE (USD)</span>
-                <span style={{ color: "#F5F0F0", fontSize: "16px" }}>${purchaseModal.priceUSD}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span style={{ color: "#555", fontSize: "12px", letterSpacing: "1px" }}>PRICE (ETH)</span>
-                <span style={{ color: "#C0001A", fontFamily: "Georgia, serif", fontSize: "18px" }}>
-                  {purchaseModal.price} ETH
-                </span>
-              </div>
-            </div>
-
-            <p style={{ color: "#444", fontSize: "12px", marginBottom: "20px", lineHeight: 1.6 }}>
-              Connect your wallet to pay with ETH on Base Network. Payment is instant and non-refundable.
-            </p>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-              <button
-                onClick={() => {
-                  alert("Wallet connection coming soon — wagmi/RainbowKit integration in progress.");
-                  setPurchaseModal(null);
-                }}
-                style={{
-                  backgroundColor: "#C0001A",
-                  color: "#F5F0F0",
-                  border: "none",
-                  padding: "16px",
-                  fontSize: "13px",
-                  letterSpacing: "2px",
-                  cursor: "pointer",
-                  width: "100%",
-                }}
-              >
-                CONNECT WALLET & PAY
-              </button>
-              <button
-                onClick={() => setPurchaseModal(null)}
-                style={{
-                  backgroundColor: "transparent",
-                  color: "#555",
-                  border: "1px solid #1A0008",
-                  padding: "14px",
-                  fontSize: "12px",
-                  letterSpacing: "1px",
-                  cursor: "pointer",
-                  width: "100%",
-                }}
-              >
-                CANCEL
-              </button>
-            </div>
-          </div>
-        </div>
+        <PurchaseModal
+          post={purchaseModal}
+          creatorName={creator.name}
+          onClose={() => setPurchaseModal(null)}
+        />
       )}
 
       {/* Header */}
