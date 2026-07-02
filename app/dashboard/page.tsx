@@ -54,16 +54,16 @@ export default function DashboardPage() {
 
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
 
       <div style={{ padding: "48px", maxWidth: "1000px" }}>
         <div style={{ marginBottom: "48px" }}>
-          <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
+          <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
             CREATOR DASHBOARD
           </p>
           <h1 style={{ fontFamily: "Georgia, serif", fontSize: "40px", fontWeight: "normal" }}>
@@ -86,8 +86,8 @@ export default function DashboardPage() {
                 padding: "12px 24px",
                 backgroundColor: "transparent",
                 border: "none",
-                borderBottom: `2px solid ${activeTab === tab ? "#C0001A" : "transparent"}`,
-                color: activeTab === tab ? "#F5F0F0" : "#555",
+                borderBottom: `2px solid ${activeTab === tab ? "var(--accent)" : "transparent"}`,
+                color: activeTab === tab ? "var(--text-primary)" : "var(--text-dim)",
                 fontSize: "12px",
                 letterSpacing: "2px",
                 cursor: "pointer",
@@ -110,14 +110,14 @@ export default function DashboardPage() {
             }}>
               {stats.map((stat) => (
                 <div key={stat.label} style={{
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
                   padding: "28px 24px",
                 }}>
-                  <p style={{ color: "#555", fontSize: "11px", letterSpacing: "3px", marginBottom: "12px" }}>
+                  <p style={{ color: "var(--text-dim)", fontSize: "11px", letterSpacing: "3px", marginBottom: "12px" }}>
                     {stat.label}
                   </p>
-                  <p style={{ fontFamily: "Georgia, serif", fontSize: "32px", color: "#F5F0F0" }}>
+                  <p style={{ fontFamily: "Georgia, serif", fontSize: "32px", color: "var(--text-primary)" }}>
                     {stat.value}
                   </p>
                 </div>
@@ -131,8 +131,8 @@ export default function DashboardPage() {
               <button
                 onClick={() => setActiveTab("upload")}
                 style={{
-                  backgroundColor: "#C0001A",
-                  color: "#F5F0F0",
+                  backgroundColor: "var(--accent)",
+                  color: "var(--text-primary)",
                   border: "none",
                   padding: "10px 20px",
                   fontSize: "12px",
@@ -147,7 +147,7 @@ export default function DashboardPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               {posts.map((post) => (
                 <div key={post.id} style={{
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   padding: "20px 24px",
                   display: "flex",
                   justifyContent: "space-between",
@@ -155,10 +155,10 @@ export default function DashboardPage() {
                 }}>
                   <div>
                     <p style={{ fontSize: "15px", marginBottom: "4px" }}>{post.title}</p>
-                    <p style={{ color: "#555", fontSize: "12px" }}>{post.date}</p>
+                    <p style={{ color: "var(--text-dim)", fontSize: "12px" }}>{post.date}</p>
                   </div>
                   <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-                    <span style={{ color: "#555", fontSize: "12px" }}>{post.views.toLocaleString()} views</span>
+                    <span style={{ color: "var(--text-dim)", fontSize: "12px" }}>{post.views.toLocaleString()} views</span>
                     {post.revenue && (
                       <span style={{ color: "#4ABF8A", fontSize: "12px" }}>{post.revenue}</span>
                     )}
@@ -166,8 +166,8 @@ export default function DashboardPage() {
                       fontSize: "11px",
                       letterSpacing: "1px",
                       padding: "4px 10px",
-                      border: `1px solid ${post.type === "FREE" ? "#333" : post.type === "SUB" ? "#666" : "#C0001A"}`,
-                      color: post.type === "FREE" ? "#555" : post.type === "SUB" ? "#888" : "#C0001A",
+                      border: `1px solid ${post.type === "FREE" ? "var(--text-ghost)" : post.type === "SUB" ? "#666" : "var(--accent)"}`,
+                      color: post.type === "FREE" ? "var(--text-dim)" : post.type === "SUB" ? "#888" : "var(--accent)",
                     }}>
                       {post.type}
                     </span>
@@ -187,7 +187,7 @@ export default function DashboardPage() {
                 padding: "80px 0",
               }}>
                 <p style={{ fontSize: "48px", marginBottom: "20px" }}>✦</p>
-                <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
+                <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
                   PUBLISHED
                 </p>
                 <h2 style={{ fontFamily: "Georgia, serif", fontSize: "28px", fontWeight: "normal" }}>
@@ -204,7 +204,7 @@ export default function DashboardPage() {
 
                   {/* Content type */}
                   <div>
-                    <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "10px" }}>
+                    <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "10px" }}>
                       CONTENT TYPE
                     </label>
                     <div style={{ display: "flex", gap: "8px" }}>
@@ -215,9 +215,9 @@ export default function DashboardPage() {
                           style={{
                             flex: 1,
                             padding: "10px 4px",
-                            backgroundColor: contentType === t.key ? "#1A0008" : "transparent",
-                            border: `1px solid ${contentType === t.key ? "#C0001A" : "#1A0008"}`,
-                            color: contentType === t.key ? "#F5F0F0" : "#555",
+                            backgroundColor: contentType === t.key ? "var(--border)" : "transparent",
+                            border: `1px solid ${contentType === t.key ? "var(--accent)" : "var(--border)"}`,
+                            color: contentType === t.key ? "var(--text-primary)" : "var(--text-dim)",
                             fontSize: "10px",
                             letterSpacing: "1.5px",
                             cursor: "pointer",
@@ -231,7 +231,7 @@ export default function DashboardPage() {
 
                   {/* Title */}
                   <div>
-                    <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
+                    <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
                       TITLE
                     </label>
                     <input
@@ -241,9 +241,9 @@ export default function DashboardPage() {
                       placeholder="Post title"
                       style={{
                         width: "100%",
-                        backgroundColor: "#0D0005",
+                        backgroundColor: "var(--bg-card)",
                         border: "1px solid #1A0008",
-                        color: "#F5F0F0",
+                        color: "var(--text-primary)",
                         padding: "14px 16px",
                         fontSize: "14px",
                         outline: "none",
@@ -255,7 +255,7 @@ export default function DashboardPage() {
                   {/* File upload (not text type) */}
                   {contentType !== "text" && (
                     <div>
-                      <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
+                      <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
                         UPLOAD FILE
                       </label>
                       <input
@@ -268,25 +268,25 @@ export default function DashboardPage() {
                       <div
                         onClick={() => fileRef.current?.click()}
                         style={{
-                          border: `1px dashed ${file ? "#C0001A" : "#1A0008"}`,
+                          border: `1px dashed ${file ? "var(--accent)" : "var(--border)"}`,
                           padding: "40px",
                           textAlign: "center",
                           cursor: "pointer",
-                          backgroundColor: file ? "#0A0003" : "transparent",
+                          backgroundColor: file ? "var(--bg-deep)" : "transparent",
                           transition: "all 0.2s",
                         }}
                       >
                         {file ? (
                           <>
-                            <p style={{ color: "#C0001A", fontSize: "14px", marginBottom: "4px" }}>✦ {file.name}</p>
-                            <p style={{ color: "#444", fontSize: "12px" }}>{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                            <p style={{ color: "var(--accent)", fontSize: "14px", marginBottom: "4px" }}>✦ {file.name}</p>
+                            <p style={{ color: "var(--text-faint)", fontSize: "12px" }}>{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                           </>
                         ) : (
                           <>
-                            <p style={{ color: "#444", fontSize: "14px", marginBottom: "8px" }}>
+                            <p style={{ color: "var(--text-faint)", fontSize: "14px", marginBottom: "8px" }}>
                               Drop file here or click to upload
                             </p>
-                            <p style={{ color: "#333", fontSize: "12px" }}>{selectedType.hint}</p>
+                            <p style={{ color: "var(--text-ghost)", fontSize: "12px" }}>{selectedType.hint}</p>
                           </>
                         )}
                       </div>
@@ -295,7 +295,7 @@ export default function DashboardPage() {
 
                   {/* Description / text content */}
                   <div>
-                    <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
+                    <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
                       {contentType === "text" ? "CONTENT" : "DESCRIPTION"}
                     </label>
                     <textarea
@@ -305,9 +305,9 @@ export default function DashboardPage() {
                       rows={contentType === "text" ? 10 : 4}
                       style={{
                         width: "100%",
-                        backgroundColor: "#0D0005",
+                        backgroundColor: "var(--bg-card)",
                         border: "1px solid #1A0008",
-                        color: "#F5F0F0",
+                        color: "var(--text-primary)",
                         padding: "14px 16px",
                         fontSize: "14px",
                         outline: "none",
@@ -320,7 +320,7 @@ export default function DashboardPage() {
 
                   {/* Access control */}
                   <div>
-                    <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "12px" }}>
+                    <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "12px" }}>
                       ACCESS
                     </label>
                     <div style={{ display: "flex", gap: "8px" }}>
@@ -335,9 +335,9 @@ export default function DashboardPage() {
                           style={{
                             flex: 1,
                             padding: "12px 8px",
-                            backgroundColor: access === opt.key ? (opt.key === "FREE" ? "#1A0008" : "#C0001A") : "transparent",
-                            border: `1px solid ${access === opt.key ? "#C0001A" : "#1A0008"}`,
-                            color: "#F5F0F0",
+                            backgroundColor: access === opt.key ? (opt.key === "FREE" ? "var(--border)" : "var(--accent)") : "transparent",
+                            border: `1px solid ${access === opt.key ? "var(--accent)" : "var(--border)"}`,
+                            color: "var(--text-primary)",
                             fontSize: "10px",
                             letterSpacing: "1.5px",
                             cursor: "pointer",
@@ -345,7 +345,7 @@ export default function DashboardPage() {
                           }}
                         >
                           <div style={{ marginBottom: "4px" }}>{opt.label}</div>
-                          <div style={{ color: access === opt.key ? "rgba(255,255,255,0.6)" : "#444", fontSize: "9px" }}>
+                          <div style={{ color: access === opt.key ? "rgba(255,255,255,0.6)" : "var(--text-faint)", fontSize: "9px" }}>
                             {opt.desc}
                           </div>
                         </button>
@@ -356,11 +356,11 @@ export default function DashboardPage() {
                   {/* Price (only for PAID) */}
                   {access === "PAID" && (
                     <div>
-                      <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
+                      <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
                         PRICE (USD)
                       </label>
                       <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                        <span style={{ color: "#C0001A", fontFamily: "Georgia, serif", fontSize: "20px" }}>$</span>
+                        <span style={{ color: "var(--accent)", fontFamily: "Georgia, serif", fontSize: "20px" }}>$</span>
                         <input
                           type="number"
                           min="1"
@@ -369,18 +369,18 @@ export default function DashboardPage() {
                           onChange={(e) => setPrice(e.target.value)}
                           style={{
                             width: "120px",
-                            backgroundColor: "#0D0005",
+                            backgroundColor: "var(--bg-card)",
                             border: "1px solid #C0001A",
-                            color: "#F5F0F0",
+                            color: "var(--text-primary)",
                             padding: "14px 16px",
                             fontSize: "18px",
                             outline: "none",
                             fontFamily: "Georgia, serif",
                           }}
                         />
-                        <div style={{ color: "#444", fontSize: "12px" }}>
+                        <div style={{ color: "var(--text-faint)", fontSize: "12px" }}>
                           <p>Buyers pay in ETH, USDT, or USDC</p>
-                          <p style={{ color: "#333", fontSize: "11px", marginTop: "4px" }}>on Base Network</p>
+                          <p style={{ color: "var(--text-ghost)", fontSize: "11px", marginTop: "4px" }}>on Base Network</p>
                         </div>
                       </div>
                     </div>
@@ -392,9 +392,9 @@ export default function DashboardPage() {
                     disabled={!title.trim()}
                     style={{
                       width: "100%",
-                      backgroundColor: title.trim() ? "#C0001A" : "#0D0005",
-                      color: title.trim() ? "#F5F0F0" : "#333",
-                      border: `1px solid ${title.trim() ? "transparent" : "#1A0008"}`,
+                      backgroundColor: title.trim() ? "var(--accent)" : "var(--bg-card)",
+                      color: title.trim() ? "var(--text-primary)" : "var(--text-ghost)",
+                      border: `1px solid ${title.trim() ? "transparent" : "var(--border)"}`,
                       padding: "18px",
                       fontSize: "13px",
                       letterSpacing: "2px",
@@ -421,8 +421,8 @@ export default function DashboardPage() {
               <button
                 onClick={() => setActiveTab("upload")}
                 style={{
-                  backgroundColor: "#C0001A",
-                  color: "#F5F0F0",
+                  backgroundColor: "var(--accent)",
+                  color: "var(--text-primary)",
                   border: "none",
                   padding: "10px 24px",
                   fontSize: "12px",
@@ -436,7 +436,7 @@ export default function DashboardPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               {posts.map((post) => (
                 <div key={post.id} style={{
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   padding: "20px 24px",
                   display: "flex",
                   justifyContent: "space-between",
@@ -444,10 +444,10 @@ export default function DashboardPage() {
                 }}>
                   <div>
                     <p style={{ fontSize: "15px", marginBottom: "4px" }}>{post.title}</p>
-                    <p style={{ color: "#555", fontSize: "12px" }}>{post.date}</p>
+                    <p style={{ color: "var(--text-dim)", fontSize: "12px" }}>{post.date}</p>
                   </div>
                   <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-                    <span style={{ color: "#555", fontSize: "12px" }}>{post.views.toLocaleString()} views</span>
+                    <span style={{ color: "var(--text-dim)", fontSize: "12px" }}>{post.views.toLocaleString()} views</span>
                     {post.revenue && (
                       <span style={{ color: "#4ABF8A", fontSize: "12px" }}>{post.revenue}</span>
                     )}
@@ -455,15 +455,15 @@ export default function DashboardPage() {
                       fontSize: "11px",
                       letterSpacing: "1px",
                       padding: "4px 10px",
-                      border: `1px solid ${post.type === "FREE" ? "#333" : post.type === "SUB" ? "#666" : "#C0001A"}`,
-                      color: post.type === "FREE" ? "#555" : post.type === "SUB" ? "#888" : "#C0001A",
+                      border: `1px solid ${post.type === "FREE" ? "var(--text-ghost)" : post.type === "SUB" ? "#666" : "var(--accent)"}`,
+                      color: post.type === "FREE" ? "var(--text-dim)" : post.type === "SUB" ? "#888" : "var(--accent)",
                     }}>
                       {post.type}
                     </span>
                     <button style={{
                       backgroundColor: "transparent",
                       border: "1px solid #1A0008",
-                      color: "#555",
+                      color: "var(--text-dim)",
                       padding: "6px 14px",
                       fontSize: "11px",
                       letterSpacing: "1px",
