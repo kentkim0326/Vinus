@@ -8,6 +8,9 @@ import { useState } from "react";
 
 export default function AboutPage() {
   const { lang } = useLang();
+  const sections = lang === "ko"
+    ? ["소개", "이용 방법", "이용약관", "자주 묻는 질문"]
+    : ["About", "How It Works", "Terms", "Q&A"];
   return (
     <main style={{ backgroundColor: "var(--bg-base)", minHeight: "100vh", color: "var(--text-primary)", fontFamily: "system-ui, sans-serif" }}>
       <Navbar />
