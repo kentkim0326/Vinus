@@ -3,54 +3,54 @@
 /* ── Dark theme (default) ── */
 :root,
 [data-theme="dark"] {
-  --bg-base:      #0A0A0A;
-  --bg-card:      #0D0005;
-  --bg-card-hover:#110008;
-  --bg-deep:      #0A0003;
-  --border:       #1A0008;
-  --border-hover: #2A0010;
-  --accent:       #C0001A;
-  --accent-fg:    #F5F0F0;
-  --text-primary: #F5F0F0;
-  --text-secondary:#DDD;
-  --text-muted:   #777;
-  --text-dim:     #555;
-  --text-faint:   #444;
-  --text-ghost:   #333;
-  --text-ultra:   #2A2A2A;
-  --success:      #2A7A2A;
-  --nav-bg:       rgba(10,10,10,0.95);
-  --shadow-accent: rgba(192,0,26,0.2);
-  --type-image:   #4A8FBF;
-  --type-video:   #BF4A4A;
-  --type-audio:   #4ABF8A;
-  --type-text:    #BF9A4A;
+  --bg-base:       #0F0F0F;
+  --bg-card:       #1A1015;
+  --bg-card-hover: #201318;
+  --bg-deep:       #140C10;
+  --border:        #2E1820;
+  --border-hover:  #3D2028;
+  --accent:        #E0002A;
+  --accent-fg:     #FFFFFF;
+  --text-primary:  #F0ECEC;
+  --text-secondary:#D8D0D2;
+  --text-muted:    #B0A0A5;
+  --text-dim:      #8A7880;
+  --text-faint:    #6A5860;
+  --text-ghost:    #4A3840;
+  --text-ultra:    #3A2830;
+  --success:       #3ABF3A;
+  --nav-bg:        rgba(15,15,15,0.95);
+  --shadow-accent: rgba(224,0,42,0.25);
+  --type-image:    #5AAFF0;
+  --type-video:    #F07070;
+  --type-audio:    #5ADFA0;
+  --type-text:     #F0C060;
 }
 
 /* ── Light theme ── */
 [data-theme="light"] {
-  --bg-base:      #F8F4F5;
-  --bg-card:      #FFFFFF;
-  --bg-card-hover:#FEF8F8;
-  --bg-deep:      #F0EAEB;
-  --border:       #E8D8DA;
-  --border-hover: #D4B0B5;
-  --accent:       #C0001A;
-  --accent-fg:    #FFFFFF;
-  --text-primary: #1A0008;
-  --text-secondary:#2A0010;
-  --text-muted:   #5A3040;
-  --text-dim:     #7A4A55;
-  --text-faint:   #9A6A75;
-  --text-ghost:   #C0A0A8;
-  --text-ultra:   #E0D0D3;
-  --success:      #1A6A1A;
-  --nav-bg:       rgba(248,244,245,0.95);
+  --bg-base:       #F8F4F5;
+  --bg-card:       #FFFFFF;
+  --bg-card-hover: #FEF8F8;
+  --bg-deep:       #F0EAEB;
+  --border:        #E0CDD0;
+  --border-hover:  #C8A8AE;
+  --accent:        #C0001A;
+  --accent-fg:     #FFFFFF;
+  --text-primary:  #180008;
+  --text-secondary:#300015;
+  --text-muted:    #5A2030;
+  --text-dim:      #7A3545;
+  --text-faint:    #8A4855;
+  --text-ghost:    #B07080;
+  --text-ultra:    #D0A8B0;
+  --success:       #1A6A1A;
+  --nav-bg:        rgba(248,244,245,0.95);
   --shadow-accent: rgba(192,0,26,0.12);
-  --type-image:   #2A6A9F;
-  --type-video:   #9F2A2A;
-  --type-audio:   #2A9F6A;
-  --type-text:    #9F7A2A;
+  --type-image:    #1A6A9F;
+  --type-video:    #9F1A1A;
+  --type-audio:    #1A9F6A;
+  --type-text:     #9F7A1A;
 }
 
 @theme inline {
@@ -76,27 +76,6 @@ body {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* ── Vinus themed elements ── */
-.vinus-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border);
-  transition: background-color 0.2s, border-color 0.2s;
-}
-.vinus-card:hover {
-  background-color: var(--bg-card-hover);
-  border-color: var(--accent);
-}
-.vinus-input {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border);
-  color: var(--text-primary);
-  transition: background-color 0.2s, border-color 0.2s;
-}
-.vinus-input:focus {
-  border-color: var(--accent);
-  outline: none;
-}
-
 /* ── Navbar ── */
 .navbar {
   background-color: var(--nav-bg);
@@ -109,24 +88,18 @@ body {
   .mobile-menu-btn { display: block !important; }
 }
 
-/* ── Hero ── */
+/* ── Hero cards hide on mobile ── */
 @media (max-width: 768px) {
   .hero-cards { display: none !important; }
 }
 
 /* ── Mobile padding ── */
-.page-pad {
-  padding-left: 48px;
-  padding-right: 48px;
-}
+.page-pad { padding-left: 48px; padding-right: 48px; }
 @media (max-width: 768px) {
-  .page-pad {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
+  .page-pad { padding-left: 20px !important; padding-right: 20px !important; }
 }
 
-/* ── Explore filters scroll on mobile ── */
+/* ── Explore filter chips ── */
 @media (max-width: 640px) {
   .category-filters {
     overflow-x: auto;
@@ -139,25 +112,17 @@ body {
 
 /* ── Tap targets ── */
 @media (max-width: 768px) {
-  input, textarea, select, button, a[style] { min-height: 44px; }
+  input, textarea, select, button { min-height: 44px; }
 }
 
 /* ── Footer stack ── */
 @media (max-width: 480px) {
-  .footer-row {
-    flex-direction: column !important;
-    gap: 12px !important;
-    text-align: center;
-  }
+  .footer-row { flex-direction: column !important; gap: 12px !important; text-align: center; }
 }
 
-/* ── Theme transition for all themed elements ── */
-* {
-  transition-property: background-color, border-color, color;
+/* ── Smooth theme transitions (only color-related) ── */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.2s;
   transition-timing-function: ease;
-}
-/* But not for transforms/opacity to avoid jank */
-*[style*="transform"], *[style*="opacity"] {
-  transition: none;
 }
