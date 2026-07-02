@@ -23,20 +23,21 @@ function CreatorCard({ creator }: { creator: Creator }) {
       }}
     >
       <div style={{
-        width: "52px",
-        height: "52px",
+        width: "56px",
+        height: "56px",
         borderRadius: "50%",
-        backgroundColor: "var(--bg-deep)",
-        border: `1px solid ${hovered ? "var(--accent)" : "var(--border-hover)"}`,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "20px",
+        overflow: "hidden",
+        border: `2px solid ${hovered ? "var(--accent)" : "var(--border)"}`,
         marginBottom: "20px",
         transition: "all 0.25s",
         boxShadow: hovered ? "0 0 12px var(--shadow-accent)" : "none",
+        flexShrink: 0,
       }}>
-        {creator.preview}
+        <img
+          src={creator.avatar}
+          alt={creator.name}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
       </div>
       <h3 style={{
         fontFamily: "Georgia, serif",
