@@ -134,7 +134,7 @@ function PostCard({
   };
 
   return (
-    <div style={{ backgroundColor: "#0D0005", border: "1px solid #1A0008", marginBottom: "2px" }}>
+    <div style={{ backgroundColor: "var(--bg-card)", border: "1px solid #1A0008", marginBottom: "2px" }}>
       {/* Header */}
       <div style={{
         display: "flex",
@@ -149,7 +149,7 @@ function PostCard({
             width: "36px",
             height: "36px",
             borderRadius: "50%",
-            backgroundColor: "#1A0008",
+            backgroundColor: "var(--border)",
             border: "1px solid #2A0010",
             display: "flex",
             alignItems: "center",
@@ -163,18 +163,18 @@ function PostCard({
         </a>
         <div style={{ flex: 1 }}>
           <a href={`/creator/${post.creatorId}`} style={{ textDecoration: "none" }}>
-            <p style={{ fontSize: "14px", color: "#F5F0F0", marginBottom: "2px" }}>{post.creator}</p>
+            <p style={{ fontSize: "14px", color: "var(--text-primary)", marginBottom: "2px" }}>{post.creator}</p>
           </a>
-          <p style={{ fontSize: "11px", color: "#444", letterSpacing: "1px" }}>{post.category.toUpperCase()}</p>
+          <p style={{ fontSize: "11px", color: "var(--text-faint)", letterSpacing: "1px" }}>{post.category.toUpperCase()}</p>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span style={{ color: "#444", fontSize: "12px" }}>{post.date}</span>
+          <span style={{ color: "var(--text-faint)", fontSize: "12px" }}>{post.date}</span>
           <span style={{
             fontSize: "10px",
             letterSpacing: "1px",
             padding: "3px 8px",
-            border: `1px solid ${post.type === "FREE" ? "#333" : "#C0001A"}`,
-            color: post.type === "FREE" ? "#555" : "#C0001A",
+            border: `1px solid ${post.type === "FREE" ? "var(--text-ghost)" : "var(--accent)"}`,
+            color: post.type === "FREE" ? "var(--text-dim)" : "var(--accent)",
           }}>
             {post.type}
           </span>
@@ -188,7 +188,7 @@ function PostCard({
           fontSize: "20px",
           fontWeight: "normal",
           marginBottom: "12px",
-          color: "#F5F0F0",
+          color: "var(--text-primary)",
         }}>
           {post.title}
         </h3>
@@ -196,12 +196,12 @@ function PostCard({
         {isLocked ? (
           <div style={{ position: "relative" }}>
             <div style={{
-              backgroundColor: "#0A0003",
+              backgroundColor: "var(--bg-deep)",
               border: "1px solid #1A0008",
               padding: "24px",
               filter: "blur(3px)",
               userSelect: "none",
-              color: "#444",
+              color: "var(--text-faint)",
               fontSize: "14px",
               lineHeight: 1.8,
             }}>
@@ -217,7 +217,7 @@ function PostCard({
               gap: "16px",
               backgroundColor: "rgba(10,0,3,0.7)",
             }}>
-              <p style={{ color: "#555", fontSize: "13px" }}>
+              <p style={{ color: "var(--text-dim)", fontSize: "13px" }}>
                 {post.price !== null ? `Buy for $${post.price}` : "Subscribers only"}
               </p>
               {post.price !== null ? (
@@ -225,8 +225,8 @@ function PostCard({
                   <button
                     onClick={handleBuy}
                     style={{
-                      backgroundColor: "#C0001A",
-                      color: "#F5F0F0",
+                      backgroundColor: "var(--accent)",
+                      color: "var(--text-primary)",
                       border: "none",
                       padding: "10px 22px",
                       fontSize: "12px",
@@ -254,8 +254,8 @@ function PostCard({
                 <a
                   href={`/creator/${post.creatorId}`}
                   style={{
-                    backgroundColor: "#C0001A",
-                    color: "#F5F0F0",
+                    backgroundColor: "var(--accent)",
+                    color: "var(--text-primary)",
                     padding: "10px 22px",
                     fontSize: "12px",
                     letterSpacing: "2px",
@@ -271,7 +271,7 @@ function PostCard({
           <div>
             {post.hasImage && (
               <div style={{
-                backgroundColor: "#0A0003",
+                backgroundColor: "var(--bg-deep)",
                 border: "1px solid #1A0008",
                 height: "200px",
                 display: "flex",
@@ -279,12 +279,12 @@ function PostCard({
                 justifyContent: "center",
                 marginBottom: "16px",
                 fontSize: "48px",
-                color: "#1A0008",
+                color: "var(--border)",
               }}>
                 {post.preview}
               </div>
             )}
-            <p style={{ color: "#777", fontSize: "15px", lineHeight: 1.8 }}>
+            <p style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.8 }}>
               {post.content}
             </p>
           </div>
@@ -307,7 +307,7 @@ function PostCard({
             gap: "6px",
             backgroundColor: "transparent",
             border: "none",
-            color: liked ? "#C0001A" : "#444",
+            color: liked ? "var(--accent)" : "var(--text-faint)",
             fontSize: "13px",
             cursor: "pointer",
             padding: 0,
@@ -322,7 +322,7 @@ function PostCard({
             display: "flex",
             alignItems: "center",
             gap: "6px",
-            color: "#444",
+            color: "var(--text-faint)",
             fontSize: "13px",
             textDecoration: "none",
           }}
@@ -346,9 +346,9 @@ export default function FeedPage() {
 
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
@@ -359,7 +359,7 @@ export default function FeedPage() {
 
       <div style={{ maxWidth: "680px", margin: "0 auto", padding: "48px 24px" }}>
         <div style={{ marginBottom: "40px" }}>
-          <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
+          <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
             YOUR FEED
           </p>
           <h1 style={{ fontFamily: "Georgia, serif", fontSize: "36px", fontWeight: "normal" }}>
@@ -374,9 +374,9 @@ export default function FeedPage() {
               onClick={() => setActiveFilter(filter)}
               style={{
                 padding: "8px 18px",
-                backgroundColor: activeFilter === filter ? "#C0001A" : "transparent",
-                border: `1px solid ${activeFilter === filter ? "#C0001A" : "#1A0008"}`,
-                color: activeFilter === filter ? "#F5F0F0" : "#555",
+                backgroundColor: activeFilter === filter ? "var(--accent)" : "transparent",
+                border: `1px solid ${activeFilter === filter ? "var(--accent)" : "var(--border)"}`,
+                color: activeFilter === filter ? "var(--text-primary)" : "var(--text-dim)",
                 fontSize: "12px",
                 letterSpacing: "1px",
                 cursor: "pointer",
@@ -387,7 +387,7 @@ export default function FeedPage() {
           ))}
         </div>
 
-        <p style={{ color: "#444", fontSize: "13px", marginBottom: "24px" }}>
+        <p style={{ color: "var(--text-faint)", fontSize: "13px", marginBottom: "24px" }}>
           {filteredPosts.length} posts
         </p>
 
