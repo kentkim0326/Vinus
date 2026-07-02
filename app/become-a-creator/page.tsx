@@ -24,7 +24,7 @@ const TIERS = [
   {
     icon: "🔗",
     title: "Earn from Referrals",
-    desc: "Refer other creators and earn 5% of their revenue. Your referrals earn you 3%, theirs earn you 2%. Forever.",
+    desc: "Refer other creators. Vinus shares 10% of its 20% platform fee with referrers — automatically, on-chain. Level 1: 1% · Level 2: 0.6% · Level 3: 0.4% of total transaction. Creator always keeps 80%.",
   },
 ];
 
@@ -51,7 +51,7 @@ const FAQS = [
   },
   {
     q: "What is the referral system?",
-    a: "When you refer another creator and they earn revenue, you automatically receive 5% of their earnings via smart contract. If they referred someone too, that person gets 3%. Their referral gets 2%. All automatic, on-chain, forever.",
+    a: "Vinus charges a 20% platform fee. 10% of that fee is shared with referrers via smart contract — so 2% of every total transaction goes to the referral chain. Level 1 (you): 1% of total · Level 2: 0.6% · Level 3: 0.4%. Creator always keeps 80%. All automatic, on-chain, forever.",
   },
   {
     q: "Can I post in any language?",
@@ -236,15 +236,15 @@ export default function BecomeCreatorPage() {
 
           {/* Visual split */}
           <div style={{ marginBottom: "48px" }}>
-            <div style={{ display: "flex", height: "64px", borderRadius: "0", overflow: "hidden", marginBottom: "16px" }}>
+            <div style={{ display: "flex", height: "64px", overflow: "hidden", marginBottom: "16px" }}>
               <div style={{ flex: 80, backgroundColor: "var(--accent)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ color: "var(--accent-fg)", fontSize: "20px", fontFamily: "Georgia, serif", fontWeight: "bold" }}>80%</span>
               </div>
-              <div style={{ flex: 10, backgroundColor: "var(--bg-card)", display: "flex", alignItems: "center", justifyContent: "center", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
-                <span style={{ color: "var(--text-dim)", fontSize: "11px" }}>10%</span>
+              <div style={{ flex: 2, backgroundColor: "var(--bg-card)", display: "flex", alignItems: "center", justifyContent: "center", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
+                <span style={{ color: "var(--text-dim)", fontSize: "10px" }}>2%</span>
               </div>
-              <div style={{ flex: 10, backgroundColor: "var(--bg-deep)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid var(--border)" }}>
-                <span style={{ color: "var(--text-dim)", fontSize: "11px" }}>10%</span>
+              <div style={{ flex: 18, backgroundColor: "var(--bg-deep)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid var(--border)" }}>
+                <span style={{ color: "var(--text-dim)", fontSize: "11px" }}>18%</span>
               </div>
             </div>
             <div style={{ display: "flex", gap: "0", textAlign: "left" }}>
@@ -252,13 +252,13 @@ export default function BecomeCreatorPage() {
                 <p style={{ color: "var(--text-primary)", fontSize: "14px", marginBottom: "4px" }}>Creator</p>
                 <p style={{ color: "var(--text-muted)", fontSize: "12px" }}>Paid instantly to your wallet</p>
               </div>
-              <div style={{ flex: 10, paddingRight: "8px" }}>
-                <p style={{ color: "var(--text-secondary)", fontSize: "13px", marginBottom: "4px" }}>Referrals</p>
-                <p style={{ color: "var(--text-muted)", fontSize: "11px" }}>5+3+2% chain</p>
+              <div style={{ flex: 2, paddingRight: "8px" }}>
+                <p style={{ color: "var(--text-secondary)", fontSize: "12px", marginBottom: "4px" }}>Referrals</p>
+                <p style={{ color: "var(--text-muted)", fontSize: "10px" }}>2% of total</p>
               </div>
-              <div style={{ flex: 10 }}>
+              <div style={{ flex: 18 }}>
                 <p style={{ color: "var(--text-secondary)", fontSize: "13px", marginBottom: "4px" }}>Vinus</p>
-                <p style={{ color: "var(--text-muted)", fontSize: "11px" }}>Platform fee</p>
+                <p style={{ color: "var(--text-muted)", fontSize: "11px" }}>Net platform fee</p>
               </div>
             </div>
           </div>
@@ -268,11 +268,11 @@ export default function BecomeCreatorPage() {
             <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "3px", marginBottom: "24px" }}>3-LEVEL REFERRAL — ON-CHAIN, AUTOMATIC</p>
             <div style={{ display: "flex", gap: "0", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: "8px" }}>
               {[
-                { label: "You refer", pct: "5%", color: "var(--accent)" },
+                { label: "You refer", pct: "1%", color: "var(--accent)" },
                 { label: "→", pct: "", color: "var(--text-ghost)" },
-                { label: "They refer", pct: "3%", color: "var(--text-secondary)" },
+                { label: "They refer", pct: "0.6%", color: "var(--text-secondary)" },
                 { label: "→", pct: "", color: "var(--text-ghost)" },
-                { label: "Their referral", pct: "2%", color: "var(--text-muted)" },
+                { label: "Their referral", pct: "0.4%", color: "var(--text-muted)" },
               ].map((item, i) => (
                 item.pct ? (
                   <div key={i} style={{ textAlign: "center", padding: "0 12px" }}>
@@ -285,7 +285,7 @@ export default function BecomeCreatorPage() {
               ))}
             </div>
             <p style={{ color: "var(--text-dim)", fontSize: "13px", marginTop: "20px", lineHeight: 1.7 }}>
-              Smart contract distributes automatically. No manual payouts. No trust required.
+              Vinus takes 20% platform fee. 10% of that (= 2% of total transaction) is shared with referrers via smart contract. Creator always receives 80%. No manual payouts. No trust required.
             </p>
           </div>
         </div>
