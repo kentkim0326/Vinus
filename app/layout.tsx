@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Web3Provider from "./components/Web3Provider";
+import { Web3Provider } from "./components/Web3Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
