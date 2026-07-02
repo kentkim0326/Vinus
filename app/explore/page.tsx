@@ -69,7 +69,7 @@ export default function ExplorePage() {
             }}
           />
           <div style={{ display: "flex", gap: "8px" }}>
-            {([{t(lang, "explore.popular")}, {t(lang, "explore.newest")}] as const).map((s) => (
+            {(["popular", "newest"] as const).map((s) => (
               <button
                 key={s}
                 onClick={() => setSort(s)}
