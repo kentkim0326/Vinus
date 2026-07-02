@@ -47,6 +47,12 @@ export default function Navbar() {
         <a href="/feed" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
           {t(lang, "nav.feed")}
         </a>
+        <a href="/about" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+          About
+        </a>
+        <a href="/become-a-creator" style={{ color: "var(--accent)", textDecoration: "none", fontSize: "12px", letterSpacing: "1px", border: "1px solid var(--accent)", padding: "5px 12px" }}>
+          BECOME A CREATOR
+        </a>
 
         {/* Language toggle */}
         <LangToggle />
