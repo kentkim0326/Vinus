@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Web3Provider } from "./components/Web3Provider";
 import { ThemeProvider } from "./components/ThemeProvider";
+import AgeGate from "./components/AgeGate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,10 +43,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0A0A0A",
+  themeColor: "#0F0F0F",
 };
 
-// Inline script to prevent flash of wrong theme before React hydrates
 const themeScript = `
 (function() {
   try {
@@ -72,7 +72,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
           <Web3Provider>
-            {children}
+            <AgeGate>
+              {children}
+            </AgeGate>
           </Web3Provider>
         </ThemeProvider>
       </body>
