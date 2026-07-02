@@ -1,95 +1,57 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useAccount, useConnect, useSendTransaction } from "wagmi";
-import { parseEther } from "viem";
+import { useState } from "react";
+import {
+  useAccount,
+  useSendTransaction,
+  useWaitForTransactionReceipt,
+} from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import type { Content } from "../lib/content";
+import { parseEther } from "viem";
+import type { CreatorPost } from "../lib/data";
 
-type PurchaseStep = "select" | "confirm" | "processing" | "success" | "error";
-type PaymentToken = "ETH" | "USDT";
+// Vinus treasury address on Base (replace with real address before mainnet)
+const VINUS_TREASURY = "0x000000000000000000000000000000000000dEaD" as const;
 
-interface PurchaseModalProps {
-  content: Content;
+type TxStatus = "idle" | "pending" | "success" | "error";
+
+export function PurchaseModal({
+  post,
+  creatorName,
+  onClose,
+}: {
+  post: CreatorPost;
   creatorName: string;
   onClose: () => void;
-}
+}) {
+  const { isConnected } = useAccount();
+  const [txStatus, setTxStatus] = useState<TxStatus>("idle");
+  const [txHash, setTxHash] = useState<`0x${string}` | undefined>();
 
-// Creator wallet addresses (mock — replace with real addresses)
-const CREATOR_WALLETS: Record<number, `0x${string}`> = {
-  1: "0x1234567890123456789012345678901234567891",
-  2: "0x1234567890123456789012345678901234567892",
-  3: "0x1234567890123456789012345678901234567893",
-  4: "0x1234567890123456789012345678901234567894",
-  5: "0x1234567890123456789012345678901234567895",
-  6: "0x1234567890123456789012345678901234567896",
-  7: "0x1234567890123456789012345678901234567897",
-  8: "0x1234567890123456789012345678901234567898",
-  9: "0x1234567890123456789012345678901234567899",
-};
-
-export default function PurchaseModal({ content, creatorName, onClose }: PurchaseModalProps) {
-  const { isConnected, address } = useAccount();
-  const [step, setStep] = useState<PurchaseStep>("select");
-  const [token, setToken] = useState<PaymentToken>("ETH");
-  const [txHash, setTxHash] = useState<string>("");
-
-  const { sendTransaction, isPending } = useSendTransaction();
-
-  // Close on ESC
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, [onClose]);
-
-  // Lock scroll
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
-  }, []);
-
-  const ethPrice = content.priceEth ?? "0.003";
-  const usdPrice = content.price ?? 10;
-  const creatorWallet = CREATOR_WALLETS[content.creatorId];
+  const { sendTransactionAsync } = useSendTransaction();
+  const { isLoading: isConfirming } = useWaitForTransactionReceipt({ hash: txHash });
 
   const handlePay = async () => {
-    if (!isConnected || !creatorWallet) return;
-    setStep("processing");
+    if (!post.price) return;
+    setTxStatus("pending");
     try {
-      sendTransaction(
-        {
-          to: creatorWallet,
-          value: parseEther(ethPrice),
-        },
-        {
-          onSuccess: (hash) => {
-            setTxHash(hash);
-            setStep("success");
-          },
-          onError: () => setStep("error"),
-        }
-      );
+      const hash = await sendTransactionAsync({
+        to: VINUS_TREASURY,
+        value: parseEther(post.price),
+      });
+      setTxHash(hash);
+      setTxStatus("success");
     } catch {
-      setStep("error");
+      setTxStatus("error");
     }
   };
 
-  const accessLabel = {
-    free: "FREE",
-    subscription: "SUBSCRIBERS ONLY",
-    paid: "PURCHASE TO UNLOCK",
-  }[content.access];
-
-  const typeIcon = { image: "🖼", video: "🎬", audio: "🎵", text: "📝" }[content.type];
-
   return (
     <div
-      onClick={(e) => e.target === e.currentTarget && onClose()}
+      onClick={onClose}
       style={{
-        position: "fixed",
-        inset: 0,
-        backgroundColor: "rgba(0,0,0,0.85)",
+        position: "fixed", inset: 0,
+        backgroundColor: "rgba(0,0,0,0.88)",
         zIndex: 1000,
         display: "flex",
         alignItems: "center",
@@ -97,235 +59,163 @@ export default function PurchaseModal({ content, creatorName, onClose }: Purchas
         padding: "24px",
       }}
     >
-      <div style={{
-        backgroundColor: "#0D0005",
-        border: "1px solid #2A0010",
-        width: "100%",
-        maxWidth: "480px",
-        position: "relative",
-      }}>
-        {/* 헤더 */}
-        <div style={{
-          padding: "24px",
-          borderBottom: "1px solid #1A0008",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-        }}>
-          <div>
-            <p style={{ color: "#C0001A", fontSize: "10px", letterSpacing: "3px", marginBottom: "6px" }}>
-              {accessLabel}
-            </p>
-            <p style={{ fontFamily: "Georgia, serif", fontSize: "17px", color: "#F5F0F0", lineHeight: 1.3 }}>
-              {content.title}
-            </p>
-            <p style={{ color: "#555", fontSize: "12px", marginTop: "4px" }}>
-              {typeIcon} {content.type.toUpperCase()} · {creatorName}
-            </p>
-          </div>
-          <button
-            onClick={onClose}
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              color: "#444",
-              fontSize: "20px",
-              cursor: "pointer",
-              padding: "0 0 0 16px",
-              lineHeight: 1,
-            }}
-          >
-            ✕
-          </button>
-        </div>
-
-        {/* 콘텐츠 */}
-        <div style={{ padding: "28px 24px" }}>
-
-          {/* 썸네일 미리보기 */}
-          <div style={{
-            backgroundColor: "#0A0003",
-            border: "1px solid #1A0008",
-            height: "160px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "24px",
-            position: "relative",
-            overflow: "hidden",
-          }}>
-            <span style={{ fontSize: "56px", filter: "blur(2px)", opacity: 0.4 }}>
-              {typeIcon}
-            </span>
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor: "#0D0005",
+          border: "1px solid #C0001A",
+          padding: "40px",
+          maxWidth: "460px",
+          width: "100%",
+        }}
+      >
+        {txStatus === "success" ? (
+          /* ── Success state ── */
+          <div style={{ textAlign: "center" }}>
             <div style={{
-              position: "absolute",
-              inset: 0,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              gap: "8px",
+              width: "64px", height: "64px", borderRadius: "50%",
+              backgroundColor: "#1A0008", border: "2px solid #C0001A",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: "28px", margin: "0 auto 24px",
+              boxShadow: "0 0 24px rgba(192,0,26,0.3)",
             }}>
-              <span style={{ fontSize: "24px" }}>🔒</span>
-              <span style={{ color: "#555", fontSize: "12px", letterSpacing: "2px" }}>
-                LOCKED
-              </span>
+              ✦
             </div>
+            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
+              PAYMENT CONFIRMED
+            </p>
+            <h2 style={{ fontFamily: "Georgia, serif", fontSize: "24px", fontWeight: "normal", marginBottom: "16px" }}>
+              Content unlocked.
+            </h2>
+            <p style={{ color: "#666", fontSize: "13px", lineHeight: 1.8, marginBottom: "8px" }}>
+              {post.title}
+            </p>
+            {txHash && (
+              <a
+                href={`https://sepolia.basescan.org/tx/${txHash}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "1px", textDecoration: "none" }}
+              >
+                VIEW ON BASESCAN ↗
+              </a>
+            )}
+            <button
+              onClick={onClose}
+              style={{
+                display: "block", width: "100%", marginTop: "28px",
+                backgroundColor: "#C0001A", color: "#F5F0F0", border: "none",
+                padding: "14px", fontSize: "13px", letterSpacing: "2px", cursor: "pointer",
+              }}
+            >
+              CLOSE
+            </button>
           </div>
+        ) : (
+          /* ── Purchase state ── */
+          <>
+            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "20px" }}>
+              PURCHASE CONTENT
+            </p>
+            <h2 style={{
+              fontFamily: "Georgia, serif", fontSize: "20px",
+              fontWeight: "normal", marginBottom: "8px", lineHeight: 1.4,
+            }}>
+              {post.title}
+            </h2>
+            <p style={{ color: "#555", fontSize: "12px", marginBottom: "4px" }}>by {creatorName}</p>
+            <p style={{ color: "#666", fontSize: "13px", lineHeight: 1.7, marginBottom: "28px" }}>
+              {post.description}
+            </p>
 
-          <p style={{ color: "#666", fontSize: "13px", lineHeight: 1.7, marginBottom: "24px" }}>
-            {content.description}
-          </p>
-
-          {step === "success" ? (
-            <div style={{ textAlign: "center", padding: "24px 0" }}>
-              <p style={{ fontSize: "40px", marginBottom: "16px" }}>✦</p>
-              <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "3px", marginBottom: "8px" }}>
-                PAYMENT CONFIRMED
-              </p>
-              <p style={{ fontFamily: "Georgia, serif", fontSize: "22px", marginBottom: "12px" }}>
-                Content unlocked.
-              </p>
-              {txHash && (
-                <p style={{ color: "#444", fontSize: "11px", wordBreak: "break-all", marginBottom: "20px" }}>
-                  tx: {txHash.slice(0, 20)}...
-                </p>
-              )}
-              <button
-                onClick={onClose}
-                style={{
-                  backgroundColor: "#C0001A",
-                  color: "#F5F0F0",
-                  border: "none",
-                  padding: "14px 32px",
-                  fontSize: "12px",
-                  letterSpacing: "2px",
-                  cursor: "pointer",
-                }}
-              >
-                VIEW CONTENT
-              </button>
-            </div>
-
-          ) : step === "error" ? (
-            <div style={{ textAlign: "center", padding: "16px 0" }}>
-              <p style={{ color: "#C0001A", fontSize: "14px", marginBottom: "16px" }}>
-                Transaction failed. Please try again.
-              </p>
-              <button
-                onClick={() => setStep("confirm")}
-                style={{
-                  backgroundColor: "transparent",
-                  border: "1px solid #C0001A",
-                  color: "#C0001A",
-                  padding: "12px 28px",
-                  fontSize: "12px",
-                  letterSpacing: "2px",
-                  cursor: "pointer",
-                }}
-              >
-                RETRY
-              </button>
-            </div>
-
-          ) : !isConnected ? (
-            <div style={{ textAlign: "center" }}>
-              <p style={{ color: "#555", fontSize: "13px", marginBottom: "20px" }}>
-                Connect your wallet to purchase
-              </p>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <ConnectButton />
+            {/* Price box */}
+            <div style={{
+              backgroundColor: "#0A0003", border: "1px solid #1A0008",
+              padding: "20px", marginBottom: "24px",
+            }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+                <span style={{ color: "#555", fontSize: "11px", letterSpacing: "1px" }}>USD VALUE</span>
+                <span style={{ color: "#F5F0F0", fontSize: "16px" }}>${post.priceUSD}</span>
               </div>
-            </div>
-
-          ) : step === "processing" || isPending ? (
-            <div style={{ textAlign: "center", padding: "24px 0" }}>
-              <div style={{
-                width: "40px",
-                height: "40px",
-                border: "2px solid #1A0008",
-                borderTop: "2px solid #C0001A",
-                borderRadius: "50%",
-                margin: "0 auto 16px",
-                animation: "spin 1s linear infinite",
-              }} />
-              <p style={{ color: "#555", fontSize: "13px", letterSpacing: "2px" }}>
-                PROCESSING...
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <span style={{ color: "#555", fontSize: "11px", letterSpacing: "1px" }}>PAY WITH ETH</span>
+                <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "#C0001A" }}>
+                  {post.price} ETH
+                </span>
+              </div>
+              <p style={{ color: "#333", fontSize: "11px", marginTop: "10px", paddingTop: "10px", borderTop: "1px solid #1A0008" }}>
+                Base Network (Sepolia testnet) · Gas fees apply
               </p>
-              <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
             </div>
 
-          ) : (
-            <>
-              {/* 결제 토큰 선택 */}
-              <div style={{ marginBottom: "20px" }}>
-                <p style={{ color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "10px" }}>
-                  PAY WITH
+            {!isConnected ? (
+              /* Not connected — show ConnectButton */
+              <div>
+                <p style={{ color: "#555", fontSize: "12px", marginBottom: "16px", textAlign: "center" }}>
+                  Connect your wallet to continue
                 </p>
-                <div style={{ display: "flex", gap: "8px" }}>
-                  {(["ETH", "USDT"] as PaymentToken[]).map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => setToken(t)}
-                      style={{
-                        flex: 1,
-                        padding: "10px",
-                        backgroundColor: token === t ? "#1A0008" : "transparent",
-                        border: `1px solid ${token === t ? "#C0001A" : "#1A0008"}`,
-                        color: token === t ? "#F5F0F0" : "#555",
-                        fontSize: "12px",
-                        letterSpacing: "2px",
-                        cursor: "pointer",
-                      }}
-                    >
-                      {t}
-                    </button>
-                  ))}
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <ConnectButton label="CONNECT WALLET" showBalance={false} chainStatus="name" />
                 </div>
               </div>
-
-              {/* 가격 표시 */}
+            ) : txStatus === "pending" || isConfirming ? (
+              /* Pending */
               <div style={{
-                backgroundColor: "#0A0003",
-                border: "1px solid #1A0008",
-                padding: "16px 20px",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "20px",
+                backgroundColor: "#0A0003", border: "1px solid #1A0008",
+                padding: "20px", textAlign: "center",
               }}>
-                <span style={{ color: "#555", fontSize: "12px", letterSpacing: "1px" }}>TOTAL</span>
-                <div style={{ textAlign: "right" }}>
-                  <p style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "#F5F0F0" }}>
-                    {token === "ETH" ? `${ethPrice} ETH` : `$${usdPrice} USDT`}
-                  </p>
-                  <p style={{ color: "#444", fontSize: "11px" }}>on Base Network</p>
-                </div>
+                <p style={{ color: "#C0001A", fontSize: "12px", letterSpacing: "2px", marginBottom: "8px" }}>
+                  ⏳ PROCESSING...
+                </p>
+                <p style={{ color: "#555", fontSize: "12px", lineHeight: 1.6 }}>
+                  {txHash ? "Waiting for confirmation on Base..." : "Confirm in your wallet"}
+                </p>
               </div>
-
-              {/* 구매 버튼 */}
-              <button
-                onClick={handlePay}
-                style={{
-                  width: "100%",
-                  backgroundColor: "#C0001A",
-                  color: "#F5F0F0",
-                  border: "none",
-                  padding: "16px",
-                  fontSize: "13px",
-                  letterSpacing: "2px",
-                  cursor: "pointer",
-                }}
-              >
-                PAY {token === "ETH" ? `${ethPrice} ETH` : `$${usdPrice} USDT`}
-              </button>
-
-              <p style={{ color: "#333", fontSize: "11px", textAlign: "center", marginTop: "12px" }}>
-                Connected: {address?.slice(0, 6)}...{address?.slice(-4)}
-              </p>
-            </>
-          )}
-        </div>
+            ) : txStatus === "error" ? (
+              /* Error */
+              <div>
+                <p style={{ color: "#C0001A", fontSize: "13px", textAlign: "center", marginBottom: "16px" }}>
+                  Transaction failed or rejected.
+                </p>
+                <button
+                  onClick={() => setTxStatus("idle")}
+                  style={{
+                    width: "100%", backgroundColor: "#C0001A", color: "#F5F0F0",
+                    border: "none", padding: "14px", fontSize: "13px",
+                    letterSpacing: "2px", cursor: "pointer",
+                  }}
+                >
+                  TRY AGAIN
+                </button>
+              </div>
+            ) : (
+              /* Ready to pay */
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                <button
+                  onClick={handlePay}
+                  style={{
+                    backgroundColor: "#C0001A", color: "#F5F0F0", border: "none",
+                    padding: "16px", fontSize: "13px", letterSpacing: "2px",
+                    cursor: "pointer", width: "100%",
+                  }}
+                >
+                  PAY {post.price} ETH · UNLOCK CONTENT
+                </button>
+                <button
+                  onClick={onClose}
+                  style={{
+                    backgroundColor: "transparent", color: "#555",
+                    border: "1px solid #1A0008", padding: "14px",
+                    fontSize: "12px", letterSpacing: "1px",
+                    cursor: "pointer", width: "100%",
+                  }}
+                >
+                  CANCEL
+                </button>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
