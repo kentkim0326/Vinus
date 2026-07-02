@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "./components/Navbar";
+import VinusLogo from "./components/VinusLogo";
 import { useState } from "react";
 import { creators } from "./lib/data";
 import { useLang } from "./components/LangProvider";
