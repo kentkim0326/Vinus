@@ -141,18 +141,15 @@ export default function ExplorePage() {
                   }}
                 >
                   <div style={{
-                    width: "52px",
-                    height: "52px",
+                    width: "56px",
+                    height: "56px",
                     borderRadius: "50%",
-                    backgroundColor: "var(--border)",
-                    border: "1px solid #2A0010",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "20px",
+                    overflow: "hidden",
+                    border: "1px solid var(--border)",
                     marginBottom: "20px",
+                    flexShrink: 0,
                   }}>
-                    {creator.preview}
+                    <img src={creator.avatar} alt={creator.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   <h3 style={{
                     fontFamily: "Georgia, serif",
