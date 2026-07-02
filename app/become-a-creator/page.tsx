@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "../components/LangProvider";
+import { t } from "../lib/i18n";
+
 import Navbar from "../components/Navbar";
 import WalletButton from "../components/WalletButton";
 import VinusLogo from "../components/VinusLogo";
@@ -65,6 +68,7 @@ const FAQS = [
 ];
 
 export default function BecomeCreatorPage() {
+  const { lang } = useLang();
   const { isConnected } = useAccount();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -169,7 +173,7 @@ export default function BecomeCreatorPage() {
       {/* Why Vinus */}
       <section style={{ padding: "80px 48px", borderBottom: "1px solid var(--border)" }}>
         <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px", textAlign: "center" }}>WHY VINUS</p>
+          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px", textAlign: "center" }}>{lang === "ko" ? "왜 VINUS인가" : "WHY VINUS"}</p>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: "normal", textAlign: "center", marginBottom: "56px" }}>
             Built different.
           </h2>
@@ -196,7 +200,7 @@ export default function BecomeCreatorPage() {
       {/* How it works */}
       <section style={{ padding: "80px 48px", borderBottom: "1px solid var(--border)", backgroundColor: "var(--bg-card)" }}>
         <div style={{ maxWidth: "760px", margin: "0 auto" }}>
-          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px", textAlign: "center" }}>HOW IT WORKS</p>
+          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px", textAlign: "center" }}>{lang === "ko" ? "이용 방법" : "HOW IT WORKS"}</p>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: "normal", textAlign: "center", marginBottom: "56px" }}>
             Start in 5 minutes.
           </h2>
@@ -230,7 +234,7 @@ export default function BecomeCreatorPage() {
       {/* Revenue split */}
       <section style={{ padding: "80px 48px", borderBottom: "1px solid var(--border)" }}>
         <div style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
-          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px" }}>REVENUE MODEL</p>
+          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px" }}>{lang === "ko" ? "수익 모델" : "REVENUE MODEL"}</p>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: "normal", marginBottom: "48px" }}>
             You keep most of it.
           </h2>
@@ -295,7 +299,7 @@ export default function BecomeCreatorPage() {
       {/* AI Manager */}
       <section style={{ padding: "80px 48px", borderBottom: "1px solid var(--border)", backgroundColor: "var(--bg-card)" }}>
         <div style={{ maxWidth: "760px", margin: "0 auto" }}>
-          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px", textAlign: "center" }}>AI MANAGER</p>
+          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px", textAlign: "center" }}>{lang === "ko" ? "AI 매니저" : "AI MANAGER"}</p>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(28px, 4vw, 44px)", fontWeight: "normal", textAlign: "center", marginBottom: "16px" }}>
             Your AI works while you sleep.
           </h2>
@@ -328,7 +332,7 @@ export default function BecomeCreatorPage() {
       {/* FAQ */}
       <section style={{ padding: "80px 48px", borderBottom: "1px solid var(--border)" }}>
         <div style={{ maxWidth: "720px", margin: "0 auto" }}>
-          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px", textAlign: "center" }}>FAQ</p>
+          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "12px", textAlign: "center" }}>{lang === "ko" ? "자주 묻는 질문" : "FAQ"}</p>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(24px, 3vw, 36px)", fontWeight: "normal", textAlign: "center", marginBottom: "48px" }}>
             Common questions.
           </h2>
