@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "../components/LangProvider";
+import { t } from "../lib/i18n";
+
 import Navbar from "../components/Navbar";
 import { useState, useRef } from "react";
 
@@ -27,6 +30,7 @@ const CONTENT_TYPES = [
 type AccessType = "FREE" | "SUB" | "PAID";
 
 export default function DashboardPage() {
+  const { lang } = useLang();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [contentType, setContentType] = useState("image");
@@ -238,7 +242,7 @@ export default function DashboardPage() {
                       type="text"
                       value={title}
                       onChange={(e) => setTitle(e.target.value)}
-                      placeholder="Post title"
+                      placeholder={lang === "ko" ? "포스트 제목" : "Post title"}
                       style={{
                         width: "100%",
                         backgroundColor: "var(--bg-card)",
