@@ -33,7 +33,7 @@ function SuccessContent() {
         width: "80px",
         height: "80px",
         borderRadius: "50%",
-        backgroundColor: "#1A0008",
+        backgroundColor: "var(--border)",
         border: "2px solid #C0001A",
         display: "flex",
         alignItems: "center",
@@ -45,7 +45,7 @@ function SuccessContent() {
         {creator.preview}
       </div>
 
-      <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "16px" }}>
+      <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "16px" }}>
         SUBSCRIPTION CONFIRMED
       </p>
 
@@ -61,10 +61,10 @@ function SuccessContent() {
 
       <p style={{ color: "#666", fontSize: "16px", lineHeight: 1.8, marginBottom: "8px" }}>
         Your subscription to{" "}
-        <span style={{ color: "#F5F0F0" }}>{creator.name}</span> is now active.
+        <span style={{ color: "var(--text-primary)" }}>{creator.name}</span> is now active.
       </p>
 
-      <p style={{ color: "#444", fontSize: "14px", lineHeight: 1.8, marginBottom: "56px" }}>
+      <p style={{ color: "var(--text-faint)", fontSize: "14px", lineHeight: 1.8, marginBottom: "56px" }}>
         {tier.name} tier · ${tier.price}/mo · Paid with crypto
       </p>
 
@@ -74,12 +74,12 @@ function SuccessContent() {
         marginBottom: "40px",
         textAlign: "left",
       }}>
-        <p style={{ color: "#555", fontSize: "11px", letterSpacing: "3px", marginBottom: "16px" }}>
+        <p style={{ color: "var(--text-dim)", fontSize: "11px", letterSpacing: "3px", marginBottom: "16px" }}>
           YOUR PERKS
         </p>
         {tier.perks.map((perk, i) => (
           <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
-            <span style={{ color: "#C0001A", fontSize: "10px" }}>✦</span>
+            <span style={{ color: "var(--accent)", fontSize: "10px" }}>✦</span>
             <span style={{ color: "#888", fontSize: "14px" }}>{perk}</span>
           </div>
         ))}
@@ -87,8 +87,8 @@ function SuccessContent() {
 
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         <a href="/feed" style={{
-          backgroundColor: "#C0001A",
-          color: "#F5F0F0",
+          backgroundColor: "var(--accent)",
+          color: "var(--text-primary)",
           padding: "16px",
           textDecoration: "none",
           fontSize: "13px",
@@ -99,7 +99,7 @@ function SuccessContent() {
         </a>
         <a href="/explore" style={{
           border: "1px solid #1A0008",
-          color: "#555",
+          color: "var(--text-dim)",
           padding: "16px",
           textDecoration: "none",
           fontSize: "13px",
@@ -116,14 +116,14 @@ function SuccessContent() {
 export default function SubscribeSuccessPage() {
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
       <Suspense fallback={
-        <div style={{ textAlign: "center", padding: "120px 24px", color: "#444" }}>
+        <div style={{ textAlign: "center", padding: "120px 24px", color: "var(--text-faint)" }}>
           Loading...
         </div>
       }>
