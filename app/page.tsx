@@ -189,7 +189,7 @@ export default function Home() {
             }}>
               {t(lang, "home.cta1")}
             </a>
-            <a href="/signup" style={{
+            <a href="/become-a-creator" style={{
               border: "1px solid var(--border)",
               color: "var(--text-dim)",
               padding: "14px 32px",
