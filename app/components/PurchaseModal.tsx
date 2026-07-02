@@ -52,7 +52,7 @@ export default function PurchaseModal({
       <div
         onClick={(e) => e.stopPropagation()}
         style={{
-          backgroundColor: "#0D0005",
+          backgroundColor: "var(--bg-card)",
           border: "1px solid #1A0008",
           width: "100%",
           maxWidth: "460px",
@@ -68,7 +68,7 @@ export default function PurchaseModal({
             right: "16px",
             backgroundColor: "transparent",
             border: "none",
-            color: "#555",
+            color: "var(--text-dim)",
             fontSize: "20px",
             cursor: "pointer",
             lineHeight: 1,
@@ -79,7 +79,7 @@ export default function PurchaseModal({
 
         {step === "select" && (
           <>
-            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "20px" }}>
+            <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "4px", marginBottom: "20px" }}>
               PURCHASE CONTENT
             </p>
 
@@ -88,21 +88,21 @@ export default function PurchaseModal({
               gap: "14px",
               alignItems: "flex-start",
               padding: "18px",
-              backgroundColor: "#0A0003",
+              backgroundColor: "var(--bg-deep)",
               border: "1px solid #1A0008",
               marginBottom: "28px",
             }}>
               <span style={{ fontSize: "32px" }}>{item.thumbnail}</span>
               <div>
-                <p style={{ fontSize: "15px", color: "#F5F0F0", marginBottom: "4px" }}>{item.title}</p>
-                <p style={{ fontSize: "12px", color: "#555", lineHeight: 1.5 }}>{item.description}</p>
-                <p style={{ fontSize: "13px", color: "#C0001A", marginTop: "8px", fontFamily: "Georgia, serif" }}>
+                <p style={{ fontSize: "15px", color: "var(--text-primary)", marginBottom: "4px" }}>{item.title}</p>
+                <p style={{ fontSize: "12px", color: "var(--text-dim)", lineHeight: 1.5 }}>{item.description}</p>
+                <p style={{ fontSize: "13px", color: "var(--accent)", marginTop: "8px", fontFamily: "Georgia, serif" }}>
                   ${item.price}
                 </p>
               </div>
             </div>
 
-            <p style={{ color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "12px" }}>
+            <p style={{ color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "12px" }}>
               PAY WITH
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px", marginBottom: "28px" }}>
@@ -115,8 +115,8 @@ export default function PurchaseModal({
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "14px 16px",
-                    backgroundColor: selectedCoin.symbol === coin.symbol ? "#110008" : "transparent",
-                    border: `1px solid ${selectedCoin.symbol === coin.symbol ? "#C0001A" : "#1A0008"}`,
+                    backgroundColor: selectedCoin.symbol === coin.symbol ? "var(--bg-card-hover)" : "transparent",
+                    border: `1px solid ${selectedCoin.symbol === coin.symbol ? "var(--accent)" : "var(--border)"}`,
                     cursor: "pointer",
                     transition: "all 0.15s",
                   }}
@@ -126,13 +126,13 @@ export default function PurchaseModal({
                       width: "8px",
                       height: "8px",
                       borderRadius: "50%",
-                      backgroundColor: selectedCoin.symbol === coin.symbol ? "#C0001A" : "#333",
+                      backgroundColor: selectedCoin.symbol === coin.symbol ? "var(--accent)" : "var(--text-ghost)",
                       flexShrink: 0,
                     }} />
-                    <span style={{ fontSize: "14px", color: "#F5F0F0" }}>{coin.symbol}</span>
-                    <span style={{ fontSize: "12px", color: "#444" }}>{coin.name}</span>
+                    <span style={{ fontSize: "14px", color: "var(--text-primary)" }}>{coin.symbol}</span>
+                    <span style={{ fontSize: "12px", color: "var(--text-faint)" }}>{coin.name}</span>
                   </div>
-                  <span style={{ fontSize: "13px", color: "#C0001A", fontFamily: "Georgia, serif" }}>
+                  <span style={{ fontSize: "13px", color: "var(--accent)", fontFamily: "Georgia, serif" }}>
                     {(price * coin.rate).toFixed(coin.symbol === "ETH" ? 6 : 2)} {coin.symbol}
                   </span>
                 </div>
@@ -141,16 +141,16 @@ export default function PurchaseModal({
 
             <div style={{ borderTop: "1px solid #1A0008", paddingTop: "20px", marginBottom: "20px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                <span style={{ color: "#555", fontSize: "13px" }}>Price</span>
-                <span style={{ color: "#F5F0F0", fontSize: "13px" }}>${price}</span>
+                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>Price</span>
+                <span style={{ color: "var(--text-primary)", fontSize: "13px" }}>${price}</span>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                <span style={{ color: "#555", fontSize: "13px" }}>Network</span>
-                <span style={{ color: "#F5F0F0", fontSize: "13px" }}>Base</span>
+                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>Network</span>
+                <span style={{ color: "var(--text-primary)", fontSize: "13px" }}>Base</span>
               </div>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <span style={{ color: "#555", fontSize: "13px" }}>You pay</span>
-                <span style={{ color: "#C0001A", fontSize: "16px", fontFamily: "Georgia, serif" }}>
+                <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>You pay</span>
+                <span style={{ color: "var(--accent)", fontSize: "16px", fontFamily: "Georgia, serif" }}>
                   {cryptoAmount} {selectedCoin.symbol}
                 </span>
               </div>
@@ -160,8 +160,8 @@ export default function PurchaseModal({
               onClick={handlePay}
               style={{
                 width: "100%",
-                backgroundColor: "#C0001A",
-                color: "#F5F0F0",
+                backgroundColor: "var(--accent)",
+                color: "var(--text-primary)",
                 border: "none",
                 padding: "16px",
                 fontSize: "13px",
@@ -171,7 +171,7 @@ export default function PurchaseModal({
             >
               CONNECT WALLET + PAY
             </button>
-            <p style={{ color: "#333", fontSize: "11px", textAlign: "center", marginTop: "12px" }}>
+            <p style={{ color: "var(--text-ghost)", fontSize: "11px", textAlign: "center", marginTop: "12px" }}>
               Powered by Base Network - Non-custodial
             </p>
           </>
@@ -189,10 +189,10 @@ export default function PurchaseModal({
               animation: "spin 1s linear infinite",
             }} />
             <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
+            <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
               PROCESSING
             </p>
-            <p style={{ color: "#555", fontSize: "14px" }}>
+            <p style={{ color: "var(--text-dim)", fontSize: "14px" }}>
               Confirm the transaction in your wallet
             </p>
           </div>
@@ -204,7 +204,7 @@ export default function PurchaseModal({
               width: "72px",
               height: "72px",
               borderRadius: "50%",
-              backgroundColor: "#1A0008",
+              backgroundColor: "var(--border)",
               border: "2px solid #C0001A",
               display: "flex",
               alignItems: "center",
@@ -215,22 +215,22 @@ export default function PurchaseModal({
             }}>
               ✦
             </div>
-            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
+            <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "4px", marginBottom: "12px" }}>
               PAYMENT CONFIRMED
             </p>
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "28px", fontWeight: "normal", marginBottom: "12px" }}>
               Content unlocked.
             </h2>
-            <p style={{ color: "#555", fontSize: "13px", marginBottom: "8px" }}>{item.title}</p>
-            <p style={{ color: "#333", fontSize: "11px", letterSpacing: "1px", marginBottom: "32px" }}>
+            <p style={{ color: "var(--text-dim)", fontSize: "13px", marginBottom: "8px" }}>{item.title}</p>
+            <p style={{ color: "var(--text-ghost)", fontSize: "11px", letterSpacing: "1px", marginBottom: "32px" }}>
               TX: {txHash}
             </p>
             <button
               onClick={onClose}
               style={{
                 width: "100%",
-                backgroundColor: "#C0001A",
-                color: "#F5F0F0",
+                backgroundColor: "var(--accent)",
+                color: "var(--text-primary)",
                 border: "none",
                 padding: "14px",
                 fontSize: "13px",
