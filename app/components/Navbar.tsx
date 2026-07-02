@@ -5,6 +5,7 @@ import { useTheme } from "./ThemeProvider";
 import { useLang } from "./LangProvider";
 import { t } from "../lib/i18n";
 import LangToggle from "./LangToggle";
+import VinusLogo from "./VinusLogo";
 import WalletButton from "./WalletButton";
 
 export default function Navbar() {
@@ -29,14 +30,21 @@ export default function Navbar() {
     }}>
       {/* Logo */}
       <a href="/" style={{
-        fontSize: "22px",
-        fontFamily: "Georgia, serif",
-        fontWeight: "bold",
-        color: "var(--accent)",
-        letterSpacing: "5px",
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
         textDecoration: "none",
       }}>
-        VINUS
+        <VinusLogo size={36} />
+        <span style={{
+          fontSize: "20px",
+          fontFamily: "Georgia, serif",
+          fontWeight: "bold",
+          color: "var(--accent)",
+          letterSpacing: "5px",
+        }}>
+          VINUS
+        </span>
       </a>
 
       {/* Desktop nav */}
