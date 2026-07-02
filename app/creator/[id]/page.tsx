@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "../../components/LangProvider";
+import { t } from "../../lib/i18n";
+
 import { use, useState } from "react";
 import Navbar from "../../components/Navbar";
 import ContentGallery from "../../components/ContentGallery";
@@ -11,6 +14,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
   const { id } = use(params);
   const creator = creators.find((c) => c.id === Number(id));
 
+  const { lang } = useLang();
   const [selectedTier, setSelectedTier] = useState<number | null>(null);
   const [subscribed, setSubscribed] = useState(false);
   const [activeTab, setActiveTab] = useState<"content" | "tiers">("content");
@@ -23,10 +27,10 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
         <div style={{ maxWidth: "600px", margin: "0 auto", padding: "120px 24px", textAlign: "center" }}>
           <p style={{ fontSize: "48px", marginBottom: "24px" }}>✦</p>
           <h1 style={{ fontFamily: "Georgia, serif", fontSize: "32px", fontWeight: "normal", marginBottom: "12px" }}>
-            Creator not found
+            {t(lang, "creator.notfound")}
           </h1>
           <a href="/explore" style={{ color: "var(--accent)", fontSize: "13px", letterSpacing: "2px", textDecoration: "none" }}>
-            ← BACK TO EXPLORE
+            {t(lang, "creator.back")}
           </a>
         </div>
       </main>
@@ -79,7 +83,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
             gap: "8px",
             marginBottom: "40px",
           }}>
-            ← EXPLORE
+            {t(lang, "creator.back")}
           </a>
 
           <div style={{ display: "flex", gap: "32px", alignItems: "flex-start", flexWrap: "wrap", marginBottom: "48px" }}>
@@ -117,13 +121,13 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                   <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "var(--text-primary)" }}>
                     {creator.subscribers.toLocaleString()}
                   </span>
-                  <span style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>subscribers</span>
+                  <span style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>{t(lang, "creator.subscribers")}</span>
                 </div>
                 <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
                   <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "var(--text-primary)" }}>
                     {contentItems.length}
                   </span>
-                  <span style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>posts</span>
+                  <span style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>{t(lang, "creator.posts")}</span>
                 </div>
                 <div style={{ width: "1px", height: "20px", backgroundColor: "var(--border)" }} />
                 <span style={{ color: "var(--text-faint)", fontSize: "13px" }}>{creator.twitter}</span>
@@ -203,7 +207,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
               SUBSCRIPTION TIERS
             </p>
             <p style={{ color: "var(--text-dim)", fontSize: "14px", marginBottom: "32px", lineHeight: 1.7 }}>
-              Subscribe for full access to all posts. Or buy individual content pieces directly with crypto.
+              {t(lang, "creator.tiers.sub")}
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "28px" }}>
@@ -274,7 +278,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                       gap: "6px",
                     }}>
                       <span style={{ color: "var(--accent)", fontSize: "10px" }}>✦</span>
-                      <span style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "1px" }}>SELECTED</span>
+                      <span style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "1px" }}>{t(lang, "creator.selected")}</span>
                     </div>
                   )}
                 </div>
@@ -317,7 +321,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
             )}
 
             <p style={{ color: "var(--text-ghost)", fontSize: "12px", textAlign: "center", marginTop: "16px", lineHeight: 1.6 }}>
-              Cancel anytime · Crypto payments accepted
+              {t(lang, "creator.cancel")}
             </p>
           </div>
         )}
