@@ -39,9 +39,9 @@ export default function MyPage() {
 
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
@@ -53,7 +53,7 @@ export default function MyPage() {
             width: "64px",
             height: "64px",
             borderRadius: "50%",
-            backgroundColor: "#1A0008",
+            backgroundColor: "var(--border)",
             border: "2px solid #C0001A",
             display: "flex",
             alignItems: "center",
@@ -64,7 +64,7 @@ export default function MyPage() {
             👤
           </div>
           <div>
-            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "4px" }}>
+            <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "4px" }}>
               MY ACCOUNT
             </p>
             <h1 style={{ fontFamily: "Georgia, serif", fontSize: "32px", fontWeight: "normal" }}>
@@ -87,11 +87,11 @@ export default function MyPage() {
             { label: "TOTAL PAID", value: `$${totalSpent}` },
           ].map((stat) => (
             <div key={stat.label} style={{
-              backgroundColor: "#0D0005",
+              backgroundColor: "var(--bg-card)",
               border: "1px solid #1A0008",
               padding: "20px",
             }}>
-              <p style={{ color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
+              <p style={{ color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
                 {stat.label}
               </p>
               <p style={{ fontFamily: "Georgia, serif", fontSize: "28px" }}>
@@ -111,8 +111,8 @@ export default function MyPage() {
                 padding: "12px 20px",
                 backgroundColor: "transparent",
                 border: "none",
-                borderBottom: `2px solid ${activeTab === tab ? "#C0001A" : "transparent"}`,
-                color: activeTab === tab ? "#F5F0F0" : "#555",
+                borderBottom: `2px solid ${activeTab === tab ? "var(--accent)" : "transparent"}`,
+                color: activeTab === tab ? "var(--text-primary)" : "var(--text-dim)",
                 fontSize: "11px",
                 letterSpacing: "2px",
                 cursor: "pointer",
@@ -130,7 +130,7 @@ export default function MyPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               {subscriptions.map((sub) => (
                 <div key={sub.id} style={{
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
                   padding: "20px 24px",
                   display: "flex",
@@ -141,7 +141,7 @@ export default function MyPage() {
                     width: "44px",
                     height: "44px",
                     borderRadius: "50%",
-                    backgroundColor: "#1A0008",
+                    backgroundColor: "var(--border)",
                     border: "1px solid #C0001A",
                     display: "flex",
                     alignItems: "center",
@@ -153,17 +153,17 @@ export default function MyPage() {
                   </div>
                   <div style={{ flex: 1 }}>
                     <p style={{ fontSize: "15px", marginBottom: "4px" }}>{sub.creator}</p>
-                    <p style={{ color: "#555", fontSize: "12px" }}>{sub.tier} · ${sub.price}/mo</p>
+                    <p style={{ color: "var(--text-dim)", fontSize: "12px" }}>{sub.tier} · ${sub.price}/mo</p>
                   </div>
                   <div style={{ textAlign: "right", marginRight: "16px" }}>
-                    <p style={{ color: "#444", fontSize: "11px", marginBottom: "2px" }}>Next billing</p>
+                    <p style={{ color: "var(--text-faint)", fontSize: "11px", marginBottom: "2px" }}>Next billing</p>
                     <p style={{ fontSize: "13px" }}>{sub.nextBilling}</p>
                   </div>
                   <div style={{ display: "flex", gap: "8px" }}>
                     <a href={`/creator/${sub.id}`} style={{
                       padding: "6px 14px",
                       border: "1px solid #1A0008",
-                      color: "#555",
+                      color: "var(--text-dim)",
                       fontSize: "11px",
                       letterSpacing: "1px",
                       textDecoration: "none",
@@ -174,7 +174,7 @@ export default function MyPage() {
                       padding: "6px 14px",
                       border: "1px solid #1A0008",
                       backgroundColor: "transparent",
-                      color: "#555",
+                      color: "var(--text-dim)",
                       fontSize: "11px",
                       letterSpacing: "1px",
                       cursor: "pointer",
@@ -188,8 +188,8 @@ export default function MyPage() {
             <div style={{ marginTop: "24px" }}>
               <a href="/explore" style={{
                 display: "inline-block",
-                backgroundColor: "#C0001A",
-                color: "#F5F0F0",
+                backgroundColor: "var(--accent)",
+                color: "var(--text-primary)",
                 padding: "12px 28px",
                 textDecoration: "none",
                 fontSize: "12px",
@@ -204,13 +204,13 @@ export default function MyPage() {
         {/* Purchases (single-item content) */}
         {activeTab === "purchases" && (
           <div>
-            <p style={{ color: "#555", fontSize: "13px", marginBottom: "24px" }}>
+            <p style={{ color: "var(--text-dim)", fontSize: "13px", marginBottom: "24px" }}>
               Content you've purchased individually with crypto.
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               {purchases.map((p) => (
                 <div key={p.id} style={{
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
                   padding: "20px 24px",
                   display: "flex",
@@ -230,19 +230,19 @@ export default function MyPage() {
                   </span>
                   <div style={{ flex: 1 }}>
                     <p style={{ fontSize: "14px", marginBottom: "4px" }}>{p.title}</p>
-                    <p style={{ color: "#555", fontSize: "12px" }}>{p.creator} · {p.date}</p>
+                    <p style={{ color: "var(--text-dim)", fontSize: "12px" }}>{p.creator} · {p.date}</p>
                   </div>
                   <div style={{ textAlign: "right" }}>
-                    <p style={{ fontFamily: "Georgia, serif", fontSize: "16px", color: "#F5F0F0", marginBottom: "2px" }}>
+                    <p style={{ fontFamily: "Georgia, serif", fontSize: "16px", color: "var(--text-primary)", marginBottom: "2px" }}>
                       ${p.amount}
                     </p>
-                    <p style={{ color: "#333", fontSize: "10px", letterSpacing: "1px" }}>{p.coin} · {p.tx}</p>
+                    <p style={{ color: "var(--text-ghost)", fontSize: "10px", letterSpacing: "1px" }}>{p.coin} · {p.tx}</p>
                   </div>
                   <button style={{
                     padding: "8px 16px",
-                    backgroundColor: "#C0001A",
+                    backgroundColor: "var(--accent)",
                     border: "none",
-                    color: "#F5F0F0",
+                    color: "var(--text-primary)",
                     fontSize: "11px",
                     letterSpacing: "1px",
                     cursor: "pointer",
@@ -262,7 +262,7 @@ export default function MyPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
               {transactions.map((tx) => (
                 <div key={tx.id} style={{
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
                   padding: "16px 24px",
                   display: "flex",
@@ -271,11 +271,11 @@ export default function MyPage() {
                 }}>
                   <div>
                     <p style={{ fontSize: "14px", marginBottom: "4px" }}>{tx.creator}</p>
-                    <p style={{ color: "#555", fontSize: "12px" }}>{tx.desc} · {tx.date}</p>
+                    <p style={{ color: "var(--text-dim)", fontSize: "12px" }}>{tx.desc} · {tx.date}</p>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
                     <span style={{
-                      color: "#555",
+                      color: "var(--text-dim)",
                       fontSize: "11px",
                       padding: "3px 8px",
                       border: "1px solid #1A0008",
@@ -283,16 +283,16 @@ export default function MyPage() {
                       {tx.coin}
                     </span>
                     <span style={{ fontFamily: "Georgia, serif", fontSize: "16px" }}>${tx.amount}</span>
-                    <span style={{ color: "#2A7A2A", fontSize: "11px", letterSpacing: "1px" }}>
+                    <span style={{ color: "var(--success)", fontSize: "11px", letterSpacing: "1px" }}>
                       ✓ {tx.status.toUpperCase()}
                     </span>
                   </div>
                 </div>
               ))}
             </div>
-            <div style={{ marginTop: "20px", padding: "16px 24px", backgroundColor: "#0D0005", border: "1px solid #1A0008", display: "flex", justifyContent: "space-between" }}>
-              <span style={{ color: "#555", fontSize: "13px" }}>Total paid (all time)</span>
-              <span style={{ fontFamily: "Georgia, serif", fontSize: "18px", color: "#C0001A" }}>${totalSpent}</span>
+            <div style={{ marginTop: "20px", padding: "16px 24px", backgroundColor: "var(--bg-card)", border: "1px solid #1A0008", display: "flex", justifyContent: "space-between" }}>
+              <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>Total paid (all time)</span>
+              <span style={{ fontFamily: "Georgia, serif", fontSize: "18px", color: "var(--accent)" }}>${totalSpent}</span>
             </div>
           </div>
         )}
@@ -302,7 +302,7 @@ export default function MyPage() {
           <div style={{ maxWidth: "480px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               <div>
-                <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
+                <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
                   DISPLAY NAME
                 </label>
                 <input
@@ -310,9 +310,9 @@ export default function MyPage() {
                   defaultValue="John Fan"
                   style={{
                     width: "100%",
-                    backgroundColor: "#0D0005",
+                    backgroundColor: "var(--bg-card)",
                     border: "1px solid #1A0008",
-                    color: "#F5F0F0",
+                    color: "var(--text-primary)",
                     padding: "14px 16px",
                     fontSize: "14px",
                     outline: "none",
@@ -321,7 +321,7 @@ export default function MyPage() {
                 />
               </div>
               <div>
-                <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
+                <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
                   EMAIL
                 </label>
                 <input
@@ -329,9 +329,9 @@ export default function MyPage() {
                   defaultValue="john@example.com"
                   style={{
                     width: "100%",
-                    backgroundColor: "#0D0005",
+                    backgroundColor: "var(--bg-card)",
                     border: "1px solid #1A0008",
-                    color: "#F5F0F0",
+                    color: "var(--text-primary)",
                     padding: "14px 16px",
                     fontSize: "14px",
                     outline: "none",
@@ -340,7 +340,7 @@ export default function MyPage() {
                 />
               </div>
               <div>
-                <label style={{ display: "block", color: "#555", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
+                <label style={{ display: "block", color: "var(--text-dim)", fontSize: "11px", letterSpacing: "2px", marginBottom: "8px" }}>
                   WALLET ADDRESS
                 </label>
                 <input
@@ -348,7 +348,7 @@ export default function MyPage() {
                   placeholder="Connect wallet to auto-fill"
                   style={{
                     width: "100%",
-                    backgroundColor: "#0D0005",
+                    backgroundColor: "var(--bg-card)",
                     border: "1px solid #1A0008",
                     color: "#666",
                     padding: "14px 16px",
@@ -360,8 +360,8 @@ export default function MyPage() {
                 />
               </div>
               <button style={{
-                backgroundColor: "#C0001A",
-                color: "#F5F0F0",
+                backgroundColor: "var(--accent)",
+                color: "var(--text-primary)",
                 border: "none",
                 padding: "14px",
                 fontSize: "12px",
