@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import WalletButton from "./WalletButton";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,6 +41,7 @@ export default function Navbar() {
         <a href="/explore" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Explore</a>
         <a href="/feed" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Feed</a>
         <a href="/login" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Log in</a>
+        <WalletButton compact />
         <a href="/signup" style={{
           backgroundColor: "#C0001A",
           color: "#F5F0F0",
