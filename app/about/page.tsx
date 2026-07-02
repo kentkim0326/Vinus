@@ -1,11 +1,14 @@
 "use client";
 
+import { useLang } from "../components/LangProvider";
+import { t } from "../lib/i18n";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 
-const SECTIONS = ["About", "How It Works", "Terms", "Q&A"] as const;
+const SECTIONS = lang === "ko" ? ["소개", "이용 방법", "이용약관", "자주 묻는 질문"] : ["About", "How It Works", "Terms", "Q&A"] as const;
 
 export default function AboutPage() {
+  const { lang } = useLang();
   return (
     <main style={{ backgroundColor: "var(--bg-base)", minHeight: "100vh", color: "var(--text-primary)", fontFamily: "system-ui, sans-serif" }}>
       <Navbar />
@@ -17,7 +20,7 @@ export default function AboutPage() {
         background: "linear-gradient(180deg, var(--bg-card) 0%, var(--bg-base) 100%)",
       }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "16px" }}>ABOUT VINUS</p>
+          <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "16px" }}>{lang === "ko" ? "VINUS 소개" : "ABOUT VINUS"}</p>
           <h1 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(36px, 5vw, 64px)", fontWeight: "normal", lineHeight: 1.1, marginBottom: "24px" }}>
             The world's first<br />
             <span style={{ color: "var(--accent)" }}>AI-powered Web3</span><br />
@@ -39,7 +42,7 @@ export default function AboutPage() {
         backdropFilter: "blur(12px)",
       }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", display: "flex", gap: "0" }}>
-          {["About", "How It Works", "Terms", "Q&A"].map((s) => (
+          {lang === "ko" ? ["소개", "이용 방법", "이용약관", "자주 묻는 질문"] : ["About", "How It Works", "Terms", "Q&A"].map((s) => (
             <a key={s} href={`#${s.toLowerCase().replace(/\s+/g, "-")}`} style={{
               padding: "16px 24px",
               color: "var(--text-dim)",
