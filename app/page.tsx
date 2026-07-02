@@ -12,10 +12,10 @@ function CreatorCard({ creator }: { creator: Creator }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        backgroundColor: hovered ? "#110008" : "#0D0005",
+        backgroundColor: hovered ? "var(--bg-card-hover)" : "var(--bg-card)",
         padding: "36px 28px",
         cursor: "pointer",
-        borderTop: `2px solid ${hovered ? "#C0001A" : "#1A0008"}`,
+        borderTop: `2px solid ${hovered ? "var(--accent)" : "var(--border)"}`,
         transition: "all 0.25s ease",
       }}
     >
@@ -23,8 +23,8 @@ function CreatorCard({ creator }: { creator: Creator }) {
         width: "52px",
         height: "52px",
         borderRadius: "50%",
-        backgroundColor: "#1A0008",
-        border: `1px solid ${hovered ? "#C0001A" : "#2A0010"}`,
+        backgroundColor: "var(--border)",
+        border: `1px solid ${hovered ? "var(--accent)" : "var(--border-hover)"}`,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -39,13 +39,13 @@ function CreatorCard({ creator }: { creator: Creator }) {
         fontFamily: "Georgia, serif",
         fontSize: "19px",
         fontWeight: "normal",
-        color: "#F5F0F0",
+        color: "var(--text-primary)",
         marginBottom: "6px",
       }}>
         {creator.name}
       </h3>
       <p style={{
-        color: "#555",
+        color: "var(--text-dim)",
         fontSize: "12px",
         letterSpacing: "1.5px",
         marginBottom: "24px",
@@ -61,18 +61,18 @@ function CreatorCard({ creator }: { creator: Creator }) {
         borderTop: "1px solid #1A0008",
       }}>
         <div>
-          <span style={{ color: "#F5F0F0", fontSize: "13px" }}>
+          <span style={{ color: "var(--text-primary)", fontSize: "13px" }}>
             {creator.subscribers.toLocaleString()}
           </span>
-          <span style={{ color: "#444", fontSize: "12px", marginLeft: "4px" }}>
+          <span style={{ color: "var(--text-faint)", fontSize: "12px", marginLeft: "4px" }}>
             subscribers
           </span>
         </div>
         <span style={{
-          color: hovered ? "#F5F0F0" : "#C0001A",
+          color: hovered ? "var(--text-primary)" : "var(--accent)",
           fontSize: "11px",
           letterSpacing: "2px",
-          backgroundColor: hovered ? "#C0001A" : "transparent",
+          backgroundColor: hovered ? "var(--accent)" : "transparent",
           padding: "5px 12px",
           border: "1px solid #C0001A",
           transition: "all 0.25s",
@@ -87,9 +87,9 @@ function CreatorCard({ creator }: { creator: Creator }) {
 export default function Home() {
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
@@ -109,7 +109,7 @@ export default function Home() {
   minWidth: 0,
   width: "100%",
 }}>
-    <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "28px" }}>
+    <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "28px" }}>
       CREATOR PLATFORM
     </p>
     <h1 style={{
@@ -120,7 +120,7 @@ export default function Home() {
       fontWeight: "normal",
     }}>
       Support the<br />
-      <span style={{ color: "#C0001A" }}>creators</span><br />
+      <span style={{ color: "var(--accent)" }}>creators</span><br />
       you love.
     </h1>
     <p style={{
@@ -134,8 +134,8 @@ export default function Home() {
     </p>
     <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
       <a href="#explore" style={{
-        backgroundColor: "#C0001A",
-        color: "#F5F0F0",
+        backgroundColor: "var(--accent)",
+        color: "var(--text-primary)",
         padding: "14px 32px",
         textDecoration: "none",
         fontSize: "13px",
@@ -163,10 +163,10 @@ export default function Home() {
         { value: "100%", label: "Crypto Payments" },
       ].map((stat) => (
         <div key={stat.label}>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: "28px", color: "#F5F0F0", marginBottom: "4px" }}>
+          <p style={{ fontFamily: "Georgia, serif", fontSize: "28px", color: "var(--text-primary)", marginBottom: "4px" }}>
             {stat.value}
           </p>
-          <p style={{ color: "#444", fontSize: "12px", letterSpacing: "1px" }}>{stat.label}</p>
+          <p style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>{stat.label}</p>
         </div>
       ))}
     </div>
@@ -189,7 +189,7 @@ export default function Home() {
       <div
         key={creator.name}
         style={{
-          backgroundColor: "#0D0005",
+          backgroundColor: "var(--bg-card)",
           border: "1px solid #1A0008",
           padding: "20px",
           display: "flex",
@@ -204,7 +204,7 @@ export default function Home() {
           width: "44px",
           height: "44px",
           borderRadius: "50%",
-          backgroundColor: "#1A0008",
+          backgroundColor: "var(--border)",
           border: "1px solid #C0001A",
           display: "flex",
           alignItems: "center",
@@ -215,12 +215,12 @@ export default function Home() {
           {creator.preview}
         </div>
         <div style={{ flex: 1 }}>
-          <p style={{ fontSize: "14px", color: "#F5F0F0", marginBottom: "2px" }}>{creator.name}</p>
-          <p style={{ fontSize: "11px", color: "#555", letterSpacing: "1px" }}>{creator.category.toUpperCase()}</p>
+          <p style={{ fontSize: "14px", color: "var(--text-primary)", marginBottom: "2px" }}>{creator.name}</p>
+          <p style={{ fontSize: "11px", color: "var(--text-dim)", letterSpacing: "1px" }}>{creator.category.toUpperCase()}</p>
         </div>
         <div style={{ textAlign: "right" }}>
-          <p style={{ color: "#C0001A", fontSize: "12px" }}>{creator.tier}</p>
-          <p style={{ color: "#444", fontSize: "11px" }}>{creator.subscribers.toLocaleString()}</p>
+          <p style={{ color: "var(--accent)", fontSize: "12px" }}>{creator.tier}</p>
+          <p style={{ color: "var(--text-faint)", fontSize: "11px" }}>{creator.subscribers.toLocaleString()}</p>
         </div>
       </div>
     ))}
@@ -234,14 +234,14 @@ export default function Home() {
           marginBottom: "48px",
         }}>
           <div>
-            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "10px" }}>
+            <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "10px" }}>
               DISCOVER
             </p>
             <h2 style={{ fontFamily: "Georgia, serif", fontSize: "32px", fontWeight: "normal" }}>
               Featured Creators
             </h2>
           </div>
-          <a href="#" style={{ color: "#555", fontSize: "12px", textDecoration: "none", letterSpacing: "2px" }}>
+          <a href="#" style={{ color: "var(--text-dim)", fontSize: "12px", textDecoration: "none", letterSpacing: "2px" }}>
             VIEW ALL →
           </a>
         </div>
@@ -268,10 +268,10 @@ export default function Home() {
         justifyContent: "space-between",
         alignItems: "center",
       }}>
-        <span style={{ fontFamily: "Georgia, serif", color: "#C0001A", letterSpacing: "5px", fontSize: "16px" }}>
+        <span style={{ fontFamily: "Georgia, serif", color: "var(--accent)", letterSpacing: "5px", fontSize: "16px" }}>
           VINUS
         </span>
-        <span style={{ color: "#2A2A2A", fontSize: "12px" }}>
+        <span style={{ color: "var(--text-ultra)", fontSize: "12px" }}>
           © 2026 Vinus. All rights reserved.
         </span>
       </footer>
