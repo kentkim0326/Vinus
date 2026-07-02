@@ -240,7 +240,7 @@ function PostCard({
                     href={`/creator/${post.creatorId}`}
                     style={{
                       border: "1px solid #1A0008",
-                      color: "#666",
+                      color: "var(--text-dim)",
                       padding: "10px 18px",
                       fontSize: "12px",
                       letterSpacing: "1px",
