@@ -9,9 +9,9 @@ export default function LoginPage() {
 
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
       display: "flex",
       flexDirection: "column",
@@ -27,7 +27,7 @@ export default function LoginPage() {
       }}>
         <div style={{ width: "100%", maxWidth: "400px" }}>
           <p style={{
-            color: "#C0001A",
+            color: "var(--accent)",
             fontSize: "11px",
             letterSpacing: "5px",
             marginBottom: "16px",
@@ -47,7 +47,7 @@ export default function LoginPage() {
             <div>
               <label style={{
                 display: "block",
-                color: "#555",
+                color: "var(--text-dim)",
                 fontSize: "11px",
                 letterSpacing: "2px",
                 marginBottom: "8px",
@@ -61,9 +61,9 @@ export default function LoginPage() {
                 placeholder="you@example.com"
                 style={{
                   width: "100%",
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
-                  color: "#F5F0F0",
+                  color: "var(--text-primary)",
                   padding: "14px 16px",
                   fontSize: "14px",
                   outline: "none",
@@ -75,7 +75,7 @@ export default function LoginPage() {
             <div>
               <label style={{
                 display: "block",
-                color: "#555",
+                color: "var(--text-dim)",
                 fontSize: "11px",
                 letterSpacing: "2px",
                 marginBottom: "8px",
@@ -89,9 +89,9 @@ export default function LoginPage() {
                 placeholder="••••••••"
                 style={{
                   width: "100%",
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
-                  color: "#F5F0F0",
+                  color: "var(--text-primary)",
                   padding: "14px 16px",
                   fontSize: "14px",
                   outline: "none",
@@ -102,8 +102,8 @@ export default function LoginPage() {
 
             <button style={{
               width: "100%",
-              backgroundColor: "#C0001A",
-              color: "#F5F0F0",
+              backgroundColor: "var(--accent)",
+              color: "var(--text-primary)",
               border: "none",
               padding: "16px",
               fontSize: "13px",
@@ -120,9 +120,9 @@ export default function LoginPage() {
               gap: "16px",
               margin: "8px 0",
             }}>
-              <div style={{ flex: 1, height: "1px", backgroundColor: "#1A0008" }} />
-              <span style={{ color: "#333", fontSize: "12px" }}>or</span>
-              <div style={{ flex: 1, height: "1px", backgroundColor: "#1A0008" }} />
+              <div style={{ flex: 1, height: "1px", backgroundColor: "var(--border)" }} />
+              <span style={{ color: "var(--text-ghost)", fontSize: "12px" }}>or</span>
+              <div style={{ flex: 1, height: "1px", backgroundColor: "var(--border)" }} />
             </div>
 
             <a href="/signup" style={{
