@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Web3Provider } from "./components/Web3Provider";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +28,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Vinus",
     title: "Vinus — Support the creators you love",
-    description:
-      "Subscribe to independent creators. Get exclusive content. Pay with crypto.",
+    description: "Subscribe to independent creators. Get exclusive content. Pay with crypto.",
     url: "https://vinus-black.vercel.app",
   },
   twitter: {
@@ -36,10 +36,7 @@ export const metadata: Metadata = {
     title: "Vinus — Support the creators you love",
     description: "Subscribe to independent creators. Pay with crypto.",
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
@@ -47,6 +44,17 @@ export const viewport: Viewport = {
   initialScale: 1,
   themeColor: "#0A0A0A",
 };
+
+// Inline script to prevent flash of wrong theme before React hydrates
+const themeScript = `
+(function() {
+  try {
+    var t = localStorage.getItem("vinus-theme");
+    if (!t) t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", t);
+  } catch(e) {}
+})();
+`;
 
 export default function RootLayout({
   children,
@@ -58,10 +66,15 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#0A0A0A] text-[#F5F0F0]">
-        <Web3Provider>
-          {children}
-        </Web3Provider>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-full flex flex-col">
+        <ThemeProvider>
+          <Web3Provider>
+            {children}
+          </Web3Provider>
+        </ThemeProvider>
       </body>
     </html>
   );
