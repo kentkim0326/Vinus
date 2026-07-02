@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "../../components/LangProvider";
+import { t } from "../../lib/i18n";
+
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navbar from "../../components/Navbar";
@@ -8,6 +11,7 @@ import { creators } from "../../lib/data";
 function SuccessContent() {
   const [visible, setVisible] = useState(false);
   const searchParams = useSearchParams();
+  const { lang } = useLang();
 
   const creatorId = Number(searchParams.get("creator") ?? 1);
   const tierIndex = Number(searchParams.get("tier") ?? 0);
