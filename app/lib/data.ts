@@ -1,3 +1,6 @@
+// Creator data — single source of truth
+// Content data is in app/lib/content.ts
+
 export const creators = [
   {
     id: 1,
@@ -10,7 +13,7 @@ export const creators = [
     tiers: [
       { name: "Supporter", price: 5, perks: ["Monthly wallpaper pack", "Early access to new art"] },
       { name: "Collector", price: 15, perks: ["Everything in Supporter", "Monthly print (digital)", "Behind the scenes content"] },
-      { name: "Patron", price: 30, perks: ["Everything in Collector", "1:1 monthly feedback session", "Name in credits"] }
+      { name: "Patron", price: 30, perks: ["Everything in Collector", "1:1 monthly feedback session", "Name in credits"] },
     ],
     twitter: "@arianovo",
     instagram: "@aria.nova",
@@ -26,7 +29,7 @@ export const creators = [
     tiers: [
       { name: "Listener", price: 3, perks: ["Monthly exclusive track", "Early releases"] },
       { name: "Fan", price: 10, perks: ["Everything in Listener", "Stems & samples pack", "Monthly Q&A"] },
-      { name: "Producer", price: 25, perks: ["Everything in Fan", "Full project files", "Collaboration opportunity"] }
+      { name: "Producer", price: 25, perks: ["Everything in Fan", "Full project files", "Collaboration opportunity"] },
     ],
     twitter: "@echoveil",
     instagram: "@echo.veil",
@@ -42,7 +45,7 @@ export const creators = [
     tiers: [
       { name: "Explorer", price: 8, perks: ["Monthly photo essay", "Location notes"] },
       { name: "Adventurer", price: 20, perks: ["Everything in Explorer", "Full resolution downloads", "Editing presets"] },
-      { name: "Expedition", price: 50, perks: ["Everything in Adventurer", "Monthly 1:1 mentorship", "Private workshop access"] }
+      { name: "Expedition", price: 50, perks: ["Everything in Adventurer", "Monthly 1:1 mentorship", "Private workshop access"] },
     ],
     twitter: "@lunacraft",
     instagram: "@luna.craft",
@@ -58,7 +61,7 @@ export const creators = [
     tiers: [
       { name: "Viewer", price: 5, perks: ["Monthly asset pack", "Process videos"] },
       { name: "Student", price: 15, perks: ["Everything in Viewer", "Tutorial library access", "Brush packs"] },
-      { name: "Artist", price: 35, perks: ["Everything in Student", "Monthly critique session", "Commission priority"] }
+      { name: "Artist", price: 35, perks: ["Everything in Student", "Monthly critique session", "Commission priority"] },
     ],
     twitter: "@nyxstudio",
     instagram: "@nyx.studio",
@@ -74,7 +77,7 @@ export const creators = [
     tiers: [
       { name: "Reader", price: 2, perks: ["Monthly short story", "Newsletter"] },
       { name: "Subscriber", price: 8, perks: ["Everything in Reader", "Full serialized novel access", "Writing notes"] },
-      { name: "Collaborator", price: 20, perks: ["Everything in Subscriber", "Manuscript feedback", "Character naming rights"] }
+      { name: "Collaborator", price: 20, perks: ["Everything in Subscriber", "Manuscript feedback", "Character naming rights"] },
     ],
     twitter: "@vexorigins",
     instagram: "@vex.origins",
@@ -90,7 +93,7 @@ export const creators = [
     tiers: [
       { name: "Watcher", price: 10, perks: ["Monthly short film", "Director commentary"] },
       { name: "Cinephile", price: 25, perks: ["Everything in Watcher", "Extended cuts", "Script access"] },
-      { name: "Producer", price: 60, perks: ["Everything in Cinephile", "Set visit (virtual)", "Executive producer credit"] }
+      { name: "Producer", price: 60, perks: ["Everything in Cinephile", "Set visit (virtual)", "Executive producer credit"] },
     ],
     twitter: "@solcipher",
     instagram: "@sol.cipher",
@@ -106,7 +109,7 @@ export const creators = [
     tiers: [
       { name: "Admirer", price: 6, perks: ["Monthly illustration", "Early access"] },
       { name: "Collector", price: 18, perks: ["Everything in Admirer", "Print downloads", "Process videos"] },
-      { name: "Patron", price: 40, perks: ["Everything in Collector", "Signed prints", "Studio visits"] }
+      { name: "Patron", price: 40, perks: ["Everything in Collector", "Signed prints", "Studio visits"] },
     ],
     twitter: "@duskatelier",
     instagram: "@dusk.atelier",
@@ -122,7 +125,7 @@ export const creators = [
     tiers: [
       { name: "Listener", price: 4, perks: ["Monthly track", "Sheet music"] },
       { name: "Student", price: 12, perks: ["Everything in Listener", "Tutorial videos", "MIDI files"] },
-      { name: "Collaborator", price: 30, perks: ["Everything in Student", "1:1 lessons", "Remix rights"] }
+      { name: "Collaborator", price: 30, perks: ["Everything in Student", "1:1 lessons", "Remix rights"] },
     ],
     twitter: "@verasine",
     instagram: "@vera.sine",
@@ -138,7 +141,7 @@ export const creators = [
     tiers: [
       { name: "Explorer", price: 7, perks: ["Monthly photo series", "Location guides"] },
       { name: "Adventurer", price: 20, perks: ["Everything in Explorer", "Raw files", "Editing presets"] },
-      { name: "Expedition", price: 45, perks: ["Everything in Adventurer", "Workshop access", "Print collection"] }
+      { name: "Expedition", price: 45, perks: ["Everything in Adventurer", "Workshop access", "Print collection"] },
     ],
     twitter: "@frostframe",
     instagram: "@frost.frame",
