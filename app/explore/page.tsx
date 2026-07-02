@@ -14,7 +14,7 @@ export default function ExplorePage() {
   const { lang } = useLang();
   const [activeCategory, setActiveCategory] = useState("All");
   const [search, setSearch] = useState("");
-  const [sort, setSort] = useState<"popular" | "newest">({t(lang, "explore.popular")});
+  const [sort, setSort] = useState<"popular" | "newest">("popular");
 
   const filtered = creators
     .filter((c) => activeCategory === "All" || c.category === activeCategory)
