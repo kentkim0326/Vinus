@@ -18,14 +18,14 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
 
   if (!creator) {
     return (
-      <main style={{ backgroundColor: "#0A0A0A", minHeight: "100vh", color: "#F5F0F0", fontFamily: "system-ui, sans-serif" }}>
+      <main style={{ backgroundColor: "var(--bg-base)", minHeight: "100vh", color: "var(--text-primary)", fontFamily: "system-ui, sans-serif" }}>
         <Navbar />
         <div style={{ maxWidth: "600px", margin: "0 auto", padding: "120px 24px", textAlign: "center" }}>
           <p style={{ fontSize: "48px", marginBottom: "24px" }}>✦</p>
           <h1 style={{ fontFamily: "Georgia, serif", fontSize: "32px", fontWeight: "normal", marginBottom: "12px" }}>
             Creator not found
           </h1>
-          <a href="/explore" style={{ color: "#C0001A", fontSize: "13px", letterSpacing: "2px", textDecoration: "none" }}>
+          <a href="/explore" style={{ color: "var(--accent)", fontSize: "13px", letterSpacing: "2px", textDecoration: "none" }}>
             ← BACK TO EXPLORE
           </a>
         </div>
@@ -55,7 +55,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
   const selectedTierData = selectedTier !== null ? creator.tiers[selectedTier] : null;
 
   return (
-    <main style={{ backgroundColor: "#0A0A0A", minHeight: "100vh", color: "#F5F0F0", fontFamily: "system-ui, sans-serif" }}>
+    <main style={{ backgroundColor: "var(--bg-base)", minHeight: "100vh", color: "var(--text-primary)", fontFamily: "system-ui, sans-serif" }}>
       <Navbar />
 
       {purchaseItem && (
@@ -65,12 +65,12 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
       {/* Header banner */}
       <div style={{
         borderBottom: "1px solid #150005",
-        background: "linear-gradient(180deg, #0D0005 0%, #0A0A0A 100%)",
+        background: "linear-gradient(180deg, var(--bg-card) 0%, var(--bg-base) 100%)",
         padding: "64px 48px 0",
       }}>
         <div style={{ maxWidth: "960px", margin: "0 auto" }}>
           <a href="/explore" style={{
-            color: "#555",
+            color: "var(--text-dim)",
             fontSize: "12px",
             letterSpacing: "2px",
             textDecoration: "none",
@@ -87,7 +87,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
               width: "96px",
               height: "96px",
               borderRadius: "50%",
-              backgroundColor: "#1A0008",
+              backgroundColor: "var(--border)",
               border: "2px solid #C0001A",
               display: "flex",
               alignItems: "center",
@@ -100,7 +100,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
             </div>
 
             <div style={{ flex: 1, minWidth: "240px" }}>
-              <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "10px" }}>
+              <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "10px" }}>
                 {creator.category.toUpperCase()}
               </p>
               <h1 style={{
@@ -112,26 +112,26 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
               }}>
                 {creator.name}
               </h1>
-              <p style={{ color: "#777", fontSize: "15px", lineHeight: 1.8, maxWidth: "520px", marginBottom: "28px" }}>
+              <p style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.8, maxWidth: "520px", marginBottom: "28px" }}>
                 {creator.bio}
               </p>
 
               <div style={{ display: "flex", gap: "24px", alignItems: "center", flexWrap: "wrap" }}>
                 <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-                  <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "#F5F0F0" }}>
+                  <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "var(--text-primary)" }}>
                     {creator.subscribers.toLocaleString()}
                   </span>
-                  <span style={{ color: "#444", fontSize: "12px", letterSpacing: "1px" }}>subscribers</span>
+                  <span style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>subscribers</span>
                 </div>
                 <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
-                  <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "#F5F0F0" }}>
+                  <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "var(--text-primary)" }}>
                     {contentItems.length}
                   </span>
-                  <span style={{ color: "#444", fontSize: "12px", letterSpacing: "1px" }}>posts</span>
+                  <span style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>posts</span>
                 </div>
-                <div style={{ width: "1px", height: "20px", backgroundColor: "#1A0008" }} />
-                <span style={{ color: "#444", fontSize: "13px" }}>{creator.twitter}</span>
-                <span style={{ color: "#444", fontSize: "13px" }}>{creator.instagram}</span>
+                <div style={{ width: "1px", height: "20px", backgroundColor: "var(--border)" }} />
+                <span style={{ color: "var(--text-faint)", fontSize: "13px" }}>{creator.twitter}</span>
+                <span style={{ color: "var(--text-faint)", fontSize: "13px" }}>{creator.instagram}</span>
               </div>
             </div>
 
@@ -143,8 +143,8 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                   onClick={() => setActiveTab("tiers")}
                   style={{
                     display: "inline-block",
-                    backgroundColor: "#C0001A",
-                    color: "#F5F0F0",
+                    backgroundColor: "var(--accent)",
+                    color: "var(--text-primary)",
                     padding: "14px 28px",
                     textDecoration: "none",
                     fontSize: "12px",
@@ -155,12 +155,12 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                 </a>
               ) : (
                 <div style={{
-                  backgroundColor: "#1A0008",
+                  backgroundColor: "var(--border)",
                   border: "1px solid #C0001A",
                   padding: "14px 24px",
                   textAlign: "center",
                 }}>
-                  <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "2px" }}>✦ SUBSCRIBED</p>
+                  <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "2px" }}>✦ SUBSCRIBED</p>
                 </div>
               )}
             </div>
@@ -177,8 +177,8 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                   padding: "14px 28px",
                   backgroundColor: "transparent",
                   border: "none",
-                  borderBottom: `2px solid ${activeTab === tab ? "#C0001A" : "transparent"}`,
-                  color: activeTab === tab ? "#F5F0F0" : "#555",
+                  borderBottom: `2px solid ${activeTab === tab ? "var(--accent)" : "transparent"}`,
+                  color: activeTab === tab ? "var(--text-primary)" : "var(--text-dim)",
                   fontSize: "12px",
                   letterSpacing: "2px",
                   cursor: "pointer",
@@ -203,10 +203,10 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
         {/* Tiers tab */}
         {activeTab === "tiers" && (
           <div style={{ maxWidth: "520px" }}>
-            <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "8px" }}>
+            <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "8px" }}>
               SUBSCRIPTION TIERS
             </p>
-            <p style={{ color: "#555", fontSize: "14px", marginBottom: "32px", lineHeight: 1.7 }}>
+            <p style={{ color: "var(--text-dim)", fontSize: "14px", marginBottom: "32px", lineHeight: 1.7 }}>
               Subscribe for full access to all posts. Or buy individual content pieces directly with crypto.
             </p>
 
@@ -216,8 +216,8 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                   key={tier.name}
                   onClick={() => setSelectedTier(i)}
                   style={{
-                    backgroundColor: selectedTier === i ? "#110008" : "#0D0005",
-                    border: `1px solid ${selectedTier === i ? "#C0001A" : "#1A0008"}`,
+                    backgroundColor: selectedTier === i ? "var(--bg-card-hover)" : "var(--bg-card)",
+                    border: `1px solid ${selectedTier === i ? "var(--accent)" : "var(--border)"}`,
                     padding: "24px",
                     cursor: "pointer",
                     transition: "all 0.2s",
@@ -229,8 +229,8 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                       position: "absolute",
                       top: "12px",
                       right: "12px",
-                      backgroundColor: "#C0001A",
-                      color: "#F5F0F0",
+                      backgroundColor: "var(--accent)",
+                      color: "var(--text-primary)",
                       fontSize: "9px",
                       letterSpacing: "2px",
                       padding: "3px 8px",
@@ -243,7 +243,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                     <p style={{
                       fontFamily: "Georgia, serif",
                       fontSize: "18px",
-                      color: selectedTier === i ? "#F5F0F0" : "#DDD",
+                      color: selectedTier === i ? "var(--text-primary)" : "var(--text-secondary)",
                     }}>
                       {tier.name}
                     </p>
@@ -251,19 +251,19 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                       <span style={{
                         fontFamily: "Georgia, serif",
                         fontSize: "24px",
-                        color: selectedTier === i ? "#C0001A" : "#F5F0F0",
+                        color: selectedTier === i ? "var(--accent)" : "var(--text-primary)",
                       }}>
                         ${tier.price}
                       </span>
-                      <span style={{ color: "#444", fontSize: "12px" }}>/mo</span>
+                      <span style={{ color: "var(--text-faint)", fontSize: "12px" }}>/mo</span>
                     </div>
                   </div>
 
                   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                     {tier.perks.map((perk, pi) => (
                       <div key={pi} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                        <span style={{ color: "#C0001A", fontSize: "10px", marginTop: "3px", flexShrink: 0 }}>✦</span>
-                        <span style={{ color: "#777", fontSize: "13px", lineHeight: 1.5 }}>{perk}</span>
+                        <span style={{ color: "var(--accent)", fontSize: "10px", marginTop: "3px", flexShrink: 0 }}>✦</span>
+                        <span style={{ color: "var(--text-muted)", fontSize: "13px", lineHeight: 1.5 }}>{perk}</span>
                       </div>
                     ))}
                   </div>
@@ -277,8 +277,8 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                       alignItems: "center",
                       gap: "6px",
                     }}>
-                      <span style={{ color: "#C0001A", fontSize: "10px" }}>✦</span>
-                      <span style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "1px" }}>SELECTED</span>
+                      <span style={{ color: "var(--accent)", fontSize: "10px" }}>✦</span>
+                      <span style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "1px" }}>SELECTED</span>
                     </div>
                   )}
                 </div>
@@ -291,9 +291,9 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                 disabled={selectedTier === null}
                 style={{
                   width: "100%",
-                  backgroundColor: selectedTier !== null ? "#C0001A" : "#0D0005",
-                  color: selectedTier !== null ? "#F5F0F0" : "#333",
-                  border: `1px solid ${selectedTier !== null ? "transparent" : "#1A0008"}`,
+                  backgroundColor: selectedTier !== null ? "var(--accent)" : "var(--bg-card)",
+                  color: selectedTier !== null ? "var(--text-primary)" : "var(--text-ghost)",
+                  border: `1px solid ${selectedTier !== null ? "transparent" : "var(--border)"}`,
                   padding: "18px",
                   fontSize: "13px",
                   letterSpacing: "2px",
@@ -308,19 +308,19 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
             ) : (
               <div style={{
                 width: "100%",
-                backgroundColor: "#1A0008",
+                backgroundColor: "var(--border)",
                 border: "1px solid #C0001A",
                 padding: "18px",
                 textAlign: "center",
               }}>
-                <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "3px", marginBottom: "4px" }}>✦ SUBSCRIBED</p>
-                <p style={{ color: "#777", fontSize: "12px" }}>
+                <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "3px", marginBottom: "4px" }}>✦ SUBSCRIBED</p>
+                <p style={{ color: "var(--text-muted)", fontSize: "12px" }}>
                   {selectedTierData?.name} · ${selectedTierData?.price}/mo
                 </p>
               </div>
             )}
 
-            <p style={{ color: "#333", fontSize: "12px", textAlign: "center", marginTop: "16px", lineHeight: 1.6 }}>
+            <p style={{ color: "var(--text-ghost)", fontSize: "12px", textAlign: "center", marginTop: "16px", lineHeight: 1.6 }}>
               Cancel anytime · Crypto payments accepted
             </p>
           </div>
@@ -334,10 +334,10 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
         justifyContent: "space-between",
         alignItems: "center",
       }}>
-        <span style={{ fontFamily: "Georgia, serif", color: "#C0001A", letterSpacing: "5px", fontSize: "16px" }}>
+        <span style={{ fontFamily: "Georgia, serif", color: "var(--accent)", letterSpacing: "5px", fontSize: "16px" }}>
           VINUS
         </span>
-        <span style={{ color: "#2A2A2A", fontSize: "12px" }}>2026 Vinus. All rights reserved.</span>
+        <span style={{ color: "var(--text-ultra)", fontSize: "12px" }}>2026 Vinus. All rights reserved.</span>
       </footer>
     </main>
   );
