@@ -8,6 +8,7 @@ export const creators = [
     category: "Art & Illustration",
     subscribers: 2840,
     preview: "✦",
+    avatar: "/creators/creator_1.jpg",
     tier: "from $5/mo",
     bio: "Digital artist exploring the boundaries between light and shadow. Exclusive prints, process videos, and early access to new collections.",
     tiers: [
@@ -24,6 +25,7 @@ export const creators = [
     category: "Music & Audio",
     subscribers: 1520,
     preview: "♪",
+    avatar: "/creators/creator_2.jpg",
     tier: "from $3/mo",
     bio: "Ambient soundscapes and electronic compositions. New tracks every week, stems for download, and live listening sessions.",
     tiers: [
@@ -40,6 +42,7 @@ export const creators = [
     category: "Photography",
     subscribers: 4210,
     preview: "◈",
+    avatar: "/creators/creator_3.jpg",
     tier: "from $8/mo",
     bio: "Fine art photography from remote landscapes. Limited edition prints, location guides, and photography workshops.",
     tiers: [
@@ -56,6 +59,7 @@ export const creators = [
     category: "Digital Art",
     subscribers: 3100,
     preview: "⬡",
+    avatar: "/creators/creator_4.jpg",
     tier: "from $5/mo",
     bio: "Concept art and world-building for games and films. Process breakdowns, asset packs, and design critiques.",
     tiers: [
@@ -72,6 +76,7 @@ export const creators = [
     category: "Writing",
     subscribers: 980,
     preview: "✒",
+    avatar: "/creators/creator_5.jpg",
     tier: "from $2/mo",
     bio: "Dark fiction and world-building essays. Serialized stories, writing guides, and early manuscript access.",
     tiers: [
@@ -88,6 +93,7 @@ export const creators = [
     category: "Video & Film",
     subscribers: 2250,
     preview: "▶",
+    avatar: "/creators/creator_6.jpg",
     tier: "from $10/mo",
     bio: "Independent filmmaker and visual storyteller. Short films, director commentary, and filmmaking masterclasses.",
     tiers: [
@@ -104,6 +110,7 @@ export const creators = [
     category: "Art & Illustration",
     subscribers: 1890,
     preview: "◐",
+    avatar: "/creators/creator_7.jpg",
     tier: "from $6/mo",
     bio: "Surrealist illustrations and limited edition prints.",
     tiers: [
@@ -120,6 +127,7 @@ export const creators = [
     category: "Music & Audio",
     subscribers: 3400,
     preview: "♫",
+    avatar: "/creators/creator_8.jpg",
     tier: "from $4/mo",
     bio: "Classical piano meets modern electronic production.",
     tiers: [
@@ -136,6 +144,7 @@ export const creators = [
     category: "Photography",
     subscribers: 2100,
     preview: "❄",
+    avatar: "/creators/creator_9.jpg",
     tier: "from $7/mo",
     bio: "Arctic and wilderness photography.",
     tiers: [
