@@ -44,7 +44,7 @@ export default function AboutPage() {
         backdropFilter: "blur(12px)",
       }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", display: "flex", gap: "0" }}>
-          {lang === "ko" ? ["소개", "이용 방법", "이용약관", "자주 묻는 질문"] : ["About", "How It Works", "Terms", "Q&A"].map((s) => (
+          {sections.map((s) => (
             <a key={s} href={`#${s.toLowerCase().replace(/\s+/g, "-")}`} style={{
               padding: "16px 24px",
               color: "var(--text-dim)",
