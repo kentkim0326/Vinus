@@ -11,9 +11,9 @@ export default function SignupPage() {
 
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
       display: "flex",
       flexDirection: "column",
@@ -29,7 +29,7 @@ export default function SignupPage() {
       }}>
         <div style={{ width: "100%", maxWidth: "400px" }}>
           <p style={{
-            color: "#C0001A",
+            color: "var(--accent)",
             fontSize: "11px",
             letterSpacing: "5px",
             marginBottom: "16px",
@@ -48,7 +48,7 @@ export default function SignupPage() {
           <div style={{ marginBottom: "24px" }}>
             <label style={{
               display: "block",
-              color: "#555",
+              color: "var(--text-dim)",
               fontSize: "11px",
               letterSpacing: "2px",
               marginBottom: "12px",
@@ -61,9 +61,9 @@ export default function SignupPage() {
                 style={{
                   flex: 1,
                   padding: "12px",
-                  backgroundColor: role === "fan" ? "#C0001A" : "transparent",
-                  border: `1px solid ${role === "fan" ? "#C0001A" : "#1A0008"}`,
-                  color: "#F5F0F0",
+                  backgroundColor: role === "fan" ? "var(--accent)" : "transparent",
+                  border: `1px solid ${role === "fan" ? "var(--accent)" : "var(--border)"}`,
+                  color: "var(--text-primary)",
                   fontSize: "12px",
                   letterSpacing: "2px",
                   cursor: "pointer",
@@ -76,9 +76,9 @@ export default function SignupPage() {
                 style={{
                   flex: 1,
                   padding: "12px",
-                  backgroundColor: role === "creator" ? "#C0001A" : "transparent",
-                  border: `1px solid ${role === "creator" ? "#C0001A" : "#1A0008"}`,
-                  color: "#F5F0F0",
+                  backgroundColor: role === "creator" ? "var(--accent)" : "transparent",
+                  border: `1px solid ${role === "creator" ? "var(--accent)" : "var(--border)"}`,
+                  color: "var(--text-primary)",
                   fontSize: "12px",
                   letterSpacing: "2px",
                   cursor: "pointer",
@@ -93,7 +93,7 @@ export default function SignupPage() {
             <div>
               <label style={{
                 display: "block",
-                color: "#555",
+                color: "var(--text-dim)",
                 fontSize: "11px",
                 letterSpacing: "2px",
                 marginBottom: "8px",
@@ -107,9 +107,9 @@ export default function SignupPage() {
                 placeholder="Your name"
                 style={{
                   width: "100%",
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
-                  color: "#F5F0F0",
+                  color: "var(--text-primary)",
                   padding: "14px 16px",
                   fontSize: "14px",
                   outline: "none",
@@ -120,7 +120,7 @@ export default function SignupPage() {
             <div>
               <label style={{
                 display: "block",
-                color: "#555",
+                color: "var(--text-dim)",
                 fontSize: "11px",
                 letterSpacing: "2px",
                 marginBottom: "8px",
@@ -134,9 +134,9 @@ export default function SignupPage() {
                 placeholder="you@example.com"
                 style={{
                   width: "100%",
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
-                  color: "#F5F0F0",
+                  color: "var(--text-primary)",
                   padding: "14px 16px",
                   fontSize: "14px",
                   outline: "none",
@@ -147,7 +147,7 @@ export default function SignupPage() {
             <div>
               <label style={{
                 display: "block",
-                color: "#555",
+                color: "var(--text-dim)",
                 fontSize: "11px",
                 letterSpacing: "2px",
                 marginBottom: "8px",
@@ -161,9 +161,9 @@ export default function SignupPage() {
                 placeholder="••••••••"
                 style={{
                   width: "100%",
-                  backgroundColor: "#0D0005",
+                  backgroundColor: "var(--bg-card)",
                   border: "1px solid #1A0008",
-                  color: "#F5F0F0",
+                  color: "var(--text-primary)",
                   padding: "14px 16px",
                   fontSize: "14px",
                   outline: "none",
@@ -173,8 +173,8 @@ export default function SignupPage() {
             </div>
             <button style={{
               width: "100%",
-              backgroundColor: "#C0001A",
-              color: "#F5F0F0",
+              backgroundColor: "var(--accent)",
+              color: "var(--text-primary)",
               border: "none",
               padding: "16px",
               fontSize: "13px",
@@ -185,23 +185,23 @@ export default function SignupPage() {
               CREATE ACCOUNT
             </button>
             <p style={{
-              color: "#333",
+              color: "var(--text-ghost)",
               fontSize: "12px",
               textAlign: "center",
               lineHeight: 1.6,
             }}>
               By joining you agree to our{" "}
-              <a href="#" style={{ color: "#555", textDecoration: "underline" }}>Terms</a>
+              <a href="#" style={{ color: "var(--text-dim)", textDecoration: "underline" }}>Terms</a>
               {" "}and{" "}
-              <a href="#" style={{ color: "#555", textDecoration: "underline" }}>Privacy Policy</a>
+              <a href="#" style={{ color: "var(--text-dim)", textDecoration: "underline" }}>Privacy Policy</a>
             </p>
             <p style={{
-              color: "#444",
+              color: "var(--text-faint)",
               fontSize: "13px",
               textAlign: "center",
             }}>
               Already have an account?{" "}
-              <a href="/login" style={{ color: "#C0001A", textDecoration: "none" }}>Log in</a>
+              <a href="/login" style={{ color: "var(--accent)", textDecoration: "none" }}>Log in</a>
             </p>
           </div>
         </div>
