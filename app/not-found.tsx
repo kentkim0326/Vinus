@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-import Navbar from "./components/Navbar";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Page Not Found",
-};
+import Navbar from "./components/Navbar";
+import { useLang } from "./components/LangProvider";
+import { t } from "./lib/i18n";
 
 export default function NotFound() {
+  const { lang } = useLang();
   return (
     <main style={{
       backgroundColor: "var(--bg-base)",
@@ -48,7 +48,7 @@ export default function NotFound() {
           marginBottom: "16px",
           color: "var(--text-primary)",
         }}>
-          This page doesn't exist.
+          {t(lang, "creator.notfound")}
         </h1>
 
         <p style={{
