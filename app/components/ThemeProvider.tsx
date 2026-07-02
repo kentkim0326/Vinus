@@ -11,15 +11,13 @@ const ThemeContext = createContext<{
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem("vinus-theme") as Theme | null;
-    const preferred = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-    const initial = saved ?? preferred;
-    setTheme(initial);
-    document.documentElement.setAttribute("data-theme", initial);
-    setMounted(true);
+    // Read from DOM attribute set by inline script (no flash)
+    const attr = document.documentElement.getAttribute("data-theme") as Theme | null;
+    if (attr === "light" || attr === "dark") {
+      setTheme(attr);
+    }
   }, []);
 
   const toggle = () => {
@@ -28,9 +26,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("vinus-theme", next);
     document.documentElement.setAttribute("data-theme", next);
   };
-
-  // Prevent flash of wrong theme
-  if (!mounted) return <>{children}</>;
 
   return (
     <ThemeContext.Provider value={{ theme, toggle }}>
