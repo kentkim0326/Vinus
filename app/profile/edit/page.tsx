@@ -20,16 +20,16 @@ export default function EditProfilePage() {
 
   return (
     <main style={{
-      backgroundColor: "#0A0A0A",
+      backgroundColor: "var(--bg-base)",
       minHeight: "100vh",
-      color: "#F5F0F0",
+      color: "var(--text-primary)",
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
 
       <div style={{ maxWidth: "640px", margin: "0 auto", padding: "48px 24px" }}>
         <div style={{ marginBottom: "48px" }}>
-          <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
+          <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
             SETTINGS
           </p>
           <h1 style={{
@@ -48,14 +48,14 @@ export default function EditProfilePage() {
           gap: "24px",
           marginBottom: "48px",
           padding: "28px",
-          backgroundColor: "#0D0005",
+          backgroundColor: "var(--bg-card)",
           border: "1px solid #1A0008",
         }}>
           <div style={{
             width: "72px",
             height: "72px",
             borderRadius: "50%",
-            backgroundColor: "#1A0008",
+            backgroundColor: "var(--border)",
             border: "2px solid #C0001A",
             display: "flex",
             alignItems: "center",
@@ -87,7 +87,7 @@ export default function EditProfilePage() {
           <div>
             <label style={{
               display: "block",
-              color: "#555",
+              color: "var(--text-dim)",
               fontSize: "11px",
               letterSpacing: "2px",
               marginBottom: "8px",
@@ -100,9 +100,9 @@ export default function EditProfilePage() {
               onChange={(e) => setName(e.target.value)}
               style={{
                 width: "100%",
-                backgroundColor: "#0D0005",
+                backgroundColor: "var(--bg-card)",
                 border: "1px solid #1A0008",
-                color: "#F5F0F0",
+                color: "var(--text-primary)",
                 padding: "14px 16px",
                 fontSize: "14px",
                 outline: "none",
@@ -115,7 +115,7 @@ export default function EditProfilePage() {
           <div>
             <label style={{
               display: "block",
-              color: "#555",
+              color: "var(--text-dim)",
               fontSize: "11px",
               letterSpacing: "2px",
               marginBottom: "8px",
@@ -127,9 +127,9 @@ export default function EditProfilePage() {
               onChange={(e) => setCategory(e.target.value)}
               style={{
                 width: "100%",
-                backgroundColor: "#0D0005",
+                backgroundColor: "var(--bg-card)",
                 border: "1px solid #1A0008",
-                color: "#F5F0F0",
+                color: "var(--text-primary)",
                 padding: "14px 16px",
                 fontSize: "14px",
                 outline: "none",
@@ -138,7 +138,7 @@ export default function EditProfilePage() {
               }}
             >
               {categories.map((cat) => (
-                <option key={cat} value={cat} style={{ backgroundColor: "#0D0005" }}>
+                <option key={cat} value={cat} style={{ backgroundColor: "var(--bg-card)" }}>
                   {cat}
                 </option>
               ))}
@@ -149,7 +149,7 @@ export default function EditProfilePage() {
           <div>
             <label style={{
               display: "block",
-              color: "#555",
+              color: "var(--text-dim)",
               fontSize: "11px",
               letterSpacing: "2px",
               marginBottom: "8px",
@@ -162,9 +162,9 @@ export default function EditProfilePage() {
               rows={4}
               style={{
                 width: "100%",
-                backgroundColor: "#0D0005",
+                backgroundColor: "var(--bg-card)",
                 border: "1px solid #1A0008",
-                color: "#F5F0F0",
+                color: "var(--text-primary)",
                 padding: "14px 16px",
                 fontSize: "14px",
                 outline: "none",
@@ -173,7 +173,7 @@ export default function EditProfilePage() {
                 fontFamily: "system-ui, sans-serif",
               }}
             />
-            <p style={{ color: "#333", fontSize: "12px", marginTop: "6px" }}>
+            <p style={{ color: "var(--text-ghost)", fontSize: "12px", marginTop: "6px" }}>
               {bio.length} / 300 characters
             </p>
           </div>
@@ -182,7 +182,7 @@ export default function EditProfilePage() {
           <div>
             <label style={{
               display: "block",
-              color: "#555",
+              color: "var(--text-dim)",
               fontSize: "11px",
               letterSpacing: "2px",
               marginBottom: "8px",
@@ -195,9 +195,9 @@ export default function EditProfilePage() {
               onChange={(e) => setTwitter(e.target.value)}
               style={{
                 width: "100%",
-                backgroundColor: "#0D0005",
+                backgroundColor: "var(--bg-card)",
                 border: "1px solid #1A0008",
-                color: "#F5F0F0",
+                color: "var(--text-primary)",
                 padding: "14px 16px",
                 fontSize: "14px",
                 outline: "none",
@@ -209,7 +209,7 @@ export default function EditProfilePage() {
           <div>
             <label style={{
               display: "block",
-              color: "#555",
+              color: "var(--text-dim)",
               fontSize: "11px",
               letterSpacing: "2px",
               marginBottom: "8px",
@@ -222,9 +222,9 @@ export default function EditProfilePage() {
               onChange={(e) => setInstagram(e.target.value)}
               style={{
                 width: "100%",
-                backgroundColor: "#0D0005",
+                backgroundColor: "var(--bg-card)",
                 border: "1px solid #1A0008",
-                color: "#F5F0F0",
+                color: "var(--text-primary)",
                 padding: "14px 16px",
                 fontSize: "14px",
                 outline: "none",
@@ -239,9 +239,9 @@ export default function EditProfilePage() {
               onClick={handleSave}
               style={{
                 flex: 1,
-                backgroundColor: saved ? "#1A0008" : "#C0001A",
-                color: "#F5F0F0",
-                border: `1px solid ${saved ? "#C0001A" : "transparent"}`,
+                backgroundColor: saved ? "var(--border)" : "var(--accent)",
+                color: "var(--text-primary)",
+                border: `1px solid ${saved ? "var(--accent)" : "transparent"}`,
                 padding: "16px",
                 fontSize: "13px",
                 letterSpacing: "2px",
@@ -254,7 +254,7 @@ export default function EditProfilePage() {
             <a href="/dashboard" style={{
               padding: "16px 24px",
               border: "1px solid #1A0008",
-              color: "#555",
+              color: "var(--text-dim)",
               textDecoration: "none",
               fontSize: "13px",
               letterSpacing: "2px",
