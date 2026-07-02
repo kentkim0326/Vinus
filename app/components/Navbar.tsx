@@ -47,9 +47,6 @@ export default function Navbar() {
         <a href="/feed" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
           {t(lang, "nav.feed")}
         </a>
-        <a href="/login" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
-          {t(lang, "nav.login")}
-        </a>
 
         {/* Language toggle */}
         <LangToggle />
@@ -138,9 +135,6 @@ export default function Navbar() {
           </a>
           <a href="/feed" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
             {t(lang, "nav.feed")}
-          </a>
-          <a href="/login" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
-            {t(lang, "nav.login")}
           </a>
           <WalletButton />
         </div>
