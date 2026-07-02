@@ -35,8 +35,8 @@ function ContentCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        backgroundColor: hovered ? "#110008" : "#0D0005",
-        border: `1px solid ${hovered ? "#C0001A" : "#1A0008"}`,
+        backgroundColor: hovered ? "var(--bg-card-hover)" : "var(--bg-card)",
+        border: `1px solid ${hovered ? "var(--accent)" : "var(--border)"}`,
         cursor: "pointer",
         transition: "all 0.2s",
         position: "relative",
@@ -46,7 +46,7 @@ function ContentCard({
       {/* Thumbnail */}
       <div style={{
         height: "160px",
-        backgroundColor: "#0A0003",
+        backgroundColor: "var(--bg-deep)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -64,7 +64,7 @@ function ContentCard({
           top: "10px",
           left: "10px",
           backgroundColor: TYPE_COLOR[item.type],
-          color: "#0A0A0A",
+          color: "var(--bg-base)",
           fontSize: "9px",
           fontWeight: "bold",
           letterSpacing: "1.5px",
@@ -107,7 +107,7 @@ function ContentCard({
       <div style={{ padding: "16px" }}>
         <p style={{
           fontSize: "14px",
-          color: "#F5F0F0",
+          color: "var(--text-primary)",
           marginBottom: "6px",
           lineHeight: 1.4,
         }}>
@@ -115,7 +115,7 @@ function ContentCard({
         </p>
         <p style={{
           fontSize: "12px",
-          color: "#555",
+          color: "var(--text-dim)",
           marginBottom: "14px",
           lineHeight: 1.5,
           display: "-webkit-box",
@@ -133,12 +133,12 @@ function ContentCard({
           paddingTop: "12px",
           borderTop: "1px solid #1A0008",
         }}>
-          <span style={{ color: "#444", fontSize: "11px" }}>{item.date}</span>
+          <span style={{ color: "var(--text-faint)", fontSize: "11px" }}>{item.date}</span>
           {item.isFree ? (
             <span style={{ color: "#4ABF8A", fontSize: "11px", letterSpacing: "1px" }}>FREE</span>
           ) : item.price !== null ? (
             <span style={{
-              color: "#C0001A",
+              color: "var(--accent)",
               fontSize: "12px",
               fontFamily: "Georgia, serif",
             }}>
@@ -182,9 +182,9 @@ export default function ContentGallery({
             onClick={() => setFilter(f.key)}
             style={{
               padding: "7px 16px",
-              backgroundColor: filter === f.key ? "#C0001A" : "transparent",
-              border: `1px solid ${filter === f.key ? "#C0001A" : "#1A0008"}`,
-              color: filter === f.key ? "#F5F0F0" : "#555",
+              backgroundColor: filter === f.key ? "var(--accent)" : "transparent",
+              border: `1px solid ${filter === f.key ? "var(--accent)" : "var(--border)"}`,
+              color: filter === f.key ? "var(--text-primary)" : "var(--text-dim)",
               fontSize: "11px",
               letterSpacing: "1.5px",
               cursor: "pointer",
@@ -193,7 +193,7 @@ export default function ContentGallery({
             {f.label.toUpperCase()}
           </button>
         ))}
-        <span style={{ color: "#333", fontSize: "12px", alignSelf: "center", marginLeft: "8px" }}>
+        <span style={{ color: "var(--text-ghost)", fontSize: "12px", alignSelf: "center", marginLeft: "8px" }}>
           {filtered.length} items
         </span>
       </div>
