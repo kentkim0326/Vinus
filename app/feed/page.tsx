@@ -5,7 +5,24 @@ import Navbar from "../components/Navbar";
 import PurchaseModal from "../components/PurchaseModal";
 import { ContentItem } from "../lib/content";
 
-const posts = [
+type PostType = "FREE" | "PAID";
+
+interface Post {
+  id: number;
+  creatorId: number;
+  creator: string;
+  category: string;
+  preview: string;
+  title: string;
+  content: string | null;
+  date: string;
+  type: PostType;
+  likes: number;
+  hasImage: boolean;
+  price: number | null;
+}
+
+const posts: Post[] = [
   {
     id: 1,
     creatorId: 1,
@@ -15,7 +32,7 @@ const posts = [
     title: "Behind the scenes — new collection",
     content: "Today I want to share the entire process behind my latest collection. Starting from initial sketches to final digital renders, every step has been a journey of discovery...",
     date: "Jun 15, 2026",
-    type: "FREE" as const,
+    type: "FREE",
     likes: 284,
     hasImage: true,
     price: null,
@@ -29,7 +46,7 @@ const posts = [
     title: "Golden hour series — Iceland",
     content: "Three weeks in Iceland chasing the perfect light. This series is the result of 400+ hours of waiting, hiking, and freezing...",
     date: "Jun 14, 2026",
-    type: "FREE" as const,
+    type: "FREE",
     likes: 512,
     hasImage: true,
     price: null,
@@ -43,7 +60,7 @@ const posts = [
     title: "Exclusive track — Midnight Drift",
     content: null,
     date: "Jun 13, 2026",
-    type: "PAID" as const,
+    type: "PAID",
     likes: 198,
     hasImage: false,
     price: 5,
@@ -57,7 +74,7 @@ const posts = [
     title: "Concept art drop — Project Aether",
     content: "First look at the world of Project Aether. These are early concept pieces exploring the visual language of a world where technology and nature have merged...",
     date: "Jun 12, 2026",
-    type: "FREE" as const,
+    type: "FREE",
     likes: 376,
     hasImage: true,
     price: null,
@@ -71,7 +88,7 @@ const posts = [
     title: "Director's cut — The Waiting Room",
     content: null,
     date: "Jun 11, 2026",
-    type: "PAID" as const,
+    type: "PAID",
     likes: 445,
     hasImage: false,
     price: 12,
@@ -85,14 +102,12 @@ const posts = [
     title: "Chapter 12 — The Hollow City",
     content: "The city had been silent for three days before anyone noticed. Not the usual silence of early morning or late night, but something deeper...",
     date: "Jun 10, 2026",
-    type: "FREE" as const,
+    type: "FREE",
     likes: 167,
     hasImage: false,
     price: null,
   },
 ];
-
-type Post = typeof posts[0];
 
 function PostCard({
   post,
@@ -108,7 +123,7 @@ function PostCard({
     onPurchase({
       id: post.id,
       creatorId: post.creatorId,
-      type: post.category.includes("Music") ? "audio" : post.category.includes("Photo") || post.category.includes("Art") ? "image" : post.category.includes("Video") ? "video" : "text",
+      type: "image",
       title: post.title,
       description: `Exclusive content by ${post.creator}`,
       price: post.price,
@@ -119,11 +134,7 @@ function PostCard({
   };
 
   return (
-    <div style={{
-      backgroundColor: "#0D0005",
-      border: "1px solid #1A0008",
-      marginBottom: "2px",
-    }}>
+    <div style={{ backgroundColor: "#0D0005", border: "1px solid #1A0008", marginBottom: "2px" }}>
       {/* Header */}
       <div style={{
         display: "flex",
@@ -132,19 +143,22 @@ function PostCard({
         padding: "20px 24px 16px",
         borderBottom: "1px solid #1A0008",
       }}>
-        <a href={`/creator/${post.creatorId}`} style={{
-          width: "36px",
-          height: "36px",
-          borderRadius: "50%",
-          backgroundColor: "#1A0008",
-          border: "1px solid #2A0010",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: "14px",
-          flexShrink: 0,
-          textDecoration: "none",
-        }}>
+        <a
+          href={`/creator/${post.creatorId}`}
+          style={{
+            width: "36px",
+            height: "36px",
+            borderRadius: "50%",
+            backgroundColor: "#1A0008",
+            border: "1px solid #2A0010",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "14px",
+            flexShrink: 0,
+            textDecoration: "none",
+          }}
+        >
           {post.preview}
         </a>
         <div style={{ flex: 1 }}>
@@ -181,22 +195,18 @@ function PostCard({
 
         {isLocked ? (
           <div style={{ position: "relative" }}>
-            {/* Blurred preview */}
             <div style={{
               backgroundColor: "#0A0003",
               border: "1px solid #1A0008",
               padding: "24px",
-              marginBottom: "0",
               filter: "blur(3px)",
               userSelect: "none",
               color: "#444",
               fontSize: "14px",
               lineHeight: 1.8,
             }}>
-              This content is locked behind a paywall. Subscribe or purchase to access exclusive content from {post.creator}.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              This content is locked. Subscribe or purchase to access exclusive content from {post.creator}.
             </div>
-            {/* Overlay */}
             <div style={{
               position: "absolute",
               inset: 0,
@@ -317,8 +327,7 @@ function PostCard({
             textDecoration: "none",
           }}
         >
-          <span>→</span>
-          <span>View creator</span>
+          <span>→ View creator</span>
         </a>
       </div>
     </div>
@@ -348,20 +357,12 @@ export default function FeedPage() {
         <PurchaseModal item={purchaseItem} onClose={() => setPurchaseItem(null)} />
       )}
 
-      <div style={{
-        maxWidth: "680px",
-        margin: "0 auto",
-        padding: "48px 24px",
-      }}>
+      <div style={{ maxWidth: "680px", margin: "0 auto", padding: "48px 24px" }}>
         <div style={{ marginBottom: "40px" }}>
           <p style={{ color: "#C0001A", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
             YOUR FEED
           </p>
-          <h1 style={{
-            fontFamily: "Georgia, serif",
-            fontSize: "36px",
-            fontWeight: "normal",
-          }}>
+          <h1 style={{ fontFamily: "Georgia, serif", fontSize: "36px", fontWeight: "normal" }}>
             Latest from creators
           </h1>
         </div>
