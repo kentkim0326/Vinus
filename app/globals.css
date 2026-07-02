@@ -3,54 +3,59 @@
 /* ── Dark theme (default) ── */
 :root,
 [data-theme="dark"] {
-  --bg-base:       #0F0F0F;
-  --bg-card:       #1A1015;
-  --bg-card-hover: #201318;
-  --bg-deep:       #140C10;
-  --border:        #2E1820;
-  --border-hover:  #3D2028;
-  --accent:        #E0002A;
+  --bg-base:       #111111;
+  --bg-card:       #1C1218;
+  --bg-card-hover: #231520;
+  --bg-deep:       #160E14;
+  --border:        #3A2030;
+  --border-hover:  #4A2840;
+  --accent:        #E8003A;
   --accent-fg:     #FFFFFF;
-  --text-primary:  #F0ECEC;
-  --text-secondary:#D8D0D2;
-  --text-muted:    #B0A0A5;
-  --text-dim:      #8A7880;
-  --text-faint:    #6A5860;
-  --text-ghost:    #4A3840;
-  --text-ultra:    #3A2830;
-  --success:       #3ABF3A;
-  --nav-bg:        rgba(15,15,15,0.95);
-  --shadow-accent: rgba(224,0,42,0.25);
-  --type-image:    #5AAFF0;
-  --type-video:    #F07070;
-  --type-audio:    #5ADFA0;
-  --type-text:     #F0C060;
+
+  /* ── 텍스트 — 다크모드 가독성 최우선 ── */
+  --text-primary:   #F5F0F2;   /* 거의 흰색 — 제목, 중요 텍스트 */
+  --text-secondary: #E0D8DC;   /* 밝은 회색 — 부제목 */
+  --text-muted:     #C8BEC4;   /* 중간 회색 — 본문 */
+  --text-dim:       #A898A0;   /* 연한 회색 — 보조 텍스트 */
+  --text-faint:     #8A7880;   /* 더 연한 — 날짜, 카운트 */
+  --text-ghost:     #6A5860;   /* 희미 — 매우 보조적인 정보 */
+  --text-ultra:     #4A3848;   /* 최소 — 구분선 텍스트 */
+
+  --success:        #4AE04A;
+  --nav-bg:         rgba(17,17,17,0.96);
+  --shadow-accent:  rgba(232,0,58,0.25);
+  --type-image:     #60B8F8;
+  --type-video:     #F87070;
+  --type-audio:     #60E8A8;
+  --type-text:      #F8C860;
 }
 
 /* ── Light theme ── */
 [data-theme="light"] {
   --bg-base:       #F8F4F5;
   --bg-card:       #FFFFFF;
-  --bg-card-hover: #FEF8F8;
-  --bg-deep:       #F0EAEB;
-  --border:        #E0CDD0;
-  --border-hover:  #C8A8AE;
+  --bg-card-hover: #FEF8F9;
+  --bg-deep:       #F0E8EB;
+  --border:        #DDD0D5;
+  --border-hover:  #C0A8B0;
   --accent:        #C0001A;
   --accent-fg:     #FFFFFF;
-  --text-primary:  #180008;
-  --text-secondary:#300015;
-  --text-muted:    #5A2030;
-  --text-dim:      #7A3545;
-  --text-faint:    #8A4855;
-  --text-ghost:    #B07080;
-  --text-ultra:    #D0A8B0;
-  --success:       #1A6A1A;
-  --nav-bg:        rgba(248,244,245,0.95);
-  --shadow-accent: rgba(192,0,26,0.12);
-  --type-image:    #1A6A9F;
-  --type-video:    #9F1A1A;
-  --type-audio:    #1A9F6A;
-  --type-text:     #9F7A1A;
+
+  --text-primary:   #180008;
+  --text-secondary: #2A0815;
+  --text-muted:     #4A1828;
+  --text-dim:       #6A3040;
+  --text-faint:     #8A5060;
+  --text-ghost:     #A87080;
+  --text-ultra:     #C8A0A8;
+
+  --success:        #1A7A1A;
+  --nav-bg:         rgba(248,244,245,0.96);
+  --shadow-accent:  rgba(192,0,26,0.12);
+  --type-image:     #1A6AAF;
+  --type-video:     #AF1A1A;
+  --type-audio:     #1AAF6A;
+  --type-text:      #AF8A1A;
 }
 
 @theme inline {
@@ -73,16 +78,10 @@ body {
   color: var(--text-primary);
   font-family: system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  line-height: 1.6;
 }
 
 /* ── Navbar ── */
-.navbar {
-  background-color: var(--nav-bg);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
 @media (max-width: 768px) {
   .desktop-nav { display: none !important; }
   .mobile-menu-btn { display: block !important; }
@@ -120,7 +119,7 @@ body {
   .footer-row { flex-direction: column !important; gap: 12px !important; text-align: center; }
 }
 
-/* ── Smooth theme transitions (only color-related) ── */
+/* ── Smooth theme transitions ── */
 *, *::before, *::after {
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 0.2s;
