@@ -22,7 +22,7 @@ export default function ExplorePage() {
       c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.category.toLowerCase().includes(search.toLowerCase())
     )
-    .sort((a, b) => sort === {t(lang, "explore.popular")} ? b.subscribers - a.subscribers : b.id - a.id);
+    .sort((a, b) => sort === "popular" ? b.subscribers - a.subscribers : b.id - a.id);
 
   return (
     <main style={{
@@ -94,12 +94,12 @@ export default function ExplorePage() {
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => setActiveCategory(categories.indexOf(cat) === 0 ? ALL_KEY : cat)}
               style={{
                 padding: "8px 16px",
-                backgroundColor: activeCategory === cat ? "var(--accent)" : "transparent",
-                border: `1px solid ${activeCategory === cat ? "var(--accent)" : "var(--border)"}`,
-                color: activeCategory === cat ? "var(--text-primary)" : "var(--text-dim)",
+                backgroundColor: (categories.indexOf(cat) === 0 ? activeCategory === ALL_KEY : activeCategory === cat) ? "var(--accent)" : "transparent",
+                border: `1px solid ${(categories.indexOf(cat) === 0 ? activeCategory === ALL_KEY : activeCategory === cat) ? "var(--accent)" : "var(--border)"}`,
+                color: (categories.indexOf(cat) === 0 ? activeCategory === ALL_KEY : activeCategory === cat) ? "var(--text-primary)" : "var(--text-dim)",
                 fontSize: "12px",
                 letterSpacing: "1px",
                 cursor: "pointer",
