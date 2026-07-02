@@ -1,28 +1,55 @@
 "use client";
 
-import { useLang } from "../components/LangProvider";
-import { t } from "../lib/i18n";
-
 import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { creators } from "../lib/data";
+import { useLang } from "../components/LangProvider";
+import { t } from "../lib/i18n";
 
-const categories = ["all", "Art & Illustration", "Music & Audio", "Photography", "Digital Art", "Writing", "Video & Film"];
-
+const CATEGORIES = [
+  "Art & Illustration",
+  "Music & Audio",
+  "Photography",
+  "Digital Art",
+  "Writing",
+  "Video & Film",
+];
 
 export default function ExplorePage() {
   const { lang } = useLang();
-  const [activeCategory, setActiveCategory] = useState("All");
+  const isKo = lang === "ko";
+
+  const [activeCategory, setActiveCategory] = useState("all");
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState<"popular" | "newest">("popular");
 
   const filtered = creators
-    .filter((c) => activeCategory === "All" || c.category === activeCategory)
+    .filter((c) => activeCategory === "all" || c.category === activeCategory)
     .filter((c) =>
       c.name.toLowerCase().includes(search.toLowerCase()) ||
       c.category.toLowerCase().includes(search.toLowerCase())
     )
     .sort((a, b) => sort === "popular" ? b.subscribers - a.subscribers : b.id - a.id);
+
+  const categoryLabels: Record<string, string> = isKo ? {
+    "all": "전체",
+    "Art & Illustration": "아트 & 일러스트",
+    "Music & Audio": "음악 & 오디오",
+    "Photography": "사진",
+    "Digital Art": "디지털 아트",
+    "Writing": "글쓰기",
+    "Video & Film": "영상 & 영화",
+  } : {
+    "all": "All",
+    "Art & Illustration": "Art & Illustration",
+    "Music & Audio": "Music & Audio",
+    "Photography": "Photography",
+    "Digital Art": "Digital Art",
+    "Writing": "Writing",
+    "Video & Film": "Video & Film",
+  };
+
+  const allCategories = ["all", ...CATEGORIES];
 
   return (
     <main style={{
@@ -36,21 +63,17 @@ export default function ExplorePage() {
       <div style={{ padding: "48px" }}>
         <div style={{ marginBottom: "48px" }}>
           <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "5px", marginBottom: "12px" }}>
-            DISCOVER
+            {t(lang, "explore.label")}
           </p>
-          <h1 style={{
-            fontFamily: "Georgia, serif",
-            fontSize: "48px",
-            fontWeight: "normal",
-            marginBottom: "8px",
-          }}>
-            Explore Creators
+          <h1 style={{ fontFamily: "Georgia, serif", fontSize: "48px", fontWeight: "normal", marginBottom: "8px" }}>
+            {t(lang, "explore.title")}
           </h1>
           <p style={{ color: "var(--text-dim)", fontSize: "15px" }}>
             {creators.length} {t(lang, "explore.sub")}
           </p>
         </div>
 
+        {/* Search + sort */}
         <div style={{ display: "flex", gap: "16px", marginBottom: "32px", flexWrap: "wrap" }}>
           <input
             type="text"
@@ -61,7 +84,7 @@ export default function ExplorePage() {
               flex: 1,
               minWidth: "200px",
               backgroundColor: "var(--bg-card)",
-              border: "1px solid #1A0008",
+              border: "1px solid var(--border)",
               color: "var(--text-primary)",
               padding: "12px 16px",
               fontSize: "14px",
@@ -77,36 +100,36 @@ export default function ExplorePage() {
                   padding: "12px 20px",
                   backgroundColor: sort === s ? "var(--accent)" : "transparent",
                   border: `1px solid ${sort === s ? "var(--accent)" : "var(--border)"}`,
-                  color: sort === s ? "var(--text-primary)" : "var(--text-dim)",
+                  color: sort === s ? "var(--accent-fg)" : "var(--text-dim)",
                   fontSize: "12px",
                   letterSpacing: "1px",
                   cursor: "pointer",
-                  textTransform: "capitalize",
                 }}
               >
-                {s}
+                {s === "popular" ? t(lang, "explore.popular") : t(lang, "explore.newest")}
               </button>
             ))}
           </div>
         </div>
 
+        {/* Category filters */}
         <div style={{ display: "flex", gap: "8px", marginBottom: "40px", flexWrap: "wrap" }}>
-          {categories.map((cat) => (
+          {allCategories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(categories.indexOf(cat) === 0 ? ALL_KEY : cat)}
+              onClick={() => setActiveCategory(cat)}
               style={{
                 padding: "8px 16px",
-                backgroundColor: (categories.indexOf(cat) === 0 ? activeCategory === ALL_KEY : activeCategory === cat) ? "var(--accent)" : "transparent",
-                border: `1px solid ${(categories.indexOf(cat) === 0 ? activeCategory === ALL_KEY : activeCategory === cat) ? "var(--accent)" : "var(--border)"}`,
-                color: (categories.indexOf(cat) === 0 ? activeCategory === ALL_KEY : activeCategory === cat) ? "var(--text-primary)" : "var(--text-dim)",
+                backgroundColor: activeCategory === cat ? "var(--accent)" : "transparent",
+                border: `1px solid ${activeCategory === cat ? "var(--accent)" : "var(--border)"}`,
+                color: activeCategory === cat ? "var(--accent-fg)" : "var(--text-dim)",
                 fontSize: "12px",
                 letterSpacing: "1px",
                 cursor: "pointer",
                 whiteSpace: "nowrap",
               }}
             >
-              {cat}
+              {categoryLabels[cat] ?? cat}
             </button>
           ))}
         </div>
@@ -130,7 +153,7 @@ export default function ExplorePage() {
                 <div
                   style={{
                     backgroundColor: "var(--bg-card)",
-                    border: "1px solid #1A0008",
+                    border: "1px solid var(--border)",
                     padding: "32px 28px",
                     cursor: "pointer",
                     transition: "all 0.2s",
@@ -151,45 +174,21 @@ export default function ExplorePage() {
                     overflow: "hidden",
                     border: "1px solid var(--border)",
                     marginBottom: "20px",
-                    flexShrink: 0,
                   }}>
                     <img src={creator.avatar} alt={creator.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
-                  <h3 style={{
-                    fontFamily: "Georgia, serif",
-                    fontSize: "18px",
-                    fontWeight: "normal",
-                    color: "var(--text-primary)",
-                    marginBottom: "4px",
-                  }}>
+                  <h3 style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontWeight: "normal", color: "var(--text-primary)", marginBottom: "4px" }}>
                     {creator.name}
                   </h3>
-                  <p style={{
-                    color: "var(--accent)",
-                    fontSize: "11px",
-                    letterSpacing: "1.5px",
-                    marginBottom: "12px",
-                    textTransform: "uppercase",
-                  }}>
-                    {creator.category}
+                  <p style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "1.5px", marginBottom: "12px", textTransform: "uppercase" }}>
+                    {categoryLabels[creator.category] ?? creator.category}
                   </p>
-                  <p style={{
-                    color: "var(--text-dim)",
-                    fontSize: "13px",
-                    lineHeight: 1.6,
-                    marginBottom: "24px",
-                  }}>
+                  <p style={{ color: "var(--text-muted)", fontSize: "13px", lineHeight: 1.6, marginBottom: "24px" }}>
                     {creator.bio}
                   </p>
-                  <div style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    paddingTop: "16px",
-                    borderTop: "1px solid #1A0008",
-                  }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "16px", borderTop: "1px solid var(--border)" }}>
                     <span style={{ color: "var(--text-faint)", fontSize: "12px" }}>
-                      {creator.subscribers.toLocaleString()} subscribers
+                      {creator.subscribers.toLocaleString()} {t(lang, "creator.subscribers")}
                     </span>
                     <span style={{ color: "var(--accent)", fontSize: "11px", letterSpacing: "1px" }}>
                       {creator.tier}
@@ -202,15 +201,19 @@ export default function ExplorePage() {
         ) : (
           <div style={{ textAlign: "center", padding: "80px 0" }}>
             <p style={{ fontSize: "48px", marginBottom: "16px" }}>✦</p>
-            <p style={{ fontSize: "16px", marginBottom: "8px", color: "var(--text-faint)" }}>No {t(lang, "explore.found")}</p>
-            <p style={{ fontSize: "13px", color: "var(--text-ghost)" }}>{t(lang, "explore.empty.sub")}</p>
+            <p style={{ fontSize: "16px", marginBottom: "8px", color: "var(--text-dim)" }}>
+              {t(lang, "explore.empty")}
+            </p>
+            <p style={{ fontSize: "13px", color: "var(--text-ghost)" }}>
+              {t(lang, "explore.empty.sub")}
+            </p>
           </div>
         )}
       </div>
 
       <footer style={{
         padding: "40px 48px",
-        borderTop: "1px solid #150005",
+        borderTop: "1px solid var(--border)",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -219,7 +222,9 @@ export default function ExplorePage() {
         <span style={{ fontFamily: "Georgia, serif", color: "var(--accent)", letterSpacing: "5px", fontSize: "16px" }}>
           VINUS
         </span>
-        <span style={{ color: "var(--text-ultra)", fontSize: "12px" }}>© 2026 Vinus. All rights reserved.</span>
+        <span style={{ color: "var(--text-ultra)", fontSize: "12px" }}>
+          © 2026 Vinus. All rights reserved.
+        </span>
       </footer>
     </main>
   );
