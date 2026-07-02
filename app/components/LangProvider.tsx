@@ -15,12 +15,12 @@ export function LangProvider({ children }: { children: ReactNode }) {
     const saved = localStorage.getItem("vinus-lang") as LangCode | null;
     if (saved && LANGUAGES.find((l) => l.code === saved)) {
       setLangState(saved);
-    } else {
-      // Auto-detect from browser
-      const browser = navigator.language.slice(0, 2);
-      const match = LANGUAGES.find((l) => l.code === browser);
-      if (match) setLangState(match.code);
+      return;
     }
+    // Auto-detect from browser
+    const browser = navigator.language.slice(0, 2) as LangCode;
+    const match = LANGUAGES.find((l) => l.code === browser);
+    if (match) setLangState(match.code);
   }, []);
 
   const setLang = (l: LangCode) => {
