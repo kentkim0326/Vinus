@@ -2,28 +2,30 @@
 
 import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
+import { useLang } from "./LangProvider";
+import { t } from "../lib/i18n";
+import LangToggle from "./LangToggle";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggle } = useTheme();
+  const { lang } = useLang();
   const isDark = theme === "dark";
 
-  const navStyle: React.CSSProperties = {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "20px 48px",
-    borderBottom: "1px solid var(--border)",
-    position: "sticky",
-    top: 0,
-    backgroundColor: "var(--nav-bg)",
-    backdropFilter: "blur(12px)",
-    WebkitBackdropFilter: "blur(12px)",
-    zIndex: 100,
-  };
-
   return (
-    <nav style={navStyle}>
+    <nav style={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "20px 48px",
+      borderBottom: "1px solid var(--border)",
+      position: "sticky",
+      top: 0,
+      backgroundColor: "var(--nav-bg)",
+      backdropFilter: "blur(12px)",
+      WebkitBackdropFilter: "blur(12px)",
+      zIndex: 100,
+    }}>
       {/* Logo */}
       <a href="/" style={{
         fontSize: "22px",
@@ -37,15 +39,24 @@ export default function Navbar() {
       </a>
 
       {/* Desktop nav */}
-      <div style={{ display: "flex", gap: "24px", alignItems: "center" }} className="desktop-nav">
-        <a href="/explore" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>Explore</a>
-        <a href="/feed" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>Feed</a>
-        <a href="/login" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>Log in</a>
+      <div style={{ display: "flex", gap: "16px", alignItems: "center" }} className="desktop-nav">
+        <a href="/explore" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+          {t(lang, "nav.explore")}
+        </a>
+        <a href="/feed" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+          {t(lang, "nav.feed")}
+        </a>
+        <a href="/login" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+          {t(lang, "nav.login")}
+        </a>
+
+        {/* Language toggle */}
+        <LangToggle />
 
         {/* Theme toggle */}
         <button
           onClick={toggle}
-          title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+          title={isDark ? "Light mode" : "Dark mode"}
           style={{
             backgroundColor: "transparent",
             border: "1px solid var(--border)",
@@ -58,15 +69,6 @@ export default function Navbar() {
             cursor: "pointer",
             fontSize: "15px",
             flexShrink: 0,
-            transition: "all 0.2s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "var(--accent)";
-            e.currentTarget.style.color = "var(--accent)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = "var(--border)";
-            e.currentTarget.style.color = "var(--text-dim)";
           }}
         >
           {isDark ? "☀" : "☽"}
@@ -79,12 +81,16 @@ export default function Navbar() {
           textDecoration: "none",
           fontSize: "13px",
           letterSpacing: "2px",
-        }}>JOIN</a>
+        }}>
+          {t(lang, "nav.join")}
+        </a>
       </div>
 
-      {/* Mobile hamburger */}
-      <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
-        {/* Theme toggle (mobile) */}
+      {/* Mobile right side */}
+      <div style={{ display: "flex", gap: "8px", alignItems: "center" }}>
+        <div className="mobile-menu-btn" style={{ display: "none" }}>
+          <LangToggle />
+        </div>
         <button
           onClick={toggle}
           className="mobile-menu-btn"
@@ -103,7 +109,6 @@ export default function Navbar() {
         >
           {isDark ? "☀" : "☽"}
         </button>
-
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="mobile-menu-btn"
@@ -135,10 +140,16 @@ export default function Navbar() {
           flexDirection: "column",
           gap: "20px",
           zIndex: 99,
-        }} className="mobile-menu">
-          <a href="/explore" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>Explore</a>
-          <a href="/feed" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>Feed</a>
-          <a href="/login" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>Log in</a>
+        }}>
+          <a href="/explore" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
+            {t(lang, "nav.explore")}
+          </a>
+          <a href="/feed" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
+            {t(lang, "nav.feed")}
+          </a>
+          <a href="/login" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
+            {t(lang, "nav.login")}
+          </a>
           <a href="/signup" onClick={() => setMenuOpen(false)} style={{
             backgroundColor: "var(--accent)",
             color: "var(--accent-fg)",
@@ -147,7 +158,9 @@ export default function Navbar() {
             fontSize: "14px",
             letterSpacing: "2px",
             textAlign: "center",
-          }}>JOIN</a>
+          }}>
+            {t(lang, "nav.join")}
+          </a>
         </div>
       )}
     </nav>
