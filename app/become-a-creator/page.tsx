@@ -2,6 +2,7 @@
 
 import Navbar from "../components/Navbar";
 import WalletButton from "../components/WalletButton";
+import VinusLogo from "../components/VinusLogo";
 import { useAccount } from "wagmi";
 import { useState } from "react";
 
@@ -372,7 +373,7 @@ export default function BecomeCreatorPage() {
       {/* CTA */}
       <section style={{ padding: "100px 48px", textAlign: "center" }}>
         <div style={{ maxWidth: "560px", margin: "0 auto" }}>
-          <img src="/vinus_logo.png" alt="Vinus" style={{ width: "80px", height: "80px", margin: "0 auto 32px", display: "block" }} />
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: "32px" }}><VinusLogo size={80} /></div>
           <h2 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(32px, 5vw, 52px)", fontWeight: "normal", marginBottom: "20px" }}>
             Ready to go global?
           </h2>
