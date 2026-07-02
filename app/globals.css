@@ -1,14 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #0a0a0a;
-  --foreground: #F5F0F0;
-  --accent: #C0001A;
+/* ── Dark theme (default) ── */
+:root,
+[data-theme="dark"] {
+  --bg-base:      #0A0A0A;
+  --bg-card:      #0D0005;
+  --bg-card-hover:#110008;
+  --bg-deep:      #0A0003;
+  --border:       #1A0008;
+  --border-hover: #2A0010;
+  --accent:       #C0001A;
+  --accent-fg:    #F5F0F0;
+  --text-primary: #F5F0F0;
+  --text-secondary:#DDD;
+  --text-muted:   #777;
+  --text-dim:     #555;
+  --text-faint:   #444;
+  --text-ghost:   #333;
+  --text-ultra:   #2A2A2A;
+  --success:      #2A7A2A;
+  --nav-bg:       rgba(10,10,10,0.95);
+  --shadow-accent: rgba(192,0,26,0.2);
+  --type-image:   #4A8FBF;
+  --type-video:   #BF4A4A;
+  --type-audio:   #4ABF8A;
+  --type-text:    #BF9A4A;
+}
+
+/* ── Light theme ── */
+[data-theme="light"] {
+  --bg-base:      #F8F4F5;
+  --bg-card:      #FFFFFF;
+  --bg-card-hover:#FEF8F8;
+  --bg-deep:      #F0EAEB;
+  --border:       #E8D8DA;
+  --border-hover: #D4B0B5;
+  --accent:       #C0001A;
+  --accent-fg:    #FFFFFF;
+  --text-primary: #1A0008;
+  --text-secondary:#2A0010;
+  --text-muted:   #5A3040;
+  --text-dim:     #7A4A55;
+  --text-faint:   #9A6A75;
+  --text-ghost:   #C0A0A8;
+  --text-ultra:   #E0D0D3;
+  --success:      #1A6A1A;
+  --nav-bg:       rgba(248,244,245,0.95);
+  --shadow-accent: rgba(192,0,26,0.12);
+  --type-image:   #2A6A9F;
+  --type-video:   #9F2A2A;
+  --type-audio:   #2A9F6A;
+  --type-text:    #9F7A2A;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -17,42 +64,57 @@
   box-sizing: border-box;
 }
 
+html {
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-base);
+  color: var(--text-primary);
   font-family: system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ── Vinus themed elements ── */
+.vinus-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.vinus-card:hover {
+  background-color: var(--bg-card-hover);
+  border-color: var(--accent);
+}
+.vinus-input {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.vinus-input:focus {
+  border-color: var(--accent);
+  outline: none;
 }
 
 /* ── Navbar ── */
+.navbar {
+  background-color: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
 @media (max-width: 768px) {
-  .desktop-nav {
-    display: none !important;
-  }
-  .mobile-menu-btn {
-    display: block !important;
-  }
+  .desktop-nav { display: none !important; }
+  .mobile-menu-btn { display: block !important; }
 }
 
-/* ── Hero section ── */
+/* ── Hero ── */
 @media (max-width: 768px) {
-  .hero-cards {
-    display: none !important;
-  }
+  .hero-cards { display: none !important; }
 }
 
-/* ── General page padding ── */
-@media (max-width: 768px) {
-  /* sections with fixed 48px padding */
-  [style*="padding: \"80px 48px\""],
-  [style*="padding: \"64px 48px\""],
-  [style*="padding: \"48px\""] {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-}
-
-/* ── Utility: mobile padding helper ── */
+/* ── Mobile padding ── */
 .page-pad {
   padding-left: 48px;
   padding-right: 48px;
@@ -64,55 +126,38 @@ body {
   }
 }
 
-/* ── Dashboard stats grid: 2-col on mobile ── */
-@media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-/* ── Creator page two-column layout ── */
-@media (max-width: 768px) {
-  .creator-layout {
-    flex-direction: column !important;
-  }
-}
-
-/* ── Feed: narrow padding ── */
-@media (max-width: 640px) {
-  .feed-container {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-}
-
-/* ── Explore: filter chips scroll on mobile ── */
+/* ── Explore filters scroll on mobile ── */
 @media (max-width: 640px) {
   .category-filters {
     overflow-x: auto;
     flex-wrap: nowrap !important;
     padding-bottom: 4px;
   }
-  .category-filters::-webkit-scrollbar {
-    height: 2px;
-  }
-  .category-filters::-webkit-scrollbar-thumb {
-    background: #1A0008;
-  }
+  .category-filters::-webkit-scrollbar { height: 2px; }
+  .category-filters::-webkit-scrollbar-thumb { background: var(--border); }
 }
 
-/* ── Input/button tap targets ── */
+/* ── Tap targets ── */
 @media (max-width: 768px) {
-  input, textarea, select, button, a[style] {
-    min-height: 44px;
-  }
+  input, textarea, select, button, a[style] { min-height: 44px; }
 }
 
-/* ── Footer: stack on mobile ── */
+/* ── Footer stack ── */
 @media (max-width: 480px) {
   .footer-row {
     flex-direction: column !important;
     gap: 12px !important;
     text-align: center;
   }
+}
+
+/* ── Theme transition for all themed elements ── */
+* {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+/* But not for transforms/opacity to avoid jank */
+*[style*="transform"], *[style*="opacity"] {
+  transition: none;
 }
