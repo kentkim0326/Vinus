@@ -266,7 +266,7 @@ export default function BecomeCreatorPage() {
           {/* Referral chain */}
           <div style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)", padding: "36px" }}>
             <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "3px", marginBottom: "24px" }}>3-LEVEL REFERRAL — ON-CHAIN, AUTOMATIC</p>
-            <div style={{ display: "flex", gap: "0", alignItems: "center", justifyContent: "center", flexWrap: "wrap", gap: "8px" }}>
+            <div style={{ display: "flex", gap: "8px", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
               {[
                 { label: "You refer", pct: "1%", color: "var(--accent)" },
                 { label: "→", pct: "", color: "var(--text-ghost)" },
