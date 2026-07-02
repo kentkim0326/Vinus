@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "../components/LangProvider";
+import { t } from "../lib/i18n";
+
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 
@@ -32,6 +35,7 @@ const TYPE_COLOR: Record<string, string> = {
 };
 
 export default function MyPage() {
+  const { lang } = useLang();
   const [activeTab, setActiveTab] = useState<"subscriptions" | "purchases" | "history" | "settings">("subscriptions");
 
   const totalMonthly = subscriptions.reduce((sum, s) => sum + s.price, 0);
@@ -291,7 +295,7 @@ export default function MyPage() {
               ))}
             </div>
             <div style={{ marginTop: "20px", padding: "16px 24px", backgroundColor: "var(--bg-card)", border: "1px solid #1A0008", display: "flex", justifyContent: "space-between" }}>
-              <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>Total paid (all time)</span>
+              <span style={{ color: "var(--text-dim)", fontSize: "13px" }}>{lang === "ko" ? "총 결제 금액" : "Total paid (all time)"}</span>
               <span style={{ fontFamily: "Georgia, serif", fontSize: "18px", color: "var(--accent)" }}>${totalSpent}</span>
             </div>
           </div>
