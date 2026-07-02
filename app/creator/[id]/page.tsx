@@ -31,6 +31,9 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
   const handleSubscribe = () => {
     if (selectedTier === null) return;
     setSubscribed(true);
+    setTimeout(() => {
+      window.location.href = `/subscribe/success?creator=${creator!.id}&tier=${selectedTier}`;
+    }, 800);
   };
 
   const selectedTierData = selectedTier !== null ? creator.tiers[selectedTier] : null;
