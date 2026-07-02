@@ -27,40 +27,7 @@ export default function ExplorePage() {
       color: "#F5F0F0",
       fontFamily: "system-ui, sans-serif",
     }}>
-      <nav style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "20px 48px",
-        borderBottom: "1px solid #1A0005",
-        position: "sticky",
-        top: 0,
-        backgroundColor: "#0A0A0A",
-        zIndex: 100,
-      }}>
-        <a href="/" style={{
-          fontSize: "22px",
-          fontFamily: "Georgia, serif",
-          fontWeight: "bold",
-          color: "#C0001A",
-          letterSpacing: "5px",
-          textDecoration: "none",
-        }}>
-          VINUS
-        </a>
-        <div style={{ display: "flex", gap: "24px", alignItems: "center" }}>
-          <a href="/feed" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Feed</a>
-          <a href="/login" style={{ color: "#666", textDecoration: "none", fontSize: "13px" }}>Log in</a>
-          <a href="/signup" style={{
-            backgroundColor: "#C0001A",
-            color: "#F5F0F0",
-            padding: "8px 22px",
-            textDecoration: "none",
-            fontSize: "13px",
-            letterSpacing: "2px",
-          }}>JOIN</a>
-        </div>
-      </nav>
+      <Navbar />
 
       <div style={{ padding: "48px" }}>
         <div style={{ marginBottom: "48px" }}>
