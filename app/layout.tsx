@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Web3Provider } from "./components/Web3Provider";
 import { ThemeProvider } from "./components/ThemeProvider";
+import { LangProvider } from "./components/LangProvider";
 import AgeGate from "./components/AgeGate";
 
 const geistSans = Geist({
@@ -16,12 +17,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Vinus — Support the creators you love",
-    template: "%s | Vinus",
-  },
-  description:
-    "Subscribe to independent creators. Get exclusive content. Pay with crypto. Vinus is the premium creator subscription platform.",
+  title: { default: "Vinus — Support the creators you love", template: "%s | Vinus" },
+  description: "Subscribe to independent creators. Get exclusive content. Pay with crypto.",
   keywords: ["creator", "subscription", "crypto", "exclusive content", "support creators"],
   authors: [{ name: "Vinus" }],
   metadataBase: new URL("https://vinus-black.vercel.app"),
@@ -56,26 +53,21 @@ const themeScript = `
 })();
 `;
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
-          <Web3Provider>
-            <AgeGate>
-              {children}
-            </AgeGate>
-          </Web3Provider>
+          <LangProvider>
+            <Web3Provider>
+              <AgeGate>
+                {children}
+              </AgeGate>
+            </Web3Provider>
+          </LangProvider>
         </ThemeProvider>
       </body>
     </html>
