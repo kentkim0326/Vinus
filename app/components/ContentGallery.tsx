@@ -1,5 +1,8 @@
 "use client";
 
+import { useLang } from "./LangProvider";
+import { t } from "../lib/i18n";
+
 import { useState } from "react";
 import { ContentItem } from "../lib/content";
 
@@ -135,7 +138,7 @@ function ContentCard({
         }}>
           <span style={{ color: "var(--text-faint)", fontSize: "11px" }}>{item.date}</span>
           {item.isFree ? (
-            <span style={{ color: "#4ABF8A", fontSize: "11px", letterSpacing: "1px" }}>FREE</span>
+            <span style={{ color: "#4ABF8A", fontSize: "11px", letterSpacing: "1px" }}>{t(lang, "common.free")}</span>
           ) : item.price !== null ? (
             <span style={{
               color: "var(--accent)",
@@ -145,7 +148,7 @@ function ContentCard({
               ${item.price}
             </span>
           ) : (
-            <span style={{ color: "#666", fontSize: "11px", letterSpacing: "1px" }}>SUBSCRIBERS</span>
+            <span style={{ color: "#666", fontSize: "11px", letterSpacing: "1px" }}>{t(lang, "common.subscribers")}</span>
           )}
         </div>
       </div>
@@ -160,6 +163,7 @@ export default function ContentGallery({
   items: ContentItem[];
   onSelect: (item: ContentItem) => void;
 }) {
+  const { lang } = useLang();
   const [filter, setFilter] = useState<Filter>("all");
 
   const filters: { key: Filter; label: string }[] = [
