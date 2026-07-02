@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #F5F0F0;
+  --accent: #C0001A;
 }
 
 @theme inline {
@@ -12,19 +13,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
-/* 모바일 반응형 */
+
+/* ── Navbar ── */
 @media (max-width: 768px) {
   .desktop-nav {
     display: none !important;
@@ -33,17 +33,86 @@ body {
     display: block !important;
   }
 }
+
+/* ── Hero section ── */
 @media (max-width: 768px) {
   .hero-cards {
     display: none !important;
   }
 }
+
+/* ── General page padding ── */
 @media (max-width: 768px) {
-  .hero-cards {
-    display: none !important;
-  }
-  main section {
+  /* sections with fixed 48px padding */
+  [style*="padding: \"80px 48px\""],
+  [style*="padding: \"64px 48px\""],
+  [style*="padding: \"48px\""] {
     padding-left: 20px !important;
     padding-right: 20px !important;
+  }
+}
+
+/* ── Utility: mobile padding helper ── */
+.page-pad {
+  padding-left: 48px;
+  padding-right: 48px;
+}
+@media (max-width: 768px) {
+  .page-pad {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* ── Dashboard stats grid: 2-col on mobile ── */
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* ── Creator page two-column layout ── */
+@media (max-width: 768px) {
+  .creator-layout {
+    flex-direction: column !important;
+  }
+}
+
+/* ── Feed: narrow padding ── */
+@media (max-width: 640px) {
+  .feed-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* ── Explore: filter chips scroll on mobile ── */
+@media (max-width: 640px) {
+  .category-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+    padding-bottom: 4px;
+  }
+  .category-filters::-webkit-scrollbar {
+    height: 2px;
+  }
+  .category-filters::-webkit-scrollbar-thumb {
+    background: #1A0008;
+  }
+}
+
+/* ── Input/button tap targets ── */
+@media (max-width: 768px) {
+  input, textarea, select, button, a[style] {
+    min-height: 44px;
+  }
+}
+
+/* ── Footer: stack on mobile ── */
+@media (max-width: 480px) {
+  .footer-row {
+    flex-direction: column !important;
+    gap: 12px !important;
+    text-align: center;
   }
 }
