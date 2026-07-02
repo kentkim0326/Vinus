@@ -87,16 +87,12 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
               width: "96px",
               height: "96px",
               borderRadius: "50%",
-              backgroundColor: "var(--border)",
-              border: "2px solid #C0001A",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "36px",
+              overflow: "hidden",
+              border: "2px solid var(--accent)",
               flexShrink: 0,
-              boxShadow: "0 0 32px rgba(192,0,26,0.2)",
+              boxShadow: "0 0 32px var(--shadow-accent)",
             }}>
-              {creator.preview}
+              <img src={creator.avatar} alt={creator.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
 
             <div style={{ flex: 1, minWidth: "240px" }}>
