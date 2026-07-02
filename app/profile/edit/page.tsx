@@ -1,11 +1,15 @@
 "use client";
 
+import { useLang } from "../../components/LangProvider";
+import { t } from "../../lib/i18n";
+
 import { useState } from "react";
 import { useAccount } from "wagmi";
 import Navbar from "../../components/Navbar";
 
 export default function EditProfilePage() {
   const { address } = useAccount();
+  const { lang } = useLang();
   const [name, setName] = useState("Aria Nova");
   const [bio, setBio] = useState("Digital artist exploring the boundaries between light and shadow. Exclusive prints, process videos, and early access to new collections.");
   const [category, setCategory] = useState("Art & Illustration");
@@ -60,7 +64,7 @@ export default function EditProfilePage() {
               fontFamily: "monospace",
               letterSpacing: "0.5px",
             }}>
-              {address ?? "Not connected"}
+              {address ?? lang === "ko" ? "연결되지 않음" : "Not connected"}
             </p>
           </div>
         </div>
@@ -90,7 +94,7 @@ export default function EditProfilePage() {
             ✦
           </div>
           <div>
-            <p style={{ fontSize: "15px", color: "var(--text-primary)", marginBottom: "8px" }}>Profile Photo</p>
+            <p style={{ fontSize: "15px", color: "var(--text-primary)", marginBottom: "8px" }}>{lang === "ko" ? "프로필 사진" : "Profile Photo"}</p>
             <button style={{
               backgroundColor: "transparent",
               border: "1px solid var(--border)",
@@ -177,7 +181,7 @@ export default function EditProfilePage() {
               }}
             />
             <p style={{ color: "var(--text-ghost)", fontSize: "12px", marginTop: "6px" }}>
-              {bio.length} / 300 characters
+              {bio.length} / 300 {lang === "ko" ? "자" : "characters"}
             </p>
           </div>
 
@@ -238,7 +242,7 @@ export default function EditProfilePage() {
                 transition: "all 0.3s",
               }}
             >
-              {saved ? "✓ SAVED" : "SAVE CHANGES"}
+              {saved ? (lang === "ko" ? "✓ 저장됨" : "✓ SAVED") : (lang === "ko" ? "변경 사항 저장" : "SAVE CHANGES")}
             </button>
             <a href="/dashboard" style={{
               padding: "16px 24px",
