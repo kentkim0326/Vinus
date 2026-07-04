@@ -1,5 +1,7 @@
 "use client";
 
+import { href } from "../lib/basePath";
+
 import { useLang } from "./LangProvider";
 import { usePathname } from "next/navigation";
 
@@ -9,10 +11,10 @@ export default function BottomNav() {
   const isKo = lang === "ko";
 
   const tabs = [
-    { href: "/",        icon: "⌂", label: isKo ? "홈" : "Home" },
-    { href: "/explore", icon: "◎", label: isKo ? "탐색" : "Explore" },
-    { href: "/feed",    icon: "⊞", label: isKo ? "피드" : "Feed" },
-    { href: "/my",      icon: "◉", label: isKo ? "내 계정" : "My" },
+    { href: href("/"),        icon: "⌂", label: isKo ? "홈" : "Home" },
+    { href: href("/explore"), icon: "◎", label: isKo ? "탐색" : "Explore" },
+    { href: href("/feed"),    icon: "⊞", label: isKo ? "피드" : "Feed" },
+    { href: href("/my"),      icon: "◉", label: isKo ? "내 계정" : "My" },
   ];
 
   const isActive = (href: string) =>
