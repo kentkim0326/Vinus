@@ -329,9 +329,9 @@ export default function DashboardPage() {
                     </label>
                     <div style={{ display: "flex", gap: "8px" }}>
                       {([
-                        { key: "FREE", label: "FREE", desc: "Anyone" },
-                        { key: "SUB", label: "SUBSCRIBERS", desc: "Paid members only" },
-                        { key: "PAID", label: "PAID", desc: "One-time purchase" },
+                        { key: "FREE", label: "FREE", desc: lang === "ko" ? "모두" : "Anyone" },
+                        { key: "SUB", label: "SUBSCRIBERS", desc: lang === "ko" ? "유료 구독자만" : "Paid members only" },
+                        { key: "PAID", label: "PAID", desc: lang === "ko" ? "단건 구매" : "One-time purchase" },
                       ] as const).map((opt) => (
                         <button
                           key={opt.key}
@@ -383,8 +383,8 @@ export default function DashboardPage() {
                           }}
                         />
                         <div style={{ color: "var(--text-faint)", fontSize: "12px" }}>
-                          <p>Buyers pay in ETH, USDT, or USDC</p>
-                          <p style={{ color: "var(--text-ghost)", fontSize: "11px", marginTop: "4px" }}>on Base Network</p>
+                          <p>{lang === "ko" ? "구매자는 ETH, USDT 또는 USDC로 결제" : "Buyers pay in ETH, USDT, or USDC"}</p>
+                          <p style={{ color: "var(--text-ghost)", fontSize: "11px", marginTop: "4px" }}>{lang === "ko" ? "Base Network에서" : "on Base Network"}</p>
                         </div>
                       </div>
                     </div>
