@@ -242,45 +242,55 @@ export default function Home() {
           <AnimatedStats lang={lang} />
         </div>
 
-        {/* Hero cards */}
+        {/* Hero — floating creator avatars */}
         <div
           className="hero-cards"
-          style={{ flex: "0 0 auto", width: "300px", display: "flex", flexDirection: "column", gap: "10px" }}
+          style={{
+            flex: "0 0 auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "24px",
+            paddingTop: "20px",
+          }}
         >
-          {[
-            { name: "Aria Nova",   category: "Art & Illustration", preview: "✦", subscribers: 2840, tier: "$5/mo" },
-            { name: "Luna Craft",  category: "Photography",        preview: "◈", subscribers: 4210, tier: "$8/mo" },
-            { name: "Echo Veil",   category: "Music & Audio",      preview: "♪", subscribers: 1520, tier: "$3/mo" },
-          ].map((c, i) => (
-            <div key={c.name} style={{
-              backgroundColor: "var(--bg-card)",
-              border: "1px solid var(--border)",
-              padding: "18px",
-              display: "flex",
-              alignItems: "center",
-              gap: "14px",
-              transform: `translateX(${i * 14}px)`,
-              opacity: 1 - i * 0.15,
-            }}>
-              <div style={{
-                width: "40px", height: "40px", borderRadius: "50%",
-                backgroundColor: "var(--bg-deep)",
-                border: "1px solid var(--accent)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "16px", flexShrink: 0,
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {[1, 3, 2, 8, 4, 9].map((id, i) => (
+              <a key={id} href={href(`/creator/${id}`)} style={{
+                width: "52px",
+                height: "52px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                border: "2px solid var(--bg-base)",
+                marginLeft: i === 0 ? "0" : "-14px",
+                position: "relative",
+                zIndex: 10 - i,
+                transition: "transform 0.2s",
               }}>
-                {c.preview}
-              </div>
-              <div style={{ flex: 1 }}>
-                <p style={{ fontSize: "13px", color: "var(--text-primary)", marginBottom: "2px" }}>{c.name}</p>
-                <p style={{ fontSize: "10px", color: "var(--text-dim)", letterSpacing: "1px" }}>{c.category.toUpperCase()}</p>
-              </div>
-              <div style={{ textAlign: "right" }}>
-                <p style={{ color: "var(--accent)", fontSize: "12px" }}>{c.tier}</p>
-                <p style={{ color: "var(--text-faint)", fontSize: "10px" }}>{c.subscribers.toLocaleString()}</p>
-              </div>
-            </div>
-          ))}
+                <img
+                  src={imgSrc(`/creators/creator_${id}.jpg`)}
+                  alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </a>
+            ))}
+            <span style={{
+              marginLeft: "12px",
+              color: "var(--accent)",
+              fontSize: "14px",
+              fontFamily: "Georgia, serif",
+            }}>
+              +9
+            </span>
+          </div>
+          <p style={{
+            color: "var(--text-dim)",
+            fontSize: "12px",
+            letterSpacing: "1.5px",
+            textAlign: "center",
+          }}>
+            {t(lang, "home.section.title")}
+          </p>
         </div>
       </section>
 
