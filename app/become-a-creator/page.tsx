@@ -13,32 +13,32 @@ import { useState } from "react";
 const TIERS = [
   {
     icon: "✦",
-    title: "Any Creator",
-    desc: "Anyone with a MetaMask wallet can become a creator. No application. No approval. Instant.",
+    title: isKo ? "누구나 크리에이터" : "Any Creator",
+    desc: isKo ? "MetaMask 지갑만 있으면 누구나 크리에이터가 될 수 있습니다. 지원서 없음. 승인 없음. 즉시." : "Anyone with a MetaMask wallet can become a creator. No application. No approval. Instant.",
   },
   {
     icon: "🌐",
-    title: "Any Language",
-    desc: "Post in your native language. AI translates everything to 20 languages automatically.",
+    title: isKo ? "모든 언어" : "Any Language",
+    desc: isKo ? "모국어로 게시하세요. AI가 20개 언어로 자동 번역합니다." : "Post in your native language. AI translates everything to 20 languages automatically.",
   },
   {
     icon: "💎",
-    title: "Keep 80%",
-    desc: "Creators keep 80% of all subscription and content revenue. Paid instantly in USDC or ETH.",
+    title: isKo ? "80% 수익" : "Keep 80%",
+    desc: isKo ? "크리에이터는 모든 구독 및 콘텐츠 수익의 80%를 가져갑니다. USDC 또는 ETH로 즉시 지급." : "Creators keep 80% of all subscription and content revenue. Paid instantly in USDC or ETH.",
   },
   {
     icon: "🔗",
-    title: "Earn from Referrals",
+    title: isKo ? "추천인 수익" : "Earn from Referrals",
     desc: "Refer other creators. Vinus shares 10% of its 20% platform fee with referrers — automatically, on-chain. Level 1: 1% · Level 2: 0.6% · Level 3: 0.4% of total transaction. Creator always keeps 80%.",
   },
 ];
 
 const STEPS = [
-  { num: "01", title: "Connect MetaMask", desc: "Your wallet is your identity. No email. No password. No KYC." },
-  { num: "02", title: "Set up your profile", desc: "Choose a display name, category, and bio. Your wallet address stays private." },
-  { num: "03", title: "Set your prices", desc: "Create subscription tiers or sell individual content. You set the price in USD — fans pay in crypto." },
-  { num: "04", title: "Post content", desc: "Upload images, videos, audio, or text. AI translates to 20 languages instantly." },
-  { num: "05", title: "Get paid", desc: "Earnings flow directly to your wallet via smart contract. No middleman. No delays." },
+  { num: "01", title: isKo ? "MetaMask 연결" : "Connect MetaMask", desc: isKo ? "지갑이 곧 신원입니다. 이메일 없음. 비밀번호 없음. KYC 없음." : "Your wallet is your identity. No email. No password. No KYC." },
+  { num: "02", title: isKo ? "프로필 설정" : "Set up your profile", desc: "Choose a display name, category, and bio. Your wallet address stays private." },
+  { num: "03", title: isKo ? "가격 설정" : "Set your prices", desc: "Create subscription tiers or sell individual content. You set the price in USD — fans pay in crypto." },
+  { num: "04", title: isKo ? "콘텐츠 게시" : "Post content", desc: "Upload images, videos, audio, or text. AI translates to 20 languages instantly." },
+  { num: "05", title: isKo ? "수익 받기" : "Get paid", desc: "Earnings flow directly to your wallet via smart contract. No middleman. No delays." },
 ];
 
 const FAQS = [
@@ -107,16 +107,16 @@ export default function BecomeCreatorPage() {
             marginBottom: "24px",
           }}>
             Your content.<br />
-            <span style={{ color: "var(--accent)" }}>Your language.</span><br />
+            <span style={{ color: "var(--accent)" }}>{isKo ? "당신의 언어." : "Your language."}</span><br />
             The whole world.
           </h1>
 
           <p style={{ color: "var(--text-muted)", fontSize: "18px", lineHeight: 1.8, marginBottom: "16px", maxWidth: "560px", margin: "0 auto 16px" }}>
-            Post once in your language. AI translates to 20 languages instantly. Earn in crypto. Stay anonymous.
+            {isKo ? "내 언어로 한 번 게시. AI가 20개 언어로 즉시 번역. 암호화폐로 수익. 익명 유지." : "Post once in your language. AI translates to 20 languages instantly. Earn in crypto. Stay anonymous."}
           </p>
 
           <p style={{ color: "var(--text-dim)", fontSize: "14px", marginBottom: "48px" }}>
-            No email. No KYC. Just your wallet.
+            {isKo ? "이메일 없음. KYC 없음. 지갑만 있으면 됩니다." : "No email. No KYC. Just your wallet."}
           </p>
 
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
@@ -255,16 +255,16 @@ export default function BecomeCreatorPage() {
             </div>
             <div style={{ display: "flex", gap: "0", textAlign: "left" }}>
               <div style={{ flex: 80, paddingRight: "16px" }}>
-                <p style={{ color: "var(--text-primary)", fontSize: "14px", marginBottom: "4px" }}>Creator</p>
-                <p style={{ color: "var(--text-muted)", fontSize: "12px" }}>Paid instantly to your wallet</p>
+                <p style={{ color: "var(--text-primary)", fontSize: "14px", marginBottom: "4px" }}>{isKo ? "크리에이터" : "Creator"}</p>
+                <p style={{ color: "var(--text-muted)", fontSize: "12px" }}>{isKo ? "즉시 지갑으로 지급" : "Paid instantly to your wallet"}</p>
               </div>
               <div style={{ flex: 2, paddingRight: "8px" }}>
-                <p style={{ color: "var(--text-secondary)", fontSize: "12px", marginBottom: "4px" }}>Referrals</p>
+                <p style={{ color: "var(--text-secondary)", fontSize: "12px", marginBottom: "4px" }}>{isKo ? "추천인" : "Referrals"}</p>
                 <p style={{ color: "var(--text-muted)", fontSize: "10px" }}>2% of total</p>
               </div>
               <div style={{ flex: 18 }}>
                 <p style={{ color: "var(--text-secondary)", fontSize: "13px", marginBottom: "4px" }}>Vinus</p>
-                <p style={{ color: "var(--text-muted)", fontSize: "11px" }}>Net platform fee</p>
+                <p style={{ color: "var(--text-muted)", fontSize: "11px" }}>{isKo ? "순 플랫폼 수수료" : "Net platform fee"}</p>
               </div>
             </div>
           </div>
@@ -291,7 +291,7 @@ export default function BecomeCreatorPage() {
               ))}
             </div>
             <p style={{ color: "var(--text-dim)", fontSize: "13px", marginTop: "20px", lineHeight: 1.7 }}>
-              Vinus takes 20% platform fee. 10% of that (= 2% of total transaction) is shared with referrers via smart contract. Creator always receives 80%. No manual payouts. No trust required.
+              {isKo ? "Vinus는 20% 플랫폼 수수료를 받습니다. 그 중 10%(= 전체 트랜잭션의 2%)가 추천인에게 스마트 컨트랙트로 자동 분배됩니다. 크리에이터는 항상 80%를 받습니다." : "Vinus takes 20% platform fee. 10% of that (= 2% of total transaction) is shared with referrers via smart contract. Creator always receives 80%. No manual payouts. No trust required."}
             </p>
           </div>
         </div>
@@ -305,16 +305,16 @@ export default function BecomeCreatorPage() {
             Your AI works while you sleep.
           </h2>
           <p style={{ color: "var(--text-muted)", fontSize: "16px", textAlign: "center", marginBottom: "48px", lineHeight: 1.8 }}>
-            A Japanese fan comments in Japanese. You see it in Korean. You reply in Korean. They see it in Japanese. No translator needed. Ever.
+            {isKo ? "일본 팬이 일본어로 댓글을 답니다. 당신은 한국어로 봅니다. 한국어로 답장합니다. 팬은 일본어로 봅니다. 번역가가 필요 없습니다." : "A Japanese fan comments in Japanese. You see it in Korean. You reply in Korean. They see it in Japanese. No translator needed. Ever."}
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "12px" }}>
             {[
-              { icon: "🌐", title: "Post Translation", desc: "Upload once. Published in 20 languages instantly." },
-              { icon: "💬", title: "Comment Translation", desc: "Fans comment in any language. You read in yours." },
-              { icon: "📩", title: "DM Translation", desc: "Reply in your language. Fan receives in theirs." },
-              { icon: "🤖", title: "AI Chat Assistant", desc: "AI responds to fans 24/7 in your tone and style." },
-              { icon: "📊", title: "Growth Analytics", desc: "AI tells you when and what to post for maximum reach." },
-              { icon: "🎙", title: "AI Voice Dubbing", desc: "Video in Korean? AI dubs it in English, Japanese, more." },
+              { icon: "🌐", title: isKo ? "게시글 번역" : "Post Translation", desc: isKo ? "한 번 업로드. 20개 언어로 즉시 게시." : "Upload once. Published in 20 languages instantly." },
+              { icon: "💬", title: isKo ? "댓글 번역" : "Comment Translation", desc: isKo ? "팬이 어떤 언어로든 댓글. 내 언어로 읽음." : "Fans comment in any language. You read in yours." },
+              { icon: "📩", title: isKo ? "DM 번역" : "DM Translation", desc: isKo ? "내 언어로 답장. 팬은 자신의 언어로 수신." : "Reply in your language. Fan receives in theirs." },
+              { icon: "🤖", title: isKo ? "AI 채팅 비서" : "AI Chat Assistant", desc: isKo ? "AI가 내 톤과 스타일로 24/7 팬에게 응답." : "AI responds to fans 24/7 in your tone and style." },
+              { icon: "📊", title: isKo ? "성장 분석" : "Growth Analytics", desc: isKo ? "AI가 최대 도달을 위한 게시 시간과 콘텐츠를 알려줌." : "AI tells you when and what to post for maximum reach." },
+              { icon: "🎙", title: isKo ? "AI 음성 더빙" : "AI Voice Dubbing", desc: isKo ? "한국어 영상? AI가 영어, 일본어 등으로 더빙." : "Video in Korean? AI dubs it in English, Japanese, more." },
             ].map((f) => (
               <div key={f.title} style={{
                 backgroundColor: "var(--bg-base)",
@@ -383,7 +383,7 @@ export default function BecomeCreatorPage() {
             Ready to go global?
           </h2>
           <p style={{ color: "var(--text-muted)", fontSize: "16px", lineHeight: 1.8, marginBottom: "40px" }}>
-            Connect your wallet. Set your price. Post your first content. The AI handles the rest.
+            {isKo ? "지갑을 연결하세요. 가격을 설정하세요. 첫 콘텐츠를 게시하세요. 나머지는 AI가 처리합니다." : "Connect your wallet. Set your price. Post your first content. The AI handles the rest."}
           </p>
           <WalletButton />
         </div>
