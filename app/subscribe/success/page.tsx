@@ -12,7 +12,6 @@ function SuccessContent() {
   const { lang } = useLang();
   const [visible, setVisible] = useState(false);
   const searchParams = useSearchParams();
-  const { lang } = useLang();
 
   const creatorId = Number(searchParams.get("creator") ?? 1);
   const tierIndex = Number(searchParams.get("tier") ?? 0);
