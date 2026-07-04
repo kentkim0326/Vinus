@@ -277,15 +277,6 @@ function PostCard({
           </div>
         ) : (
           <div>
-            {post.hasImage && (
-              <div style={{
-                backgroundColor: "var(--bg-deep)",
-                border: "1px solid #1A0008",
-                height: "200px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: "16px",
             {post.image ? (
               <div style={{
                 width: "100%",
@@ -296,10 +287,11 @@ function PostCard({
               }}>
                 <img src={imgSrc(post.image)} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
-            ) : (
+            ) : post.hasImage ? (
               <div style={{
                 backgroundColor: "var(--bg-deep)",
-                height: "180px",
+                border: "1px solid var(--border)",
+                height: "200px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -309,7 +301,7 @@ function PostCard({
               }}>
                 {post.preview}
               </div>
-            )}
+            ) : null}
             )}
             <p style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.8 }}>
               {post.content}
