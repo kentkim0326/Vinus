@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useLang } from "../components/LangProvider";
 
@@ -263,10 +264,7 @@ export default function RoadmapPage() {
         </div>
       </div>
 
-      <footer style={{ padding: "32px 48px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
-        <span style={{ fontFamily: "Georgia, serif", color: "var(--accent)", letterSpacing: "5px", fontSize: "16px" }}>VINUS</span>
-        <span style={{ color: "var(--text-ultra)", fontSize: "12px" }}>© 2026 Vinus. All rights reserved.</span>
-      </footer>
+            <Footer />
     </main>
   );
 }
