@@ -115,9 +115,11 @@ const posts: Post[] = [
 function PostCard({
   post,
   onPurchase,
+  lang,
 }: {
   post: Post;
   onPurchase: (item: ContentItem) => void;
+  lang: string;
 }) {
   const [liked, setLiked] = useState(false);
   const isLocked = post.type === "PAID";
