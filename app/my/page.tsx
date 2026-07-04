@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "../lib/basePath";
+
 import { useLang } from "../components/LangProvider";
 import { t } from "../lib/i18n";
 
@@ -190,7 +192,7 @@ export default function MyPage() {
               ))}
             </div>
             <div style={{ marginTop: "24px" }}>
-              <a href="/explore" style={{
+              <a href={href("/explore")} style={{
                 display: "inline-block",
                 backgroundColor: "var(--accent)",
                 color: "var(--text-primary)",
