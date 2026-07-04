@@ -122,12 +122,12 @@ function CreatorCard({ creator }: { creator: Creator }) {
 function getAIFeatures(lang: string) {
   const isKo = lang === "ko";
   return [
-    { icon: "🌐", label: isKo ? "AI 번역" : "AI Translation", desc: isKo ? "20개 언어 자동 번역" : "Auto-translated to 20 languages" },
-    { icon: "🎙", label: isKo ? "AI 더빙" : "AI Dubbing", desc: isKo ? "모든 언어로 음성 복제" : "Voice cloned in every language" },
-    { icon: "🤖", label: isKo ? "AI 매니저" : "AI Manager", desc: isKo ? "자는 동안 팬에게 답변" : "Replies to fans while you sleep" },
-    { icon: "📊", label: isKo ? "AI 분석" : "AI Analytics", desc: isKo ? "성장 인사이트 & 최적 업로드 시간" : "Growth insights & best upload times" },
-    { icon: "💎", label: isKo ? "Web3 결제" : "Web3 Payments", desc: isKo ? "Base 네트워크 암호화폐 구독" : "Crypto subscriptions on Base" },
-    { icon: "🔗", label: isKo ? "3단계 추천인" : "3-Level Referral", desc: isKo ? "온체인 자동 커미션" : "On-chain auto commission" },
+    { icon: "🌐", label: t(lang as any, "home.ai.translation"), desc: t(lang as any, "home.ai.translation.desc") },
+    { icon: "🎙", label: t(lang as any, "home.ai.dubbing"), desc: t(lang as any, "home.ai.dubbing.desc") },
+    { icon: "🤖", label: t(lang as any, "home.ai.manager"), desc: t(lang as any, "home.ai.manager.desc") },
+    { icon: "📊", label: t(lang as any, "home.ai.analytics"), desc: t(lang as any, "home.ai.analytics.desc") },
+    { icon: "💎", label: t(lang as any, "home.ai.payments"), desc: t(lang as any, "home.ai.payments.desc") },
+    { icon: "🔗", label: t(lang as any, "home.ai.referral"), desc: t(lang as any, "home.ai.referral.desc") },
   ];
 }
 
@@ -172,7 +172,7 @@ export default function Home() {
               letterSpacing: "2px",
               fontWeight: "600",
             }}>
-              {lang === "ko" ? "세계 최초 AI 기반 Web3 크리에이터 플랫폼" : "THE WORLD'S FIRST AI-POWERED WEB3 CREATOR PLATFORM"}
+              {t(lang, "home.badge")}
             </span>
           </div>
 
@@ -210,7 +210,7 @@ export default function Home() {
             marginBottom: "40px",
             maxWidth: "420px",
           }}>
-            {lang === "ko" ? "AI가 콘텐츠를 20개 언어로 번역합니다. AI가 영상을 더빙합니다. AI가 팬을 24/7 관리합니다." : "AI translates your content to 20 languages. AI dubs your videos. AI manages your fans — 24/7."}
+            {t(lang, "home.ai.sub")}
           </p>
 
           <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
