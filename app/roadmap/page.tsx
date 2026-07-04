@@ -5,6 +5,7 @@ import { href, imgSrc } from "../lib/basePath";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useLang } from "../components/LangProvider";
+import { t } from "../lib/i18n";
 
 const PHASES = [
   {
