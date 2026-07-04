@@ -162,7 +162,7 @@ export default function MyPage() {
                     <p style={{ color: "var(--text-dim)", fontSize: "12px" }}>{sub.tier} · ${sub.price}/mo</p>
                   </div>
                   <div style={{ textAlign: "right", marginRight: "16px" }}>
-                    <p style={{ color: "var(--text-faint)", fontSize: "11px", marginBottom: "2px" }}>{lang === "ko" ? "다음 결제일" : "Next billing"}</p>
+                    <p style={{ color: "var(--text-faint)", fontSize: "11px", marginBottom: "2px" }}>{t(lang as any, "my.billing")}</p>
                     <p style={{ fontSize: "13px" }}>{sub.nextBilling}</p>
                   </div>
                   <div style={{ display: "flex", gap: "8px" }}>
