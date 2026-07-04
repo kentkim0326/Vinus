@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "../../lib/basePath";
+
 import { useLang } from "../../components/LangProvider";
 import { t } from "../../lib/i18n";
 
@@ -30,7 +32,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
           <h1 style={{ fontFamily: "Georgia, serif", fontSize: "32px", fontWeight: "normal", marginBottom: "12px" }}>
             {t(lang, "creator.notfound")}
           </h1>
-          <a href="/explore" style={{ color: "var(--accent)", fontSize: "13px", letterSpacing: "2px", textDecoration: "none" }}>
+          <a href={href("/explore")} style={{ color: "var(--accent)", fontSize: "13px", letterSpacing: "2px", textDecoration: "none" }}>
             {t(lang, "creator.back")}
           </a>
         </div>
@@ -74,7 +76,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
         padding: "64px 48px 0",
       }}>
         <div style={{ maxWidth: "960px", margin: "0 auto" }}>
-          <a href="/explore" style={{
+          <a href={href("/explore")} style={{
             color: "var(--text-dim)",
             fontSize: "12px",
             letterSpacing: "2px",
