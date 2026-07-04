@@ -114,7 +114,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                 {creator.name}
               </h1>
               <p style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.8, maxWidth: "520px", marginBottom: "28px" }}>
-                {creator.bio}
+                {((typeof creator.bio === "string") ? creator.bio : (creator.bio as Record<string, string>)[lang] ?? (creator.bio as Record<string, string>).en)}
               </p>
 
               <div style={{ display: "flex", gap: "24px", alignItems: "center", flexWrap: "wrap" }}>
