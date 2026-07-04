@@ -9,6 +9,7 @@ import ContentGallery from "../../components/ContentGallery";
 import PurchaseModal from "../../components/PurchaseModal";
 import { creators } from "../../lib/data";
 import { getCreatorContent, ContentItem } from "../../lib/content";
+import ShareButton from "../../components/ShareButton";
 
 export default function CreatorPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -132,6 +133,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                 <div style={{ width: "1px", height: "20px", backgroundColor: "var(--border)" }} />
                 <span style={{ color: "var(--text-faint)", fontSize: "13px" }}>{creator.twitter}</span>
                 <span style={{ color: "var(--text-faint)", fontSize: "13px" }}>{creator.instagram}</span>
+                <ShareButton creatorId={creator.id} compact />
               </div>
             </div>
 
