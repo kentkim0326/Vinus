@@ -10,67 +10,71 @@ import VinusLogo from "../components/VinusLogo";
 import { useAccount } from "wagmi";
 import { useState } from "react";
 
-const TIERS = [
-  {
-    icon: "✦",
-    title: isKo ? "누구나 크리에이터" : "Any Creator",
-    desc: isKo ? "MetaMask 지갑만 있으면 누구나 크리에이터가 될 수 있습니다. 지원서 없음. 승인 없음. 즉시." : "Anyone with a MetaMask wallet can become a creator. No application. No approval. Instant.",
-  },
-  {
-    icon: "🌐",
-    title: isKo ? "모든 언어" : "Any Language",
-    desc: isKo ? "모국어로 게시하세요. AI가 20개 언어로 자동 번역합니다." : "Post in your native language. AI translates everything to 20 languages automatically.",
-  },
-  {
-    icon: "💎",
-    title: isKo ? "80% 수익" : "Keep 80%",
-    desc: isKo ? "크리에이터는 모든 구독 및 콘텐츠 수익의 80%를 가져갑니다. USDC 또는 ETH로 즉시 지급." : "Creators keep 80% of all subscription and content revenue. Paid instantly in USDC or ETH.",
-  },
-  {
-    icon: "🔗",
-    title: isKo ? "추천인 수익" : "Earn from Referrals",
-    desc: "Refer other creators. Vinus shares 10% of its 20% platform fee with referrers — automatically, on-chain. Level 1: 1% · Level 2: 0.6% · Level 3: 0.4% of total transaction. Creator always keeps 80%.",
-  },
-];
-
-const STEPS = [
-  { num: "01", title: isKo ? "MetaMask 연결" : "Connect MetaMask", desc: isKo ? "지갑이 곧 신원입니다. 이메일 없음. 비밀번호 없음. KYC 없음." : "Your wallet is your identity. No email. No password. No KYC." },
-  { num: "02", title: isKo ? "프로필 설정" : "Set up your profile", desc: "Choose a display name, category, and bio. Your wallet address stays private." },
-  { num: "03", title: isKo ? "가격 설정" : "Set your prices", desc: "Create subscription tiers or sell individual content. You set the price in USD — fans pay in crypto." },
-  { num: "04", title: isKo ? "콘텐츠 게시" : "Post content", desc: "Upload images, videos, audio, or text. AI translates to 20 languages instantly." },
-  { num: "05", title: isKo ? "수익 받기" : "Get paid", desc: "Earnings flow directly to your wallet via smart contract. No middleman. No delays." },
-];
-
-const FAQS = [
-  {
-    q: "Do I need to verify my identity?",
-    a: "No. Vinus is fully anonymous. Your wallet address is your identity. We never ask for your name, email, or ID.",
-  },
-  {
-    q: "What currencies can fans pay with?",
-    a: "USDC, USDT (Tether), and ETH — all on Base Network. Low gas fees, fast transactions.",
-  },
-  {
-    q: "How does the 80/20 split work?",
-    a: "80% goes directly to your wallet via smart contract the moment a fan subscribes or purchases. 20% goes to Vinus. Referral commissions (up to 10%) are deducted from the Vinus share — not yours.",
-  },
-  {
-    q: "What is the referral system?",
-    a: "Vinus charges a 20% platform fee. 10% of that fee is shared with referrers via smart contract — so 2% of every total transaction goes to the referral chain. Level 1 (you): 1% of total · Level 2: 0.6% · Level 3: 0.4%. Creator always keeps 80%. All automatic, on-chain, forever.",
-  },
-  {
-    q: "Can I post in any language?",
-    a: "Yes. Post in Korean, Japanese, Arabic, or any language. The AI Manager automatically translates your posts, comments, and DMs into 20 languages so fans worldwide can understand you.",
-  },
-  {
-    q: "What content can I post?",
-    a: "Images, videos, audio, and text. You control who can see what — free, subscribers only, or pay-per-view.",
-  },
-];
-
 export default function BecomeCreatorPage() {
   const { lang } = useLang();
   const { isConnected } = useAccount();
+
+  const TIERS = [
+    {
+      icon: "✦",
+      title: isKo ? "누구나 크리에이터" : "Any Creator",
+      desc: isKo ? "MetaMask 지갑만 있으면 누구나 크리에이터가 될 수 있습니다. 지원서 없음. 승인 없음. 즉시." : "Anyone with a MetaMask wallet can become a creator. No application. No approval. Instant.",
+    },
+    {
+      icon: "🌐",
+      title: isKo ? "모든 언어" : "Any Language",
+      desc: isKo ? "모국어로 게시하세요. AI가 20개 언어로 자동 번역합니다." : "Post in your native language. AI translates everything to 20 languages automatically.",
+    },
+    {
+      icon: "💎",
+      title: isKo ? "80% 수익" : "Keep 80%",
+      desc: isKo ? "크리에이터는 모든 구독 및 콘텐츠 수익의 80%를 가져갑니다. USDC 또는 ETH로 즉시 지급." : "Creators keep 80% of all subscription and content revenue. Paid instantly in USDC or ETH.",
+    },
+    {
+      icon: "🔗",
+      title: isKo ? "추천인 수익" : "Earn from Referrals",
+      desc: "Refer other creators. Vinus shares 10% of its 20% platform fee with referrers — automatically, on-chain. Level 1: 1% · Level 2: 0.6% · Level 3: 0.4% of total transaction. Creator always keeps 80%.",
+    },
+  ];
+  
+  
+  const STEPS = [
+    { num: "01", title: isKo ? "MetaMask 연결" : "Connect MetaMask", desc: isKo ? "지갑이 곧 신원입니다. 이메일 없음. 비밀번호 없음. KYC 없음." : "Your wallet is your identity. No email. No password. No KYC." },
+    { num: "02", title: isKo ? "프로필 설정" : "Set up your profile", desc: "Choose a display name, category, and bio. Your wallet address stays private." },
+    { num: "03", title: isKo ? "가격 설정" : "Set your prices", desc: "Create subscription tiers or sell individual content. You set the price in USD — fans pay in crypto." },
+    { num: "04", title: isKo ? "콘텐츠 게시" : "Post content", desc: "Upload images, videos, audio, or text. AI translates to 20 languages instantly." },
+    { num: "05", title: isKo ? "수익 받기" : "Get paid", desc: "Earnings flow directly to your wallet via smart contract. No middleman. No delays." },
+  ];
+  
+  
+  const FAQS = [
+    {
+      q: "Do I need to verify my identity?",
+      a: "No. Vinus is fully anonymous. Your wallet address is your identity. We never ask for your name, email, or ID.",
+    },
+    {
+      q: "What currencies can fans pay with?",
+      a: "USDC, USDT (Tether), and ETH — all on Base Network. Low gas fees, fast transactions.",
+    },
+    {
+      q: "How does the 80/20 split work?",
+      a: "80% goes directly to your wallet via smart contract the moment a fan subscribes or purchases. 20% goes to Vinus. Referral commissions (up to 10%) are deducted from the Vinus share — not yours.",
+    },
+    {
+      q: "What is the referral system?",
+      a: "Vinus charges a 20% platform fee. 10% of that fee is shared with referrers via smart contract — so 2% of every total transaction goes to the referral chain. Level 1 (you): 1% of total · Level 2: 0.6% · Level 3: 0.4%. Creator always keeps 80%. All automatic, on-chain, forever.",
+    },
+    {
+      q: "Can I post in any language?",
+      a: "Yes. Post in Korean, Japanese, Arabic, or any language. The AI Manager automatically translates your posts, comments, and DMs into 20 languages so fans worldwide can understand you.",
+    },
+    {
+      q: "What content can I post?",
+      a: "Images, videos, audio, and text. You control who can see what — free, subscribers only, or pay-per-view.",
+    },
+  ];
+  
+  
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
