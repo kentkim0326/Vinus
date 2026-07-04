@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "../../lib/basePath";
+
 import { useLang } from "../../components/LangProvider";
 import { t } from "../../lib/i18n";
 
@@ -90,7 +92,7 @@ function SuccessContent() {
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        <a href="/feed" style={{
+        <a href={href("/feed")} style={{
           backgroundColor: "var(--accent)",
           color: "var(--text-primary)",
           padding: "16px",
@@ -101,7 +103,7 @@ function SuccessContent() {
         }}>
           GO TO YOUR FEED
         </a>
-        <a href="/explore" style={{
+        <a href={href("/explore")} style={{
           border: "1px solid #1A0008",
           color: "var(--text-dim)",
           padding: "16px",
