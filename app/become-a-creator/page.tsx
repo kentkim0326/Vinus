@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "../lib/basePath";
+
 import { useLang } from "../components/LangProvider";
 import { t } from "../lib/i18n";
 
@@ -126,7 +128,7 @@ export default function BecomeCreatorPage() {
 
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
             {isConnected ? (
-              <a href="/dashboard" style={{
+              <a href={href("/dashboard")} style={{
                 backgroundColor: "var(--accent)",
                 color: "var(--accent-fg)",
                 padding: "16px 40px",
@@ -139,7 +141,7 @@ export default function BecomeCreatorPage() {
             ) : (
               <WalletButton />
             )}
-            <a href="/about" style={{
+            <a href={href("/about")} style={{
               border: "1px solid var(--border)",
               color: "var(--text-dim)",
               padding: "16px 32px",
