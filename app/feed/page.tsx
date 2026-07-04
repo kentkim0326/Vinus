@@ -399,7 +399,7 @@ export default function FeedPage() {
 
         <div>
           {filteredPosts.map((post) => (
-            <PostCard key={post.id} post={post} onPurchase={setPurchaseItem} />
+            <PostCard lang={lang} key={post.id} post={post} onPurchase={setPurchaseItem} />
           ))}
         </div>
       </div>
