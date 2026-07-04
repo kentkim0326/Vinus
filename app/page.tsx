@@ -18,9 +18,9 @@ function AnimatedStats({ lang }: { lang: string }) {
   const c3 = useCountUp(100, 1800);
 
   const stats = [
-    { ref: c1.ref, value: c1.count + "+", label: lang === "ko" ? "크리에이터" : "Creators" },
-    { ref: c2.ref, value: c2.count >= 1000 ? Math.floor(c2.count/1000) + "K+" : c2.count + "+", label: lang === "ko" ? "구독자" : "Subscribers" },
-    { ref: c3.ref, value: c3.count + "%", label: lang === "ko" ? "암호화폐 결제" : "Crypto Payments" },
+    { ref: c1.ref, value: c1.count + "+", label: t(lang as any, "home.stat.creators") },
+    { ref: c2.ref, value: c2.count >= 1000 ? Math.floor(c2.count/1000) + "K+" : c2.count + "+", label: t(lang as any, "home.stat.subscribers") },
+    { ref: c3.ref, value: c3.count + "%", label: t(lang as any, "home.stat.crypto") },
   ];
 
   return (
@@ -119,7 +119,8 @@ function CreatorCard({ creator }: { creator: Creator }) {
   );
 }
 
-function getAIFeatures(isKo: boolean) {
+function getAIFeatures(lang: string) {
+  const isKo = lang === "ko";
   return [
     { icon: "🌐", label: isKo ? "AI 번역" : "AI Translation", desc: isKo ? "20개 언어 자동 번역" : "Auto-translated to 20 languages" },
     { icon: "🎙", label: isKo ? "AI 더빙" : "AI Dubbing", desc: isKo ? "모든 언어로 음성 복제" : "Voice cloned in every language" },
@@ -311,7 +312,7 @@ export default function Home() {
             gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
             gap: "2px",
           }}>
-            {getAIFeatures(lang === "ko").map((f) => (
+            {getAIFeatures(lang).map((f) => (
               <div key={f.label} style={{
                 backgroundColor: "var(--bg-base)",
                 padding: "28px 24px",
