@@ -61,7 +61,7 @@ function ContentCard({
           top: "10px",
           left: "10px",
           backgroundColor: TYPE_COLOR[item.type] ?? "#888",
-          color: "#0A0A0A",
+          color: "var(--bg-base)",
           fontSize: "9px",
           fontWeight: "bold",
           letterSpacing: "1.5px",
