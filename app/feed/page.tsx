@@ -1,5 +1,7 @@
 "use client";
 
+import { imgSrc } from "../lib/basePath";
+
 import { useLang } from "../components/LangProvider";
 import { t } from "../lib/i18n";
 
