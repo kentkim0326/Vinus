@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "../lib/basePath";
+
 import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
 import { useLang } from "./LangProvider";
@@ -29,7 +31,7 @@ export default function Navbar() {
       zIndex: 100,
     }}>
       {/* Logo */}
-      <a href="/" style={{
+      <a href={href("/")} style={{
         display: "flex",
         alignItems: "center",
         gap: "10px",
@@ -49,19 +51,19 @@ export default function Navbar() {
 
       {/* Desktop nav */}
       <div style={{ display: "flex", gap: "16px", alignItems: "center" }} className="desktop-nav">
-        <a href="/explore" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+        <a href={href("/explore")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
           {t(lang, "nav.explore")}
         </a>
-        <a href="/feed" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+        <a href={href("/feed")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
           {t(lang, "nav.feed")}
         </a>
-        <a href="/roadmap" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+        <a href={href("/roadmap")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
           {lang === "ko" ? "로드맵" : "Roadmap"}
         </a>
-        <a href="/about" style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+        <a href={href("/about")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
           About
         </a>
-        <a href="/become-a-creator" style={{ color: "var(--accent)", textDecoration: "none", fontSize: "12px", letterSpacing: "1px", border: "1px solid var(--accent)", padding: "5px 12px" }}>
+        <a href={href("/become-a-creator")} style={{ color: "var(--accent)", textDecoration: "none", fontSize: "12px", letterSpacing: "1px", border: "1px solid var(--accent)", padding: "5px 12px" }}>
           BECOME A CREATOR
         </a>
 
@@ -147,10 +149,10 @@ export default function Navbar() {
           gap: "20px",
           zIndex: 99,
         }}>
-          <a href="/explore" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
+          <a href={href("/explore")} onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
             {t(lang, "nav.explore")}
           </a>
-          <a href="/feed" onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
+          <a href={href("/feed")} onClick={() => setMenuOpen(false)} style={{ color: "var(--text-muted)", textDecoration: "none", fontSize: "16px" }}>
             {t(lang, "nav.feed")}
           </a>
           <WalletButton />
