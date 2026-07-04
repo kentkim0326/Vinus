@@ -50,10 +50,26 @@ function ContentCard({
         fontSize: "48px",
         position: "relative",
         borderBottom: "1px solid var(--border)",
+        overflow: "hidden",
       }}>
-        <span style={{ filter: isLocked ? "blur(2px)" : "none", opacity: isLocked ? 0.4 : 1 }}>
-          {item.thumbnail}
-        </span>
+        {item.image ? (
+          <img
+            src={item.image}
+            alt={item.title}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              filter: isLocked ? "blur(8px)" : "none",
+              opacity: isLocked ? 0.6 : 1,
+              transition: "all 0.3s",
+            }}
+          />
+        ) : (
+          <span style={{ filter: isLocked ? "blur(2px)" : "none", opacity: isLocked ? 0.4 : 1 }}>
+            {item.thumbnail}
+          </span>
+        )}
 
         {/* Type badge */}
         <span style={{
