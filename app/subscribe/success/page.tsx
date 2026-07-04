@@ -64,12 +64,12 @@ function SuccessContent() {
       </h1>
 
       <p style={{ color: "#666", fontSize: "16px", lineHeight: 1.8, marginBottom: "8px" }}>
-        Your subscription to{" "}
-        <span style={{ color: "var(--text-primary)" }}>{creator.name}</span> is now active.
+        {lang === "ko" ? "의 구독이 시작됐습니다." : "Your subscription to"}{" "}
+        <span style={{ color: "var(--text-primary)" }}>{creator.name}</span> {lang === "ko" ? "" : "is now active."}
       </p>
 
       <p style={{ color: "var(--text-faint)", fontSize: "14px", lineHeight: 1.8, marginBottom: "56px" }}>
-        {tier.name} tier · ${tier.price}/mo · Paid with crypto
+        {tier.name} {lang === "ko" ? "등급 ·" : "tier ·"} ${tier.price}/mo · {lang === "ko" ? "암호화폐로 결제" : "Paid with crypto"}
       </p>
 
       <div style={{
