@@ -131,7 +131,7 @@ const STATUS_CONFIG = {
 
 export default function RoadmapPage() {
   const { lang } = useLang();
-  const isKo = lang === "ko";
+  const L = lang as any;
 
   return (
     <main style={{ backgroundColor: "var(--bg-base)", minHeight: "100vh", color: "var(--text-primary)", fontFamily: "system-ui, sans-serif" }}>
@@ -141,15 +141,13 @@ export default function RoadmapPage() {
       <section style={{ padding: "80px 48px 64px", borderBottom: "1px solid var(--border)", background: "linear-gradient(180deg, var(--bg-card) 0%, var(--bg-base) 100%)" }}>
         <div style={{ maxWidth: "760px", margin: "0 auto" }}>
           <p style={{ color: "var(--accent)", fontSize: "10px", letterSpacing: "5px", marginBottom: "16px" }}>
-            {isKo ? "개발 로드맵" : "ROADMAP"}
+            {t(L, "road.label")}
           </p>
           <h1 style={{ fontFamily: "Georgia, serif", fontSize: "clamp(36px, 5vw, 60px)", fontWeight: "normal", lineHeight: 1.1, marginBottom: "20px" }}>
-            {isKo ? "Vinus의 미래" : "Building the future."}
+            {t(L, "road.title")}
           </h1>
           <p style={{ color: "var(--text-muted)", fontSize: "17px", lineHeight: 1.8 }}>
-            {isKo
-              ? "세계 최초 AI 기반 Web3 크리에이터 플랫폼의 개발 계획입니다. 투명하게 공개합니다."
-              : "Our public development plan for the world's first AI-powered Web3 creator platform."}
+            {t(L, "road.sub")}
           </p>
         </div>
       </section>
@@ -201,10 +199,10 @@ export default function RoadmapPage() {
                     border: `1px solid ${cfg.color}`,
                     color: cfg.color,
                   }}>
-                    {cfg.label[isKo ? "ko" : "en"]}
+                    {cfg.label[lang === "ko" ? "ko" : "en"]}
                   </span>
                   <span style={{ color: "var(--text-ghost)", fontSize: "12px" }}>
-                    {phase.period[isKo ? "ko" : "en"]}
+                    {phase.period[lang === "ko" ? "ko" : "en"]}
                   </span>
                 </div>
 
@@ -215,7 +213,7 @@ export default function RoadmapPage() {
                   color: "var(--text-primary)",
                   marginBottom: "20px",
                 }}>
-                  {phase.title[isKo ? "ko" : "en"]}
+                  {phase.title[lang === "ko" ? "ko" : "en"]}
                 </h2>
 
                 <div style={{
@@ -224,7 +222,7 @@ export default function RoadmapPage() {
                   padding: "20px 24px",
                   borderLeft: `2px solid ${cfg.color}`,
                 }}>
-                  {phase.items[isKo ? "ko" : "en"].map((item, j) => (
+                  {phase.items[lang === "ko" ? "ko" : "en"].map((item, j) => (
                     <div key={j} style={{ display: "flex", gap: "10px", alignItems: "flex-start", marginBottom: j < phase.items.en.length - 1 ? "10px" : "0" }}>
                       <span style={{ color: cfg.color, fontSize: "10px", marginTop: "3px", flexShrink: 0 }}>✦</span>
                       <span style={{ fontSize: "14px", color: "var(--text-muted)", lineHeight: 1.6 }}>{item}</span>
@@ -240,7 +238,7 @@ export default function RoadmapPage() {
       {/* CTA */}
       <div style={{ borderTop: "1px solid var(--border)", padding: "64px 48px", textAlign: "center" }}>
         <p style={{ color: "var(--text-muted)", fontSize: "15px", marginBottom: "32px" }}>
-          {isKo ? "지금 Phase 1에 합류하세요." : "Join us in Phase 1."}
+          {t(L, "road.join")}
         </p>
         <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
           <a href={href("/become-a-creator")} style={{
@@ -251,7 +249,7 @@ export default function RoadmapPage() {
             fontSize: "12px",
             letterSpacing: "2px",
           }}>
-            {isKo ? "크리에이터 되기" : "BECOME A CREATOR"}
+            {t(L, "home.cta2")}
           </a>
           <a href={href("/explore")} style={{
             border: "1px solid var(--border)",
@@ -261,7 +259,7 @@ export default function RoadmapPage() {
             fontSize: "12px",
             letterSpacing: "2px",
           }}>
-            {isKo ? "탐색하기" : "EXPLORE"}
+            {t(L, "nav.explore")}
           </a>
         </div>
       </div>
