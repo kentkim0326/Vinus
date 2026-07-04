@@ -221,7 +221,7 @@ function PostCard({
               backgroundColor: "rgba(10,0,3,0.7)",
             }}>
               <p style={{ color: "var(--text-dim)", fontSize: "13px" }}>
-                {post.price !== null ? `Buy for $${post.price}` : "Subscribers only"}
+                {post.price !== null ? lang === "ko" ? `$${post.price}에 구매` : `Buy for $${post.price}` : lang === "ko" ? "구독자 전용" : "Subscribers only"}
               </p>
               {post.price !== null ? (
                 <div style={{ display: "flex", gap: "10px" }}>
