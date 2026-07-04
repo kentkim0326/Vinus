@@ -9,6 +9,7 @@ import Navbar from "../../components/Navbar";
 import { creators } from "../../lib/data";
 
 function SuccessContent() {
+  const { lang } = useLang();
   const [visible, setVisible] = useState(false);
   const searchParams = useSearchParams();
   const { lang } = useLang();
