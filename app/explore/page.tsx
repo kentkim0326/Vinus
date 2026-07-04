@@ -2,6 +2,7 @@
 
 import Navbar from "../components/Navbar";
 import { useState } from "react";
+import { useDebounce } from "../lib/useDebounce";
 import { creators } from "../lib/data";
 import { useLang } from "../components/LangProvider";
 import { t } from "../lib/i18n";
@@ -21,13 +22,14 @@ export default function ExplorePage() {
 
   const [activeCategory, setActiveCategory] = useState("all");
   const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 300);
   const [sort, setSort] = useState<"popular" | "newest">("popular");
 
   const filtered = creators
     .filter((c) => activeCategory === "all" || c.category === activeCategory)
     .filter((c) =>
-      c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.category.toLowerCase().includes(search.toLowerCase())
+      c.name.toLowerCase().includes(debouncedSearch.toLowerCase()) ||
+      c.category.toLowerCase().includes(debouncedSearch.toLowerCase())
     )
     .sort((a, b) => sort === "popular" ? b.subscribers - a.subscribers : b.id - a.id);
 
