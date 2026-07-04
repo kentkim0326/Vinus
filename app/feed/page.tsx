@@ -302,7 +302,6 @@ function PostCard({
                 {post.preview}
               </div>
             ) : null}
-            )}
             <p style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.8 }}>
               {post.content}
             </p>
