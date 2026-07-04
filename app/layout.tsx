@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     title: "Vinus — The World's First AI-Powered Web3 Creator Platform",
     description: "Anonymous. Transparent. Global. AI translation in 20 languages. Crypto payments on Base Network.",
     url: "https://vinus-black.vercel.app",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Vinus" }],
+    images: [{ url: (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/og-image.png", width: 1200, height: 630, alt: "Vinus" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/favicon.ico" },
+      { url: (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png" }],
+    apple: [{ url: (process.env.NEXT_PUBLIC_BASE_PATH || "") + "/apple-touch-icon.png" }],
   },
   robots: { index: true, follow: true },
 };
@@ -72,7 +72,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <head>
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href={(process.env.NEXT_PUBLIC_BASE_PATH || "") + "/manifest.json"} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col">
