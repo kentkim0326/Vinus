@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "./lib/basePath";
+
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import VinusLogo from "./components/VinusLogo";
@@ -224,7 +226,7 @@ export default function Home() {
             }}>
               {t(lang, "home.cta1")}
             </a>
-            <a href="/become-a-creator" style={{
+            <a href={href("/become-a-creator")} style={{
               border: "1px solid var(--border)",
               color: "var(--text-dim)",
               padding: "14px 32px",
@@ -405,7 +407,7 @@ export default function Home() {
                 {t(lang, "home.section.title")}
               </h2>
             </div>
-            <a href="/explore" style={{ color: "var(--text-dim)", fontSize: "12px", textDecoration: "none", letterSpacing: "2px" }}>
+            <a href={href("/explore")} style={{ color: "var(--text-dim)", fontSize: "12px", textDecoration: "none", letterSpacing: "2px" }}>
               {t(lang, "home.section.all")}
             </a>
           </div>
