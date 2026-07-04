@@ -286,11 +286,30 @@ function PostCard({
                 alignItems: "center",
                 justifyContent: "center",
                 marginBottom: "16px",
+            {post.image ? (
+              <div style={{
+                width: "100%",
+                height: "240px",
+                overflow: "hidden",
+                marginBottom: "16px",
+                borderRadius: "4px",
+              }}>
+                <img src={imgSrc(post.image)} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+            ) : (
+              <div style={{
+                backgroundColor: "var(--bg-deep)",
+                height: "180px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "16px",
                 fontSize: "48px",
                 color: "var(--border)",
               }}>
                 {post.preview}
               </div>
+            )}
             )}
             <p style={{ color: "var(--text-muted)", fontSize: "15px", lineHeight: 1.8 }}>
               {post.content}
