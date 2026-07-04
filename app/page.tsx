@@ -132,6 +132,7 @@ function getAIFeatures(isKo: boolean) {
 
 export default function Home() {
   const { lang } = useLang();
+  const isKo = lang === "ko";
 
   return (
     <main style={{
