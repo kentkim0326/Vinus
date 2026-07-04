@@ -354,7 +354,7 @@ export default function MyPage() {
                     width: "100%",
                     backgroundColor: "var(--bg-card)",
                     border: "1px solid #1A0008",
-                    color: "#666",
+                    color: "var(--text-dim)",
                     padding: "14px 16px",
                     fontSize: "13px",
                     outline: "none",
