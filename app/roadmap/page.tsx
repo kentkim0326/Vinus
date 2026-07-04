@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "../lib/basePath";
+
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useLang } from "../components/LangProvider";
@@ -241,7 +243,7 @@ export default function RoadmapPage() {
           {isKo ? "지금 Phase 1에 합류하세요." : "Join us in Phase 1."}
         </p>
         <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-          <a href="/become-a-creator" style={{
+          <a href={href("/become-a-creator")} style={{
             backgroundColor: "var(--accent)",
             color: "var(--accent-fg)",
             padding: "14px 32px",
@@ -251,7 +253,7 @@ export default function RoadmapPage() {
           }}>
             {isKo ? "크리에이터 되기" : "BECOME A CREATOR"}
           </a>
-          <a href="/explore" style={{
+          <a href={href("/explore")} style={{
             border: "1px solid var(--border)",
             color: "var(--text-dim)",
             padding: "14px 32px",
