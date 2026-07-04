@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "./lib/basePath";
+
 import Navbar from "./components/Navbar";
 import { useLang } from "./components/LangProvider";
 import { t } from "./lib/i18n";
@@ -62,7 +64,7 @@ export default function NotFound() {
         </p>
 
         <div style={{ display: "flex", gap: "12px", justifyContent: "center", flexWrap: "wrap" }}>
-          <a href="/" style={{
+          <a href={href("/")} style={{
             backgroundColor: "var(--accent)",
             color: "var(--text-primary)",
             padding: "14px 32px",
@@ -72,7 +74,7 @@ export default function NotFound() {
           }}>
             GO HOME
           </a>
-          <a href="/explore" style={{
+          <a href={href("/explore")} style={{
             border: "1px solid #1A0008",
             color: "var(--text-dim)",
             padding: "14px 32px",
