@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "../components/Footer";
 import Navbar from "./components/Navbar";
 import VinusLogo from "./components/VinusLogo";
 import { useState } from "react";
@@ -414,27 +415,7 @@ export default function Home() {
       </section>
 
       {/* ── Footer ── */}
-      <footer style={{
-        padding: "40px 48px",
-        borderTop: "1px solid var(--border)",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        flexWrap: "wrap",
-        gap: "12px",
-      }}>
-        <div>
-          <span style={{ fontFamily: "Georgia, serif", color: "var(--accent)", letterSpacing: "5px", fontSize: "16px" }}>
-            VINUS
-          </span>
-          <span style={{ color: "var(--text-ghost)", fontSize: "11px", marginLeft: "16px", letterSpacing: "1px" }}>
-            AI-POWERED · WEB3 · GLOBAL
-          </span>
-        </div>
-        <span style={{ color: "var(--text-ultra)", fontSize: "12px" }}>
-          © 2026 {t(lang, "footer.copy")}
-        </span>
-      </footer>
+            <Footer />
     </main>
   );
 }
