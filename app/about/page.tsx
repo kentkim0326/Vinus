@@ -2,6 +2,7 @@
 
 import { useLang } from "../components/LangProvider";
 import { useState } from "react";
+import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
 export default function AboutPage() {
@@ -257,17 +258,7 @@ export default function AboutPage() {
         </section>
       </div>
 
-      <footer style={{ padding: "32px 48px", borderTop: "1px solid var(--border)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
-        <div>
-          <span style={{ fontFamily: "Georgia, serif", color: "var(--accent)", letterSpacing: "5px", fontSize: "16px" }}>VINUS</span>
-          <span style={{ color: "var(--text-ghost)", fontSize: "11px", marginLeft: "16px", letterSpacing: "1px" }}>AI-POWERED · WEB3 · GLOBAL</span>
-        </div>
-        <div style={{ display: "flex", gap: "24px" }}>
-          <a href="/become-a-creator" style={{ color: "var(--text-ghost)", fontSize: "12px", textDecoration: "none" }}>{isKo ? "크리에이터 되기" : "BECOME A CREATOR"}</a>
-          <a href="/explore" style={{ color: "var(--text-ghost)", fontSize: "12px", textDecoration: "none" }}>{isKo ? "탐색" : "EXPLORE"}</a>
-        </div>
-        <span style={{ color: "var(--text-ultra)", fontSize: "12px" }}>© 2026 Vinus. {isKo ? "모든 권리 보유." : "All rights reserved."}</span>
-      </footer>
+            <Footer />
     </main>
   );
 }
