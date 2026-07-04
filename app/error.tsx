@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "./lib/basePath";
+
 import { useEffect } from "react";
 
 export default function Error({
@@ -54,7 +56,7 @@ export default function Error({
           >
             TRY AGAIN
           </button>
-          <a href="/" style={{
+          <a href={href("/")} style={{
             border: "1px solid var(--border)",
             color: "var(--text-dim)",
             padding: "12px 28px",
