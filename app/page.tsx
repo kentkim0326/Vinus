@@ -119,14 +119,16 @@ function CreatorCard({ creator }: { creator: Creator }) {
   );
 }
 
-const AI_FEATURES = [
-  { icon: "🌐", label: "AI Translation", desc: "Auto-translated to 8 languages" },
-  { icon: "🎙", label: "AI Dubbing",     desc: "Voice cloned in every language" },
-  { icon: "🤖", label: "AI Manager",     desc: "Replies to fans while you sleep" },
-  { icon: "📊", label: "AI Analytics",   desc: "Growth insights & best upload times" },
-  { icon: "💎", label: "Web3 Payments",  desc: "Crypto subscriptions on Base" },
-  { icon: "🔗", label: "3-Level Referral", desc: "5% / 3% / 2% on-chain commission" },
-];
+function getAIFeatures(isKo: boolean) {
+  return [
+    { icon: "🌐", label: isKo ? "AI 번역" : "AI Translation", desc: isKo ? "20개 언어 자동 번역" : "Auto-translated to 20 languages" },
+    { icon: "🎙", label: isKo ? "AI 더빙" : "AI Dubbing", desc: isKo ? "모든 언어로 음성 복제" : "Voice cloned in every language" },
+    { icon: "🤖", label: isKo ? "AI 매니저" : "AI Manager", desc: isKo ? "자는 동안 팬에게 답변" : "Replies to fans while you sleep" },
+    { icon: "📊", label: isKo ? "AI 분석" : "AI Analytics", desc: isKo ? "성장 인사이트 & 최적 업로드 시간" : "Growth insights & best upload times" },
+    { icon: "💎", label: isKo ? "Web3 결제" : "Web3 Payments", desc: isKo ? "Base 네트워크 암호화폐 구독" : "Crypto subscriptions on Base" },
+    { icon: "🔗", label: isKo ? "3단계 추천인" : "3-Level Referral", desc: isKo ? "온체인 자동 커미션" : "On-chain auto commission" },
+  ];
+}
 
 export default function Home() {
   const { lang } = useLang();
@@ -168,7 +170,7 @@ export default function Home() {
               letterSpacing: "2px",
               fontWeight: "600",
             }}>
-              THE WORLD'S FIRST AI-POWERED WEB3 CREATOR PLATFORM
+              {lang === "ko" ? "세계 최초 AI 기반 Web3 크리에이터 플랫폼" : "THE WORLD'S FIRST AI-POWERED WEB3 CREATOR PLATFORM"}
             </span>
           </div>
 
@@ -206,7 +208,7 @@ export default function Home() {
             marginBottom: "40px",
             maxWidth: "420px",
           }}>
-            AI translates your content to 8 languages. AI dubs your videos. AI manages your fans — 24/7.
+            {lang === "ko" ? "AI가 콘텐츠를 20개 언어로 번역합니다. AI가 영상을 더빙합니다. AI가 팬을 24/7 관리합니다." : "AI translates your content to 20 languages. AI dubs your videos. AI manages your fans — 24/7."}
           </p>
 
           <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
@@ -299,7 +301,7 @@ export default function Home() {
               Your AI works while you create.
             </h2>
             <p style={{ color: "var(--text-muted)", fontSize: "15px", maxWidth: "520px", margin: "0 auto", lineHeight: 1.8 }}>
-              Upload once. Reach the world. Your AI Manager handles translation, dubbing, fan chat, and analytics — automatically.
+              {lang === "ko" ? "한 번 업로드하세요. 전 세계에 도달하세요. AI 매니저가 번역, 더빙, 팬 채팅, 분석을 자동으로 처리합니다." : "Upload once. Reach the world. Your AI Manager handles translation, dubbing, fan chat, and analytics — automatically."}
             </p>
           </div>
 
@@ -308,7 +310,7 @@ export default function Home() {
             gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
             gap: "2px",
           }}>
-            {AI_FEATURES.map((f) => (
+            {getAIFeatures(lang === "ko").map((f) => (
               <div key={f.label} style={{
                 backgroundColor: "var(--bg-base)",
                 padding: "28px 24px",
@@ -348,13 +350,19 @@ export default function Home() {
           </h2>
 
           <div style={{ display: "flex", gap: "0", flexWrap: "wrap", justifyContent: "center" }}>
-            {[
+            {(lang === "ko" ? [
+              { step: "01", title: "MetaMask 연결",  desc: "이메일 없이. 비밀번호 없이. 지갑이 당신의 신원입니다." },
+              { step: "02", title: "콘텐츠 업로드",    desc: "내 언어로 영상, 이미지, 오디오, 텍스트를 게시하세요." },
+              { step: "03", title: "AI가 일합니다",   desc: "20개 언어로 번역, 더빙, 게시를 즉시 처리합니다." },
+              { step: "04", title: "팬이 암호화폐로 결제",desc: "구독 또는 구매. Base Network에서 USDC, ETH." },
+              { step: "05", title: "추천인 수익", desc: "3단계 온체인 추천인: 자동 분배." },
+            ] : [
               { step: "01", title: "Connect MetaMask",  desc: "No email. No password. Your wallet is your identity." },
               { step: "02", title: "Upload Content",    desc: "Post videos, images, audio, or text in your language." },
-              { step: "03", title: "AI Goes to Work",   desc: "Translates, dubs, and publishes to 8 languages instantly." },
+              { step: "03", title: "AI Goes to Work",   desc: "Translates, dubs, and publishes to 20 languages instantly." },
               { step: "04", title: "Fans Pay in Crypto",desc: "Subscribe or buy content. USDC, ETH on Base Network." },
-              { step: "05", title: "Referral Earnings", desc: "3-level on-chain referral: 5% / 3% / 2% auto-distributed." },
-            ].map((s, i) => (
+              { step: "05", title: "Referral Earnings", desc: "3-level on-chain referral: auto-distributed." },
+            ]).map((s, i) => (
               <div key={s.step} style={{
                 flex: "1 1 180px",
                 padding: "28px 20px",
