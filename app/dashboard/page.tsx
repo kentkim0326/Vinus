@@ -170,7 +170,7 @@ export default function DashboardPage() {
                       fontSize: "11px",
                       letterSpacing: "1px",
                       padding: "4px 10px",
-                      border: `1px solid ${post.type === "FREE" ? "var(--text-ghost)" : post.type === "SUB" ? "#666" : "var(--accent)"}`,
+                      border: `1px solid ${post.type === "FREE" ? "var(--text-ghost)" : post.type === "SUB" ? "var(--text-dim)" : "var(--accent)"}`,
                       color: post.type === "FREE" ? "var(--text-dim)" : post.type === "SUB" ? "#888" : "var(--accent)",
                     }}>
                       {post.type}
@@ -459,7 +459,7 @@ export default function DashboardPage() {
                       fontSize: "11px",
                       letterSpacing: "1px",
                       padding: "4px 10px",
-                      border: `1px solid ${post.type === "FREE" ? "var(--text-ghost)" : post.type === "SUB" ? "#666" : "var(--accent)"}`,
+                      border: `1px solid ${post.type === "FREE" ? "var(--text-ghost)" : post.type === "SUB" ? "var(--text-dim)" : "var(--accent)"}`,
                       color: post.type === "FREE" ? "var(--text-dim)" : post.type === "SUB" ? "#888" : "var(--accent)",
                     }}>
                       {post.type}
