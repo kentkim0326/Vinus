@@ -63,7 +63,7 @@ function SuccessContent() {
         You're in.
       </h1>
 
-      <p style={{ color: "#666", fontSize: "16px", lineHeight: 1.8, marginBottom: "8px" }}>
+      <p style={{ color: "var(--text-dim)", fontSize: "16px", lineHeight: 1.8, marginBottom: "8px" }}>
         {lang === "ko" ? "의 구독이 시작됐습니다." : "Your subscription to"}{" "}
         <span style={{ color: "var(--text-primary)" }}>{creator.name}</span> {lang === "ko" ? "" : "is now active."}
       </p>
