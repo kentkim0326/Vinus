@@ -5,6 +5,8 @@ import { Web3Provider } from "./components/Web3Provider";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { LangProvider } from "./components/LangProvider";
 import AgeGate from "./components/AgeGate";
+import { ToastProvider } from "./components/Toast";
+import BottomNav from "./components/BottomNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -76,9 +78,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ThemeProvider>
           <LangProvider>
             <Web3Provider>
-              <AgeGate>
-                {children}
-              </AgeGate>
+              <ToastProvider>
+                <AgeGate>
+                  {children}
+                  <BottomNav />
+                </AgeGate>
+              </ToastProvider>
             </Web3Provider>
           </LangProvider>
         </ThemeProvider>
