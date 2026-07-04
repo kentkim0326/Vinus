@@ -8,6 +8,10 @@ import Navbar from "../../components/Navbar";
 import ContentGallery from "../../components/ContentGallery";
 import PurchaseModal from "../../components/PurchaseModal";
 import { creators } from "../../lib/data";
+
+export function generateStaticParams() {
+  return creators.map((c) => ({ id: String(c.id) }));
+}
 import { getCreatorContent, ContentItem } from "../../lib/content";
 import ShareButton from "../../components/ShareButton";
 
