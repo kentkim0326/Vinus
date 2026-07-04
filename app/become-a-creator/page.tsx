@@ -12,6 +12,7 @@ import { useState } from "react";
 
 export default function BecomeCreatorPage() {
   const { lang } = useLang();
+  const isKo = lang === "ko";
   const { isConnected } = useAccount();
 
   const TIERS = [
