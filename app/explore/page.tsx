@@ -187,7 +187,7 @@ export default function ExplorePage() {
                     {categoryLabels[creator.category] ?? creator.category}
                   </p>
                   <p style={{ color: "var(--text-muted)", fontSize: "13px", lineHeight: 1.6, marginBottom: "24px" }}>
-                    {creator.bio}
+                    {((typeof creator.bio === "string") ? creator.bio : (creator.bio as Record<string, string>)[lang] ?? (creator.bio as Record<string, string>).en)}
                   </p>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "16px", borderTop: "1px solid var(--border)" }}>
                     <span style={{ color: "var(--text-faint)", fontSize: "12px" }}>
