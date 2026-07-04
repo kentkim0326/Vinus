@@ -18,6 +18,7 @@ interface Post {
   creator: string;
   category: string;
   preview: string;
+  image?: string;
   title: string;
   content: string | null;
   date: string;
