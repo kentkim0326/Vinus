@@ -96,7 +96,7 @@ export default function EditProfilePage() {
             ✦
           </div>
           <div>
-            <p style={{ fontSize: "15px", color: "var(--text-primary)", marginBottom: "8px" }}>{lang === "ko" ? "프로필 사진" : "Profile Photo"}</p>
+            <p style={{ fontSize: "15px", color: "var(--text-primary)", marginBottom: "8px" }}>{t(lang as any, "profile.photo")}</p>
             <button style={{
               backgroundColor: "transparent",
               border: "1px solid var(--border)",
@@ -244,7 +244,7 @@ export default function EditProfilePage() {
                 transition: "all 0.3s",
               }}
             >
-              {saved ? (lang === "ko" ? "✓ 저장됨" : "✓ SAVED") : (lang === "ko" ? "변경 사항 저장" : "SAVE CHANGES")}
+              {saved ? (t(lang as any, "profile.saved")) : (t(lang as any, "profile.save"))}
             </button>
             <a href={href("/dashboard")} style={{
               padding: "16px 24px",
