@@ -1,6 +1,6 @@
 "use client";
 
-import Footer from "../components/Footer";
+import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import VinusLogo from "./components/VinusLogo";
 import { useState } from "react";
