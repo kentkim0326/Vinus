@@ -6,7 +6,8 @@ export type ContentItem = {
   description: string;
   price: number | null; // null = subscription only, number = buy price in USD
   isFree: boolean;
-  thumbnail: string; // emoji placeholder until real uploads
+  thumbnail: string;
+  image?: string; // emoji placeholder until real uploads
   date: string;
   duration?: string; // video/audio
   resolution?: string; // image
