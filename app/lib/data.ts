@@ -1,5 +1,4 @@
 // Creator data — single source of truth
-// Content data is in app/lib/content.ts
 
 export const creators = [
   {
@@ -10,7 +9,10 @@ export const creators = [
     preview: "✦",
     avatar: "/creators/creator_1.jpg",
     tier: "from $5/mo",
-    bio: "Digital artist exploring the boundaries between light and shadow. Exclusive prints, process videos, and early access to new collections.",
+    bio: {
+      en: "Digital artist exploring the boundaries between light and shadow. Exclusive prints, process videos, and early access to new collections.",
+      ko: "빛과 그림자의 경계를 탐구하는 디지털 아티스트. 독점 프린트, 과정 영상, 새 컬렉션 조기 접근.",
+    },
     tiers: [
       { name: "Supporter", price: 5, perks: ["Monthly wallpaper pack", "Early access to new art"] },
       { name: "Collector", price: 15, perks: ["Everything in Supporter", "Monthly print (digital)", "Behind the scenes content"] },
@@ -27,7 +29,10 @@ export const creators = [
     preview: "♪",
     avatar: "/creators/creator_2.jpg",
     tier: "from $3/mo",
-    bio: "Ambient soundscapes and electronic compositions. New tracks every week, stems for download, and live listening sessions.",
+    bio: {
+      en: "Ambient soundscapes and electronic compositions. New tracks every week, stems for download, and live listening sessions.",
+      ko: "앰비언트 사운드스케이프와 전자음악 작곡. 매주 새 트랙, 스템 다운로드, 라이브 리스닝 세션.",
+    },
     tiers: [
       { name: "Listener", price: 3, perks: ["Monthly exclusive track", "Early releases"] },
       { name: "Fan", price: 10, perks: ["Everything in Listener", "Stems & samples pack", "Monthly Q&A"] },
@@ -44,7 +49,10 @@ export const creators = [
     preview: "◈",
     avatar: "/creators/creator_3.jpg",
     tier: "from $8/mo",
-    bio: "Fine art photography from remote landscapes. Limited edition prints, location guides, and photography workshops.",
+    bio: {
+      en: "Fine art photography from remote landscapes. Limited edition prints, location guides, and photography workshops.",
+      ko: "오지 풍경을 담은 파인 아트 사진. 한정판 프린트, 위치 가이드, 사진 워크숍.",
+    },
     tiers: [
       { name: "Explorer", price: 8, perks: ["Monthly photo essay", "Location notes"] },
       { name: "Adventurer", price: 20, perks: ["Everything in Explorer", "Full resolution downloads", "Editing presets"] },
@@ -61,7 +69,10 @@ export const creators = [
     preview: "⬡",
     avatar: "/creators/creator_4.jpg",
     tier: "from $5/mo",
-    bio: "Concept art and world-building for games and films. Process breakdowns, asset packs, and design critiques.",
+    bio: {
+      en: "Concept art and world-building for games and films. Process breakdowns, asset packs, and design critiques.",
+      ko: "게임과 영화를 위한 컨셉 아트와 세계관 구축. 과정 분석, 에셋 팩, 디자인 크리틱.",
+    },
     tiers: [
       { name: "Viewer", price: 5, perks: ["Monthly asset pack", "Process videos"] },
       { name: "Student", price: 15, perks: ["Everything in Viewer", "Tutorial library access", "Brush packs"] },
@@ -78,7 +89,10 @@ export const creators = [
     preview: "✒",
     avatar: "/creators/creator_5.jpg",
     tier: "from $2/mo",
-    bio: "Dark fiction and world-building essays. Serialized stories, writing guides, and early manuscript access.",
+    bio: {
+      en: "Dark fiction and world-building essays. Serialized stories, writing guides, and early manuscript access.",
+      ko: "다크 픽션과 세계관 에세이. 연재 소설, 글쓰기 가이드, 원고 조기 접근.",
+    },
     tiers: [
       { name: "Reader", price: 2, perks: ["Monthly short story", "Newsletter"] },
       { name: "Subscriber", price: 8, perks: ["Everything in Reader", "Full serialized novel access", "Writing notes"] },
@@ -95,7 +109,10 @@ export const creators = [
     preview: "▶",
     avatar: "/creators/creator_6.jpg",
     tier: "from $10/mo",
-    bio: "Independent filmmaker and visual storyteller. Short films, director commentary, and filmmaking masterclasses.",
+    bio: {
+      en: "Independent filmmaker and visual storyteller. Short films, director commentary, and filmmaking masterclasses.",
+      ko: "독립 영화감독이자 비주얼 스토리텔러. 단편 영화, 감독 코멘터리, 영화 제작 마스터클래스.",
+    },
     tiers: [
       { name: "Watcher", price: 10, perks: ["Monthly short film", "Director commentary"] },
       { name: "Cinephile", price: 25, perks: ["Everything in Watcher", "Extended cuts", "Script access"] },
@@ -112,7 +129,10 @@ export const creators = [
     preview: "◐",
     avatar: "/creators/creator_7.jpg",
     tier: "from $6/mo",
-    bio: "Surrealist illustrations and limited edition prints.",
+    bio: {
+      en: "Surrealist illustrations and limited edition prints.",
+      ko: "초현실주의 일러스트와 한정판 프린트.",
+    },
     tiers: [
       { name: "Admirer", price: 6, perks: ["Monthly illustration", "Early access"] },
       { name: "Collector", price: 18, perks: ["Everything in Admirer", "Print downloads", "Process videos"] },
@@ -129,7 +149,10 @@ export const creators = [
     preview: "♫",
     avatar: "/creators/creator_8.jpg",
     tier: "from $4/mo",
-    bio: "Classical piano meets modern electronic production.",
+    bio: {
+      en: "Classical piano meets modern electronic production.",
+      ko: "클래식 피아노와 현대 전자음악의 만남.",
+    },
     tiers: [
       { name: "Listener", price: 4, perks: ["Monthly track", "Sheet music"] },
       { name: "Student", price: 12, perks: ["Everything in Listener", "Tutorial videos", "MIDI files"] },
@@ -146,7 +169,10 @@ export const creators = [
     preview: "❄",
     avatar: "/creators/creator_9.jpg",
     tier: "from $7/mo",
-    bio: "Arctic and wilderness photography.",
+    bio: {
+      en: "Arctic and wilderness photography.",
+      ko: "북극과 야생 사진.",
+    },
     tiers: [
       { name: "Explorer", price: 7, perks: ["Monthly photo series", "Location guides"] },
       { name: "Adventurer", price: 20, perks: ["Everything in Explorer", "Raw files", "Editing presets"] },
