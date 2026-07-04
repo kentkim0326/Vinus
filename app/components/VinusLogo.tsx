@@ -1,5 +1,7 @@
 "use client";
 
+import { imgSrc } from "../lib/basePath";
+
 import { useTheme } from "./ThemeProvider";
 
 interface VinusLogoProps {
@@ -12,7 +14,7 @@ export default function VinusLogo({ size = 40, className }: VinusLogoProps) {
 
   return (
     <img
-      src={theme === "dark" ? "/logo-dark.png" : "/logo-light.png"}
+      src={imgSrc(theme === "dark" ? "/logo-dark.png" : "/logo-light.png")}
       alt="Vinus"
       width={size}
       height={size}
