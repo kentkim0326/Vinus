@@ -15,7 +15,7 @@ export default function Navbar() {
   const isDark = theme === "dark";
 
   return (
-    <nav style={{
+    <nav aria-label="Main navigation" role="navigation" style={{
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
