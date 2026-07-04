@@ -1,5 +1,7 @@
 "use client";
 
+import { href, imgSrc } from "../../lib/basePath";
+
 import { useLang } from "../../components/LangProvider";
 import { t } from "../../lib/i18n";
 
@@ -244,7 +246,7 @@ export default function EditProfilePage() {
             >
               {saved ? (lang === "ko" ? "✓ 저장됨" : "✓ SAVED") : (lang === "ko" ? "변경 사항 저장" : "SAVE CHANGES")}
             </button>
-            <a href="/dashboard" style={{
+            <a href={href("/dashboard")} style={{
               padding: "16px 24px",
               border: "1px solid var(--border)",
               color: "var(--text-dim)",
