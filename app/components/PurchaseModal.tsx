@@ -2,6 +2,7 @@
 
 import { useLang } from "./LangProvider";
 import { t } from "../lib/i18n";
+import { useToast } from "./Toast";
 
 import { useState } from "react";
 import { ContentItem } from "../lib/content";
@@ -22,6 +23,7 @@ export default function PurchaseModal({
   onClose: () => void;
 }) {
   const { lang } = useLang();
+  const { showToast } = useToast();
   const [step, setStep] = useState<Step>("select");
   const [selectedCoin, setSelectedCoin] = useState(COINS[1]);
   const [txHash, setTxHash] = useState("");
@@ -34,8 +36,10 @@ export default function PurchaseModal({
   const handlePay = () => {
     setStep("pay");
     setTimeout(() => {
-      setTxHash("0x" + Math.random().toString(16).slice(2, 18) + "...");
+      const hash = "0x" + Math.random().toString(16).slice(2, 18) + "...";
+      setTxHash(hash);
       setStep("done");
+      showToast(lang === "ko" ? "콘텐츠 잠금이 해제됐습니다!" : "Content unlocked!", "success");
     }, 2000);
   };
 
