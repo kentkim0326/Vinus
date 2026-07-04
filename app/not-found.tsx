@@ -74,7 +74,7 @@ export default function NotFound() {
           </a>
           <a href="/explore" style={{
             border: "1px solid #1A0008",
-            color: "#666",
+            color: "var(--text-dim)",
             padding: "14px 32px",
             textDecoration: "none",
             fontSize: "13px",
