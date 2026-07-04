@@ -3,11 +3,40 @@
 import Navbar from "./components/Navbar";
 import VinusLogo from "./components/VinusLogo";
 import { useState } from "react";
+import { useCountUp } from "./lib/useCountUp";
 import { creators } from "./lib/data";
 import { useLang } from "./components/LangProvider";
 import { t } from "./lib/i18n";
 
 type Creator = typeof creators[0];
+
+
+function AnimatedStats({ lang }: { lang: string }) {
+  const c1 = useCountUp(9, 1500);
+  const c2 = useCountUp(18000, 2000);
+  const c3 = useCountUp(100, 1800);
+
+  const stats = [
+    { ref: c1.ref, value: c1.count + "+", label: lang === "ko" ? "크리에이터" : "Creators" },
+    { ref: c2.ref, value: c2.count >= 1000 ? Math.floor(c2.count/1000) + "K+" : c2.count + "+", label: lang === "ko" ? "구독자" : "Subscribers" },
+    { ref: c3.ref, value: c3.count + "%", label: lang === "ko" ? "암호화폐 결제" : "Crypto Payments" },
+  ];
+
+  return (
+    <div style={{ display: "flex", gap: "40px", marginTop: "56px", paddingTop: "40px", borderTop: "1px solid var(--border)", flexWrap: "wrap" }}>
+      {stats.map((stat) => (
+        <div key={stat.label} ref={stat.ref as any}>
+          <p style={{ fontFamily: "Georgia, serif", fontSize: "28px", color: "var(--text-primary)", marginBottom: "4px" }}>
+            {stat.value}
+          </p>
+          <p style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function CreatorCard({ creator }: { creator: Creator }) {
   const [hovered, setHovered] = useState(false);
@@ -203,29 +232,7 @@ export default function Home() {
           </div>
 
           {/* Stats */}
-          <div style={{
-            display: "flex",
-            gap: "40px",
-            marginTop: "56px",
-            paddingTop: "40px",
-            borderTop: "1px solid var(--border)",
-            flexWrap: "wrap",
-          }}>
-            {[
-              { value: "9+",   label: t(lang, "home.stat.creators") },
-              { value: "18K+", label: t(lang, "home.stat.subscribers") },
-              { value: "100%", label: t(lang, "home.stat.crypto") },
-            ].map((stat) => (
-              <div key={stat.label}>
-                <p style={{ fontFamily: "Georgia, serif", fontSize: "28px", color: "var(--text-primary)", marginBottom: "4px" }}>
-                  {stat.value}
-                </p>
-                <p style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
+          <AnimatedStats lang={lang} />
         </div>
 
         {/* Hero cards */}
