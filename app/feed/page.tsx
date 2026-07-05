@@ -285,7 +285,7 @@ function PostCard({
                 marginBottom: "16px",
                 borderRadius: "4px",
               }}>
-                <img src={imgSrc(post.image)} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img loading="lazy" src={imgSrc(post.image)} alt={post.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
             ) : post.hasImage ? (
               <div style={{
