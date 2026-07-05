@@ -72,6 +72,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <head>
+                <meta name="referrer" content="strict-origin-when-cross-origin" />
+        <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <link rel="manifest" href={(process.env.NEXT_PUBLIC_BASE_PATH || "") + "/manifest.json"} />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
