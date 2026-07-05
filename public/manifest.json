@@ -8,10 +8,47 @@
   "theme_color": "#E8003A",
   "orientation": "portrait-primary",
   "icons": [
-    { "src": "/favicon-32x32.png", "sizes": "32x32", "type": "image/png" },
-    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
-    { "src": "/og-image.png", "sizes": "1200x630", "type": "image/png", "purpose": "any" }
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "purpose": "any"
+    }
   ],
-  "categories": ["entertainment", "social"],
-  "lang": "en"
+  "categories": [
+    "entertainment",
+    "social"
+  ],
+  "lang": "en",
+  "shortcuts": [
+    {
+      "name": "Explore Creators",
+      "url": "/explore",
+      "description": "Discover creators"
+    },
+    {
+      "name": "My Feed",
+      "url": "/feed",
+      "description": "Latest posts"
+    },
+    {
+      "name": "Become a Creator",
+      "url": "/become-a-creator",
+      "description": "Start earning"
+    }
+  ],
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ]
 }
