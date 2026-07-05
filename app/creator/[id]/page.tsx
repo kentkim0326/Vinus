@@ -99,7 +99,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
               flexShrink: 0,
               boxShadow: "0 0 32px var(--shadow-accent)",
             }}>
-              <img src={creator.avatar} alt={creator.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img loading="lazy" src={creator.avatar} alt={creator.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
 
             <div style={{ flex: 1, minWidth: "240px" }}>
