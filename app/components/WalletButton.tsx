@@ -4,6 +4,7 @@ import { useAccount, useConnect, useDisconnect, useChainId, useSwitchChain } fro
 import { base } from "wagmi/chains";
 import { useEffect, useRef } from "react";
 import { useLang } from "./LangProvider";
+import { sanitizeReferrer, shortenAddress, isValidAddress } from "../lib/walletSecurity";
 import { useToast } from "./Toast";
 
 export default function WalletButton({ compact = false }: { compact?: boolean }) {
@@ -24,8 +25,10 @@ export default function WalletButton({ compact = false }: { compact?: boolean })
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     const ref = params.get("ref");
-    if (ref && ref.startsWith("0x")) {
-      localStorage.setItem("vinus-referrer", ref);
+    const currentAddr = address ?? null;
+    const cleanRef = sanitizeReferrer(ref, currentAddr);
+    if (cleanRef) {
+      localStorage.setItem("vinus-referrer", cleanRef);
     }
   }, []);
 
@@ -43,7 +46,7 @@ export default function WalletButton({ compact = false }: { compact?: boolean })
     prevConnected.current = isConnected;
   }, [isConnected, address, isKo, showToast]);
 
-  const shortAddress = address ? `${address.slice(0, 6)}...${address.slice(-4)}` : "";
+  const shortAddress = shortenAddress(address);
 
   const btnStyle: React.CSSProperties = {
     fontFamily: "system-ui, sans-serif",
