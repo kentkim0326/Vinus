@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "The world's first AI-powered Web3 creator platform. Subscribe to independent creators. Pay with crypto. Real-time AI translation in 20 languages. Anonymous. Transparent. Global.",
   keywords: ["creator platform", "web3", "crypto", "AI translation", "MetaMask", "USDC", "Base Network", "anonymous", "creator economy"],
   authors: [{ name: "Vinus" }],
-  metadataBase: new URL("https://vinus-black.vercel.app"),
+  metadataBase: new URL("https://kentkim0326.github.io/Vinus"),
   openGraph: {
     type: "website",
     siteName: "Vinus",
