@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /profile/edit
+
+Sitemap: https://kentkim0326.github.io/Vinus/sitemap.xml
