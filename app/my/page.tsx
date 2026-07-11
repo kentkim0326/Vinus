@@ -52,6 +52,9 @@ export default function MyPage() {
       fontFamily: "system-ui, sans-serif",
     }}>
       <Navbar />
+      <section style={{ maxWidth: "700px", margin: "0 auto", padding: "24px 24px 0" }}>
+        <FanLevel />
+      </section>
 
       <div style={{ maxWidth: "860px", margin: "0 auto", padding: "48px 24px" }}>
         {/* Header */}
