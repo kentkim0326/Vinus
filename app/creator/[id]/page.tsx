@@ -125,6 +125,7 @@ export default function CreatorPage({ params }: { params: Promise<{ id: string }
                   <span style={{ fontFamily: "Georgia, serif", fontSize: "22px", color: "var(--text-primary)" }}>
                     {creator.subscribers.toLocaleString()}
                   </span>
+              <div style={{ marginTop: "8px" }}><LiveViewers seed={creator.id} /></div>
                   <span style={{ color: "var(--text-faint)", fontSize: "12px", letterSpacing: "1px" }}>{t(lang, "creator.subscribers")}</span>
                 </div>
                 <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
