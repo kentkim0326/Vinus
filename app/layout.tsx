@@ -5,6 +5,7 @@ import { Web3Provider } from "./components/Web3Provider";
 import { ThemeProvider } from "./components/ThemeProvider";
 import { LangProvider } from "./components/LangProvider";
 import AgeGate from "./components/AgeGate";
+import DailyReward from "./components/DailyReward";
 import { ToastProvider } from "./components/Toast";
 import BottomNav from "./components/BottomNav";
 
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <ToastProvider>
                 <AgeGate>
                   {children}
+            <DailyReward />
                   <BottomNav />
                 </AgeGate>
               </ToastProvider>
