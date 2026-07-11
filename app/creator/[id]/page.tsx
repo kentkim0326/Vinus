@@ -12,6 +12,7 @@ import PurchaseModal from "../../components/PurchaseModal";
 import { creators } from "../../lib/data";
 import { getCreatorContent, ContentItem } from "../../lib/content";
 import ShareButton from "../../components/ShareButton";
+import LiveViewers from "../../components/LiveViewers";
 
 export default function CreatorPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
