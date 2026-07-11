@@ -7,6 +7,7 @@ import { t } from "../lib/i18n";
 
 import { useState } from "react";
 import Navbar from "../components/Navbar";
+import FanLevel from "../components/FanLevel";
 
 const subscriptions = [
   { id: 1, creator: "Aria Nova", category: "Art & Illustration", preview: "✦", tier: "Supporter", price: 5, nextBilling: "Jul 15, 2026", status: "active" },
