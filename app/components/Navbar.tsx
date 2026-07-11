@@ -58,7 +58,12 @@ export default function Navbar() {
           {t(lang, "nav.feed")}
         </a>
         <a href={href("/roadmap")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+
           {lang === "ko" ? "로드맵" : "Roadmap"}
+        </a>
+              <a href={href("/leaderboard")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+
+          {lang === "ko" ? "랭킹" : "RANKINGS"}
         </a>
         <a href={href("/about")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
           About
