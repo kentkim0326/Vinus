@@ -67,7 +67,7 @@ function CreatorCard({ creator }: { creator: Creator }) {
         flexShrink: 0,
       }}>
         <img
-          src={creator.avatar}
+          src={imgSrc(creator.avatar)}
           alt={creator.name}
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
