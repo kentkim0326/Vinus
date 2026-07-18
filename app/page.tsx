@@ -436,6 +436,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Leaderboard + Referral banner */}
+      <section style={{ padding: "60px 24px", maxWidth: "900px", margin: "0 auto" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "16px" }}>
+          <a href={href("/leaderboard")} style={{
+            padding: "32px", backgroundColor: "var(--bg-card)",
+            border: "1px solid var(--border)", textDecoration: "none",
+          }}>
+            <span style={{ fontSize: "32px", display: "block", marginBottom: "12px" }}>🏆</span>
+            <p style={{ fontSize: "18px", color: "var(--text-primary)", marginBottom: "6px", fontFamily: "Georgia, serif" }}>
+              {lang === "ko" ? "톱 크리에이터 랭킹" : "Top Creator Rankings"}
+            </p>
+            <p style={{ fontSize: "13px", color: "var(--text-dim)", lineHeight: 1.6 }}>
+              {lang === "ko" ? "실시간 순위를 확인하세요" : "See who's trending right now"}
+            </p>
+            <span style={{ color: "var(--accent)", fontSize: "13px", marginTop: "12px", display: "inline-block" }}>
+              {lang === "ko" ? "랭킹 보기 →" : "View rankings →"}
+            </span>
+          </a>
+          <a href={href("/referral")} style={{
+            padding: "32px", backgroundColor: "var(--bg-card)",
+            border: "1px solid var(--border)", textDecoration: "none",
+          }}>
+            <span style={{ fontSize: "32px", display: "block", marginBottom: "12px" }}>💰</span>
+            <p style={{ fontSize: "18px", color: "var(--text-primary)", marginBottom: "6px", fontFamily: "Georgia, serif" }}>
+              {lang === "ko" ? "친구 초대하고 수익" : "Invite & Earn"}
+            </p>
+            <p style={{ fontSize: "13px", color: "var(--text-dim)", lineHeight: 1.6 }}>
+              {lang === "ko" ? "3단계 온체인 추천 보상" : "3-level on-chain referral rewards"}
+            </p>
+            <span style={{ color: "var(--accent)", fontSize: "13px", marginTop: "12px", display: "inline-block" }}>
+              {lang === "ko" ? "시작하기 →" : "Get started →"}
+            </span>
+          </a>
+        </div>
+      </section>
+
       {/* ── Footer ── */}
             <Footer />
     </main>
