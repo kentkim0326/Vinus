@@ -1,5 +1,7 @@
 "use client";
 
+import { imgSrc } from "../lib/basePath";
+
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { useState } from "react";
@@ -178,7 +180,7 @@ export default function ExplorePage() {
                     border: "1px solid var(--border)",
                     marginBottom: "20px",
                   }}>
-                    <img loading="lazy" src={creator.avatar} alt={creator.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    <img loading="lazy" src={imgSrc(creator.avatar)} alt={creator.name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   </div>
                   <h3 style={{ fontFamily: "Georgia, serif", fontSize: "18px", fontWeight: "normal", color: "var(--text-primary)", marginBottom: "4px" }}>
                     {creator.name}
