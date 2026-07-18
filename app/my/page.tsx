@@ -54,6 +54,21 @@ export default function MyPage() {
       <Navbar />
       <section style={{ maxWidth: "700px", margin: "0 auto", padding: "24px 24px 0" }}>
         <FanLevel />
+        <a href={href("/referral")} style={{
+          marginTop: "12px",
+          padding: "16px 20px",
+          backgroundColor: "var(--bg-card)",
+          border: "1px solid var(--accent)",
+          textDecoration: "none",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}>
+          <span style={{ color: "var(--text-primary)", fontSize: "14px" }}>
+            💰 {lang === "ko" ? "추천하고 수익 얻기" : "Earn from referrals"}
+          </span>
+          <span style={{ color: "var(--accent)", fontSize: "18px" }}>→</span>
+        </a>
       </section>
 
       <div style={{ maxWidth: "860px", margin: "0 auto", padding: "48px 24px" }}>
