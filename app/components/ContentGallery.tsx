@@ -1,5 +1,7 @@
 "use client";
 
+import { imgSrc } from "../lib/basePath";
+
 import { useState } from "react";
 import { useLang } from "./LangProvider";
 import { t } from "../lib/i18n";
@@ -54,7 +56,7 @@ function ContentCard({
       }}>
         {item.image ? (
           <img
-            src={item.image}
+            src={imgSrc(item.image)}
             alt={item.title}
             style={{
               width: "100%",
