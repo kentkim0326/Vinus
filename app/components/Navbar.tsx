@@ -65,6 +65,10 @@ export default function Navbar() {
 
           {lang === "ko" ? "랭킹" : "RANKINGS"}
         </a>
+              <a href={href("/referral")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
+
+          {lang === "ko" ? "추천" : "REFERRALS"}
+        </a>
         <a href={href("/about")} style={{ color: "var(--text-dim)", textDecoration: "none", fontSize: "13px" }}>
           About
         </a>
